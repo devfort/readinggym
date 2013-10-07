@@ -1,7 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import FormView, TemplateView, View
-from readfast.forms import SpeedTestForm
+from django.views.generic import FormView, TemplateView, DetailView
+
+import readfast.forms as forms
+import readfast.models as models
 
 class IndexView(TemplateView):
     """
@@ -23,7 +25,7 @@ class DashboardView(TemplateView):
 
 class SpeedTestView(FormView):
     template_name = "speedtest.html"
-    form_class = SpeedTestForm
+    form_class = forms.SpeedTestForm
     success_url = 'FIXME-Now-go-test'
 
     def get_context_data(self, **kwargs):
@@ -68,10 +70,46 @@ class PracticeReadingView(ReadView):
     template_name = "practice.html"
 
 
-class ComprehensionView(FormView):
+class ComprehensionView(DetailView):
     """
     /comprehension/<piece_id>/
 
     Shows you some questions about the piece and scores you
     """
     template_name = "comprehension.html"
+    model = models.Piece
+
+    def get_context_data(self, **kwargs):
+        questions = self.object.questions.order_by('?')[:10]
+
+        context = super(ComprehensionView, self).get_context_data(**kwargs)
+        context['questions'] = [(q, q.answers.order_by('?')[:3])
+                                for q in questions]
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        correct_answers = 0
+        num_questions = 0
+
+        for field, value in request.POST.iteritems():
+            if field.startswith("q-"):
+                qid = int(field[2:])
+                aid = int(value)
+
+                correct = self.object.questions.filter(
+                    id=qid,
+                    answers__correct=True,
+                    answers__id=aid,
+                )
+
+                correct_answers += bool(correct)
+                num_questions += 1
+
+        if correct_answers != num_questions:
+            self.template_name = "comprehension_fail.html"
+        else:
+            self.template_name = "comprehension_pass.html"
+
+        return self.render_to_response(self.get_context_data(**kwargs))
