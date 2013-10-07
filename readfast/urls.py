@@ -1,8 +1,7 @@
 from django.conf.urls import patterns, url
 
-from readfast import views
+import readfast.views
 
 urlpatterns = patterns('',
-    url(r'^$', views.TestIndexView.as_view(), name='index'),
-    url(r'^(?P<test_id>\d+)/$', views.TestDetailView.as_view(), name='detail'),
+    url(r"^read/$",  readfast.views.ReadView.as_view(), name="read"),
 )

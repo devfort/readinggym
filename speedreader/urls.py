@@ -8,7 +8,6 @@ admin.autodiscover()
 
 
 urlpatterns = patterns('',
-    url(r"^read/$",  readfast.views.ReadView.as_view(), name="read"),
-    url(r'^tests/', include('readfast.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'', include('readfast.urls')),
+    url(r'^admin/$', include(admin.site.urls)),
 )

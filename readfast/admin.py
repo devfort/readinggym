@@ -1,4 +1,7 @@
 from django.contrib import admin
-from readfast.models import Test
 
-admin.site.register(Test)
+import readfast.models as models
+
+admin.site.register(models.Piece)
+admin.site.register(models.ComprehensionQuestion)
+admin.site.register(models.ComprehensionAnswer)
