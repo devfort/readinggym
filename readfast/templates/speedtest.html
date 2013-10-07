@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<html>
+<head>
+    <script src="{% static "jquery-1.10.2.min.js" %}"></script>
+        <style>
+            article {
+                width: 30em;
+                margin: 0 auto 0 auto;
+                line-height: 2em;
+                position: relative;
+                text-align: justify;
+            }
+
+            span {
+                display: inline-block;
+                white-space: pre;
+            }
+
+            .regulator {
+                position: absolute;
+                height: 3px;
+                background-color: red;
+            }
+        </style>
+</head>
+<body>
+
+    <h1>Time this!</h1>
+<form method="post">
+{% csrf_token %}
+{# <noscript> #}
+<p>
+You will need something (such as a stop watch) to time how long it takes you to read the following. Read as fast as you can while still understanding each line.
+</p>
+{# </noscript> #}
+<article>
+{{ words_to_read|safe }}
+</article>
+{# <noscript> #}
+{{ form.as_p }}
+<button type="submit">Record time</button>
+{# </noscript> #}
+</form>
+
+</body>
+</html>
