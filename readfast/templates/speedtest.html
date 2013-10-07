@@ -21,25 +21,57 @@
                 height: 3px;
                 background-color: red;
             }
+            div.timer {
+                position: fixed;
+                background: white;
+                right: 5px;
+                top: 5px;
+            }
         </style>
 </head>
 <body>
 
     <h1>Time this!</h1>
-<form method="post">
-{% csrf_token %}
-{# <noscript> #}
-<p>
+
+<p class="noscript">
 You will need something (such as a stop watch) to time how long it takes you to read the following. Read as fast as you can while still understanding each line.
 </p>
-{# </noscript> #}
+
+<div style="display:none" class="timer enhanced">
+    <button id="timing" type="button">Start</button>
+</div>
+<p style="display:none" class="enhanced">
+    How the clever buttons work yo
+    <button type="button" class="manualtesting" onclick="$('.noscript').show();$('.enhanced').hide()">Test manual</button>
+</p>
+
+<script>
+$( document ).ready(function() {
+  $( '#timing' ).click(function() {
+    var t = Date.now();
+    $( '#timing').off().text('Stop');
+    $( '#timing').click(function() {
+      $( '#timing').remove();
+      t = Date.now() - t;
+      $('input[name="seconds"]').val(t / 1000);
+      $('form').submit();
+    });
+  });
+  $('.enhanced').show();
+  $('.noscript').hide();
+});
+</script>
+
 <article>
 {{ words_to_read|safe }}
 </article>
-{# <noscript> #}
+
+<form method="post">
+{% csrf_token %}
+<span class="noscript">
 {{ form.as_p }}
 <button type="submit">Record time</button>
-{# </noscript> #}
+</span>
 </form>
 
 </body>

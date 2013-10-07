@@ -24,7 +24,8 @@ class DashboardView(TemplateView):
 class SpeedTestView(FormView):
     template_name = "speedtest.html"
     form_class = SpeedTestForm
-    success_url = 'FIXME-Now-go-test'
+    success_url = '/dashboard'
+    initial = { 'wordcount': 555 } # XXX need to pull from words_to_read
 
     def get_context_data(self, **kwargs):
         data = open("corpae/makers_snippit.txt")
@@ -39,8 +40,8 @@ class SpeedTestView(FormView):
 
     def form_valid(self, form):
         # import pdb; pdb.set_trace()
-        # Stash in cookie
-        print form.cleaned_data['seconds']
+        # Stash in cookie via session
+        # print form.cleaned_data['seconds'] / form.cleaned_data['wordcount']
         return super(SpeedTestView, self).form_valid(form)
 
 
