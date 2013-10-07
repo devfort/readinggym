@@ -57,11 +57,11 @@
                 var guideTime = ((lineWidth - guideWidth) / pixelRate)* 1000;
                 console.log(line, lineNo, guideTime);
                 
-                box.animate({
+                box.css({
                     left: lineLeft,
                     top: lineBottom,
                     width: guideWidth
-                }, 50);
+                });
 
                 box.animate({
                     left: (lineLeft + lineWidth) - guideWidth,
