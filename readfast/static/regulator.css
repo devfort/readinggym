@@ -1,0 +1,25 @@
+article {
+    width: 30em;
+    margin: 0 auto 0 auto;
+    line-height: 2em;
+    position: relative;
+    text-align: justify;
+    color: #aaa;
+}
+
+span {
+    display: inline-block;
+    white-space: pre;
+}
+span.highlight {
+  color: black;
+}
+
+.regulator {
+    position: absolute;
+    height: 6px;
+    width: 6px;
+    margin-top: -3px;
+    border-radius: 3px;
+    background-color: red;
+}
