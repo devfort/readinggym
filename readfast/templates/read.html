@@ -65,7 +65,7 @@
 
                 box.animate({
                     left: (lineLeft + lineWidth) - guideWidth,
-                }, guideTime, function () {
+                }, guideTime, 'linear', function () {
                     lineNo += 1;
                     guideLine();
                 });
