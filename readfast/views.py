@@ -4,15 +4,21 @@ from django.views.generic import FormView, TemplateView
 
 
 class IndexView(TemplateView):
+    """
+    /
+
+    The homepage.
+    """
     template_name = "index.html"
 
 
 class DashboardView(TemplateView):
+    """
+    /dashboard/
+
+    Shows you some info about how well you read and what to do next.
+    """
     template_name = "dashboard.html"
-
-
-class ReadSetupView(TemplateView):
-    template_name = "read_setup.html"
 
 
 class SpeedTestView(TemplateView):
@@ -20,8 +26,6 @@ class SpeedTestView(TemplateView):
 
 
 class ReadView(TemplateView):
-    template_name = "read.html"
-
     def get_context_data(self, **kwargs):
         data = open("corpae/makers_snippit.txt")
         words_to_read = []
@@ -36,6 +40,19 @@ class ReadView(TemplateView):
         return context
 
 
-class ComprehensionView(FormView):
-    template_name = "comprehension.html"
+class PracticeReadingView(ReadView):
+    """
+    /practice/<piece_id>/
 
+    Shows you a piece with a reading regulator.
+    """
+    template_name = "practice.html"
+
+
+class ComprehensionView(FormView):
+    """
+    /comprehension/<piece_id>/
+
+    Shows you some questions about the piece and scores you
+    """
+    template_name = "comprehension.html"
