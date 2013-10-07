@@ -67,7 +67,7 @@
                     left: (lineLeft + lineWidth) - guideWidth,
                 }, guideTime, 'linear', function () {
                     lineNo += 1;
-                    guideLine();
+                    window.setTimeout(guideLine, 100);
                 });
             };
 
