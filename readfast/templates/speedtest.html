@@ -21,7 +21,8 @@
                 height: 3px;
                 background-color: red;
             }
-            div.timer {
+            #timer-module.enhanced form { display: none }
+            #timer-control {
                 position: fixed;
                 background: white;
                 right: 5px;
@@ -33,46 +34,45 @@
 
     <h1>Time this!</h1>
 
-<p class="noscript">
-You will need something (such as a stop watch) to time how long it takes you to read the following. Read as fast as you can while still understanding each line.
-</p>
-
-<div style="display:none" class="timer enhanced">
-    <button id="timing" type="button">Start</button>
-</div>
-<p style="display:none" class="enhanced">
-    How the clever buttons work yo
-    <button type="button" class="manualtesting" onclick="$('.noscript').show();$('.enhanced').hide()">Test manual</button>
-</p>
-
-<script>
-$( document ).ready(function() {
-  $( '#timing' ).click(function() {
-    var t = Date.now();
-    $( '#timing').off().text('Stop');
-    $( '#timing').click(function() {
-      $( '#timing').remove();
-      t = Date.now() - t;
-      $('input[name="seconds"]').val(t / 1000);
-      $('form').submit();
-    });
-  });
-  $('.enhanced').show();
-  $('.noscript').hide();
-});
-</script>
+<div id='timer-module'>
+  <p class='explanation'>
+    You will need something (such as a stop watch) to time how long it takes you to read the following.
+    Read as fast as you can while still understanding each line.
+  </p>
+  <div id='timer-control'></div>
 
 <article>
 {{ words_to_read|safe }}
 </article>
 
 <form method="post">
-{% csrf_token %}
-<span class="noscript">
-{{ form.as_p }}
-<button type="submit">Record time</button>
-</span>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Record time</button>
 </form>
+
+</div>
+<script>
+
+$( document ).ready(function() {
+  $('#timer-module .explanation').html('How the clever buttons work yo');
+  var $timing = $('<button type="button">Start</button>');
+  $('#timer-module #timer-control').html($timing);
+  $timing.click(function() {
+    var t = Date.now();
+    $timing
+      .off()
+      .text('Stop');
+    $timing.click(function() {
+      $timing.remove();
+      t = Date.now() - t;
+      $('#timer-module input[name="seconds"]').val(t / 1000);
+      $('#timer-module form').submit();
+    });
+  });
+  $('#timer-module').addClass('enhanced');
+});
+</script>
 
 </body>
 </html>
