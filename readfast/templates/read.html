@@ -63,11 +63,13 @@
                     top: lineBottom,
                     width: guideWidth
                 });
+                box.show();
 
                 box.animate({
                     left: (lineLeft + lineWidth) - guideWidth,
                 }, guideTime, 'linear', function () {
                     lineNo += 1;
+                    box.hide();
                     window.setTimeout(guideLine, 100);
                 });
             };
