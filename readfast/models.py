@@ -3,6 +3,7 @@ from django.db import models
 
 class Piece(models.Model):
     name = models.CharField(max_length=200)
+    slug = models.SlugField()
     text = models.TextField()
 
     def __unicode__(self):
