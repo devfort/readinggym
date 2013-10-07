@@ -10,8 +10,11 @@ class ReadView(TemplateView):
     def get_context_data(self, **kwargs):
         data = open("corpae/riker.corpus")
         words_to_read = []
-        for word in data.read().split():
-            words_to_read.append("<span>%s </span>" % word)
+        for line in data:
+            words_to_read.append("\n")
+            for word in line.split():
+                words_to_read.append("<span>%s </span>" % word)
+
         words_to_read = "".join(words_to_read)
         context = super(ReadView, self).get_context_data(**kwargs)
         context['words_to_read'] = words_to_read
