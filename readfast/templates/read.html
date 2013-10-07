@@ -46,7 +46,7 @@
             var box = $("<div>").addClass("regulator");
             $("body").append(box);
 
-            var guideWidth = 30;
+            var guideWidth = 6;
             var pixelRate = 200;
             var lineNo = 0;
             var guideLine = function () {
@@ -90,7 +90,10 @@
 
             .regulator {
                 position: absolute;
-                height: 3px;
+                height: 6px;
+                width: 6px;
+                margin-top: -3px;
+                border-radius: 3px;
                 background-color: red;
             }
         </style>
