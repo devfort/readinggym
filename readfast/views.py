@@ -22,7 +22,7 @@ class ReadView(TemplateView):
     template_name = "read.html"
 
     def get_context_data(self, **kwargs):
-        data = open("riker.corpus")
+        data = open("corpae/riker.corpus")
         words_to_read = []
         for word in data.read().split():
             words_to_read.append("<span>%s </span>" % word)
