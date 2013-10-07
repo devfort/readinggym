@@ -1,7 +1,22 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import View
-from django.views.generic import TemplateView
+from django.views.generic import FormView, TemplateView
+
+
+class IndexView(TemplateView):
+    template_name = "index.html"
+
+
+class DashboardView(TemplateView):
+    template_name = "dashboard.html"
+
+
+class ReadSetupView(TemplateView):
+    template_name = "read_setup.html"
+
+
+class SpeedTestView(TemplateView):
+    template_name = "speed_test.html"
 
 
 class ReadView(TemplateView):
@@ -19,3 +34,8 @@ class ReadView(TemplateView):
         context = super(ReadView, self).get_context_data(**kwargs)
         context['words_to_read'] = words_to_read
         return context
+
+
+class ComprehensionView(FormView):
+    template_name = "comprehension.html"
+
