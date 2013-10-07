@@ -8,7 +8,7 @@ class ReadView(TemplateView):
     template_name = "read.html"
 
     def get_context_data(self, **kwargs):
-        data = open("corpae/riker.corpus")
+        data = open("corpae/makers_snippit.txt")
         words_to_read = []
         for line in data:
             words_to_read.append("\n")
