@@ -1,9 +1,20 @@
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import FormView, TemplateView, DetailView
 
 import readfast.forms as forms
 import readfast.models as models
+
+
+def spanify(text):
+    words_to_read = []
+    for line in text.splitlines():
+        words_to_read.append("\n")
+        for word in line.split():
+            words_to_read.append("<span>%s </span>" % word)
+
+    return words_to_read
+
 
 class IndexView(TemplateView):
     """
@@ -23,52 +34,36 @@ class DashboardView(TemplateView):
     template_name = "dashboard.html"
 
 
-class SpeedTestView(FormView):
+class ReadViewMixin(object):
+    def get_context_data(self, **kwargs):
+        data = open("corpae/makers_snippit.txt")
+        words_to_read = spanify(data.read())
+
+        context = super(ReadViewMixin, self).get_context_data(**kwargs)
+        context['words_to_read'] = "".join(words_to_read)
+        context['wordcount'] = len(words_to_read)
+        return context
+
+
+class SpeedTestView(ReadViewMixin, FormView):
     template_name = "speedtest.html"
     form_class = forms.SpeedTestForm
     success_url = 'FIXME-Now-go-test'
 
-    def get_context_data(self, **kwargs):
-        data = open("corpae/makers_snippit.txt")
-        words_to_read = []
-        for word in data.read().split():
-            words_to_read.append("<span>%s </span>" % word)
-        words_to_read = "".join(words_to_read)
-        context = super(SpeedTestView, self).get_context_data(**kwargs)
-        context['words_to_read'] = words_to_read
-        context['wordcount'] = words_to_read.count
-        return context
-
     def form_valid(self, form):
-        # import pdb; pdb.set_trace()
         # Stash in cookie
         print form.cleaned_data['seconds']
         return super(SpeedTestView, self).form_valid(form)
 
 
-class ReadView(TemplateView):
-    def get_context_data(self, **kwargs):
-        data = open("corpae/makers_snippit.txt")
-        words_to_read = []
-        for line in data:
-            words_to_read.append("\n")
-            for word in line.split():
-                words_to_read.append("<span>%s </span>" % word)
-
-        words_to_read = "".join(words_to_read)
-        context = super(ReadView, self).get_context_data(**kwargs)
-        context['words_to_read'] = words_to_read
-        return context
-
-
-class PracticeReadingView(ReadView):
+class PracticeReadingView(ReadViewMixin, DetailView):
     """
     /practice/<piece_id>/
 
     Shows you a piece with a reading regulator.
     """
     template_name = "practice.html"
-
+    model = models.Piece
 
 class ComprehensionView(DetailView):
     """
@@ -109,7 +104,8 @@ class ComprehensionView(DetailView):
 
         if correct_answers != num_questions:
             self.template_name = "comprehension_fail.html"
+            return self.render_to_response(self.get_context_data(**kwargs))
         else:
             self.template_name = "comprehension_pass.html"
+            return redirect("comprehension-pass")
 
-        return self.render_to_response(self.get_context_data(**kwargs))

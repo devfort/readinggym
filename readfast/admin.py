@@ -14,5 +14,6 @@ class QuestionAdmin(admin.ModelAdmin):
 class PieceAdmin(admin.ModelAdmin):
     pass
 
+
 admin.site.register(models.Piece, PieceAdmin)
 admin.site.register(models.ComprehensionQuestion, QuestionAdmin)
