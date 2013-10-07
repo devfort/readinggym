@@ -9,5 +9,5 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'', include('readfast.urls')),
-    url(r'^admin/$', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
 )

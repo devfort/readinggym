@@ -2,6 +2,17 @@ from django.contrib import admin
 
 import readfast.models as models
 
-admin.site.register(models.Piece)
-admin.site.register(models.ComprehensionQuestion)
-admin.site.register(models.ComprehensionAnswer)
+
+class AnswerAdmin(admin.StackedInline):
+    model = models.ComprehensionAnswer
+
+
+class QuestionAdmin(admin.ModelAdmin):
+    inlines = [AnswerAdmin]
+
+
+class PieceAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(models.Piece, PieceAdmin)
+admin.site.register(models.ComprehensionQuestion, QuestionAdmin)

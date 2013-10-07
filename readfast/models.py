@@ -18,6 +18,8 @@ class ComprehensionQuestion(models.Model):
                               related_name="questions")
     text = models.CharField(max_length=200)
 
+    def __unicode__(self):
+        return self.text
 
 class ComprehensionAnswer(models.Model):
     """
@@ -26,3 +28,8 @@ class ComprehensionAnswer(models.Model):
     """
     question = models.ForeignKey('ComprehensionQuestion',
                                  related_name="answers")
+    text = models.CharField(max_length=200)
+    correct = models.BooleanField()
+
+    def __unicode__(self):
+        return u"%s (%s)" % (self.text, self.correct)
