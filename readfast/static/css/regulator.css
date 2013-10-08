@@ -6,10 +6,6 @@
     text-align: justify;
 }
 
-article p {
-    margin-top: 0;
-}
-
 article {
     color: #000;
     -webkit-transition:color 0.05s linear;
