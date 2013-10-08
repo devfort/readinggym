@@ -1,4 +1,4 @@
-from fabric.api import env, run, cd, task
+from fabric.api import env, run, sudo, cd, task
 
 env.hosts = ['core.fort']
 env.user = 'fort'
@@ -9,5 +9,5 @@ def deploy():
     with cd(DEPLOY_PATH):
         run("git pull -q");
         run("venv/bin/python manage.py collectstatic --noinput")
-        run("sudo service readfast restart")
+        sudo("service readfast restart")
 
