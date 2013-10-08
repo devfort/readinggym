@@ -2,7 +2,35 @@
 {% block extra_head %}
 <script src="/static/js/regulator.js" type="text/javascript"></script>
 <script src="/static/js/speed.js" type="text/javascript"></script>
+<style>
+  #timer-module.enhanced form { display: none }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id='timer-module'>
+  <p class='explanation'>
+    [[You will need something (such as a stop watch) to time how long it takes you to read the following.
+    Read as fast as you can while still understanding each line.]]
+  </p> 
+
+  <article>
+    {{ words_to_read|safe }}
+  </article>
+
+  <div id='timer-control'></div>
+  <form method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>Record time</button>
+  </form>
+</div>
+
 <script>
+enhanceTimerModule('[[Explain how the Start/Done buttons work]]');
+</script>
+<script>
+<!-- TODO: Merge Start/Done and next page -->
 $(function() {
   var article = $("article");  
   var pager = new Pager(article);
@@ -12,30 +40,6 @@ $(function() {
   });
   article.after(nextPage);
 });
-</script>
-{% endblock %}
-
-{% block content %}
-<div id='timer-module'>
-  <p class='explanation'>
-    You will need something (such as a stop watch) to time how long it takes you to read the following.
-    Read as fast as you can while still understanding each line.
-  </p> 
-  <div id='timer-control'></div>
-
-  <article>
-    {{ words_to_read|safe }}
-  </article>
-
-  <form method='post'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type='submit'>Record time</button>
-  </form>
-</div>
-
-<script>
-enhanceTimerModule('How the clever buttons work yo');
 </script>
 {% endblock %}
 
