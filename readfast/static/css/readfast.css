@@ -107,15 +107,16 @@ header > a {
 }
 
 .reading_speed {
-    font-size: 4em;
+    font-style: italic;
 }
 
 .reading_improvement {
-    font-size: 2em;
+    font-style: italic;
 }
 
 .dashboard_buttons {
-    margin: 20px auto; 
+    margin-top: 1em;
+    text-align: center;
 }
 
 .dashboard_buttons a:nth-child(1) {
@@ -132,8 +133,10 @@ header > a {
     text-decoration: none;
     width: 6em;
     height: 6em;
-    border: dotted 0.1em;
-    display: table-cell;
+    line-height: 6em;
+    border: dotted 1px;
+    margin: 0 1em 0 1em;
+    display: inline-block;
     vertical-align: middle;
     text-align: center;
 }
