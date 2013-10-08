@@ -33,6 +33,7 @@ class DashboardView(TemplateView):
     """
     template_name = "dashboard.html"
 
+
 class ReadViewMixin(object):
     def get_context_data(self, **kwargs):
         data = open("corpae/makers_snippit.txt")
@@ -48,7 +49,11 @@ class SpeedTestView(ReadViewMixin, FormView):
     template_name = "speedtest.html"
     form_class = forms.SpeedTestForm
     success_url = '/dashboard'
-    initial = { 'wordcount': 555 } # XXX need to pull from words_to_read
+
+    def get_context_data(self, **kwargs):
+        context = super(SpeedTestView, self).get_context_data(**kwargs)
+        context['form'].fields['wordcount'].initial = context['wordcount']
+        return context
 
     def form_valid(self, form):
         # XXX Stash in cookie via session
@@ -64,6 +69,7 @@ class PracticeReadingView(ReadViewMixin, DetailView):
     """
     template_name = "practice.html"
     model = models.Piece
+
 
 class ComprehensionView(DetailView):
     """

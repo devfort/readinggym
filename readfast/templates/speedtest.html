@@ -1,39 +1,17 @@
-{% load staticfiles %}
-<html>
-<head>
-    <script src="{% static "jquery-1.10.2.min.js" %}"></script>
-        <style>
-            article {
-                width: 30em;
-                margin: 0 auto 0 auto;
-                line-height: 2em;
-                position: relative;
-                text-align: justify;
-            }
+{% extends "base.html" %}
+{% block extra_head %}
+<style>
+  #timer-module.enhanced form { display: none }
+  #timer-control {
+    position: fixed;
+    background: white;
+    right: 5px;
+    top: 5px;
+  }
+</style>
+{% endblock %}
 
-            span {
-                display: inline-block;
-                white-space: pre;
-            }
-
-            .regulator {
-                position: absolute;
-                height: 3px;
-                background-color: red;
-            }
-            #timer-module.enhanced form { display: none }
-            #timer-control {
-                position: fixed;
-                background: white;
-                right: 5px;
-                top: 5px;
-            }
-        </style>
-</head>
-<body>
-
-    <h1>Time this!</h1>
-
+{% block content %}
 <div id='timer-module'>
   <p class='explanation'>
     You will need something (such as a stop watch) to time how long it takes you to read the following.
@@ -41,16 +19,15 @@
   </p>
   <div id='timer-control'></div>
 
-<article>
-{{ words_to_read|safe }}
-</article>
+  <article>
+  {{ words_to_read|safe }}
+  </article>
 
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Record time</button>
-</form>
-
+  <form method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>Record time</button>
+  </form>
 </div>
 
 <script>
@@ -71,6 +48,5 @@ $('#timer-module #timer-control').html($timing);
 $('#timer-module .explanation').html('How the clever buttons work yo');
 $('#timer-module').addClass('enhanced');
 </script>
+{% endblock %}
 
-</body>
-</html>

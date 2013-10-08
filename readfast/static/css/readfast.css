@@ -1,0 +1,30 @@
+
+.js .noscript {
+    display: none;
+}
+
+article {
+    width: 30em;
+    margin: 0 auto 0 auto;
+    line-height: 2em;
+    position: relative;
+    text-align: justify;
+}
+
+span {
+    display: inline-block;
+    white-space: pre;
+}
+
+.regulator {
+    position: absolute;
+    height: 3px;
+    background-color: red;
+}
+
+div.timer {
+    position: fixed;
+    background: white;
+    right: 5px;
+    top: 5px;
+}
