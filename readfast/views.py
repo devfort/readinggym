@@ -108,10 +108,13 @@ class ComprehensionView(DetailView):
                 correct_answers += bool(correct)
                 num_questions += 1
 
+        kwargs['correct_answers'] = correct_answers
+        kwargs['num_questions'] = num_questions
+
         if correct_answers != num_questions:
             self.template_name = "comprehension_fail.html"
-            return self.render_to_response(self.get_context_data(**kwargs))
         else:
             self.template_name = "comprehension_pass.html"
-            return redirect("comprehension-pass")
+
+        return self.render_to_response(self.get_context_data(**kwargs))
 
