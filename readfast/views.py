@@ -77,7 +77,11 @@ class RandomDetailView(DetailView):
     """
     def get_object(self, **kwargs):
         if not self.kwargs.get(self.pk_url_kwarg):
-            return self.model.objects.order_by('?')[0]
+            random_collection = self.model.objects.order_by('?')
+            if random_collection:
+                return random_collection[0]
+            else:
+                raise self.model.DoesNotExist
         else:
             return super(RandomDetailView, self).get_object(**kwargs)
 
