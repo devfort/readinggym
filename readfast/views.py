@@ -14,7 +14,8 @@ def spanify(text):
     for line in text.splitlines():
         for word in line.split():
             words_to_read.append("<span>%s </span>" % word)
-        words_to_read.append("\n")
+        if not line.strip():
+            words_to_read.append("\n\n")
 
     return words_to_read
 
