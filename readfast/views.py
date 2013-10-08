@@ -1,6 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import FormView, TemplateView, DetailView
+from django.views.generic import (
+    FormView, TemplateView, DetailView
+)
+from django.views.generic.edit import ProcessFormView, FormMixin
 
 import readfast.forms as forms
 import readfast.models as models
@@ -55,13 +58,18 @@ class RandomDetailView(DetailView):
         if not self.kwargs.get(self.pk_url_kwarg):
             return self.model.objects.order_by('?')[0]
         else:
-            return super(PracticeReadingView, self).get_object(**kwargs)
+            return super(RandomDetailView, self).get_object(**kwargs)
 
 
-class SpeedTestView(ReadViewMixin, FormView):
+class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, RandomDetailView):
     template_name = "speedtest.html"
     form_class = forms.SpeedTestForm
     success_url = '/dashboard'
+    model = models.Piece
+
+    def dispatch(self, *args, **kwargs):
+        self.object = self.get_object(**kwargs)
+        return super(SpeedTestView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(SpeedTestView, self).get_context_data(**kwargs)
