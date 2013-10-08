@@ -56,9 +56,15 @@ Regulator.prototype.start = function() {
     $("body").append(box);
 
     var lines = this.lines;
+    var words = this.article.find("span");
     var regulator = this;
+
+    var wordsPerLine = words.length / lines.length;
+    var pixelsPerWord = this.article.width() / wordsPerLine;
+    var wpm = 200;
+    
     var guideWidth = 6;
-    var pixelRate = 200;
+    var pixelRate = (wpm/60)*pixelsPerWord;
     var lineNo = 0;
     var guideLine = function () {
         if(!regulator.running) { return; }
