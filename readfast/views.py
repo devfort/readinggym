@@ -14,7 +14,8 @@ def spanify(text):
     for line in text.splitlines():
         for word in line.split():
             words_to_read.append("<span>%s </span>" % word)
-        words_to_read.append("\n")
+        if not line.strip():
+            words_to_read.append("\n\n")
 
     return words_to_read
 
@@ -35,11 +36,21 @@ class DashboardView(TemplateView):
     Shows you some info about how well you read and what to do next.
     """
     template_name = "dashboard.html"
+    def get_context_data(self, **kwargs):
+        context = super(DashboardView, self).get_context_data(**kwargs)
+        try:
+            speed = self.request.session['reading_speed'][-1]
+            improvement = speed - self.request.session['reading_speed'][0]
+            context['reading_speed'] = speed
+            context['reading_improvement'] = improvement
+        except KeyError:
+            pass
+        return context
 
 
 class ReadViewMixin(object):
     def get_context_data(self, **kwargs):
-        data = open("corpora/makers_snippit.txt")
+        data = open("corpora/corpora_needing_questions/orange_fairy_book_the_mink_and_the_wolf.txt")
         words_to_read = spanify(data.read())
 
         context = super(ReadViewMixin, self).get_context_data(**kwargs)
@@ -77,8 +88,12 @@ class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, RandomDetailView)
         return context
 
     def form_valid(self, form):
-        # XXX Stash in cookie via session
-        # print form.cleaned_data['seconds'] / form.cleaned_data['wordcount']
+        reading_speed = int(form.cleaned_data['wordcount'] / (form.cleaned_data['seconds']/60))
+        try:
+            speeds = self.request.session['reading_speed'] + [reading_speed]
+        except KeyError:
+            speeds = [reading_speed]
+        self.request.session['reading_speed'] = speeds
         return super(SpeedTestView, self).form_valid(form)
 
 

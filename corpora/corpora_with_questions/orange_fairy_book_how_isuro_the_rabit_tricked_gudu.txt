@@ -2,6 +2,68 @@ Source: The Orange Fairy Book by Andrew Lang
 URL: http://www.gutenberg.org/ebooks/3027
 Title: How Isuro the Rabbit Tricked Gudu
 
+Question: What kind of animal is Gudu?
+A!: Baboon
+A: Wolf
+A: Rabbit
+A: Panther
+
+Question: What kind of green fruit did Isuro eat?
+A!: Orange
+A: Banana
+A: Lime
+A: Apple
+
+Question: What did Gudu throw into the river?
+A!: A rock
+A: A bag of fruit
+A: Isuro
+A: An Apple
+
+Question: What did Gudu ask Isuro to get for his burnt mouth?
+A!: Leaves
+A: Water
+A: Salve
+A: Sap
+
+Question: What did Gudu eat instead of meat?
+A!: Porridge
+A: Nuts
+A: Bananas
+A: A bag of fruit
+
+Question: What did Gudu ask Isruo to cook?
+A!: A goat
+A: A cow
+A: Porridge
+A: A Rabbit
+
+Question: What method of death did Isuro choose?
+A!: Burned in a fire
+A: Drowned in a river
+A: Hung from a tree
+A: Buried in a cave
+
+Question: How did Isuro escape death?
+A!: Hid in a hole
+A: Held his breath
+A: Stood on a hidden branch
+A: Found a secret passage
+
+Question: What did Gudu try to get Isuro to eat for breakfast?
+A!: Nut shells
+A: Yellow Fruit
+A: Millet Porridge
+A: Meat
+
+Question: What did Isuro tie around Gudu's neck?
+A!: Bones
+A: A bag of fruit
+A: An animal skin
+A: A knife
+
+
+
 Text:
 [A Pathan story told to Major Campbell.]
 
