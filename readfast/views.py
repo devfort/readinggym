@@ -37,10 +37,13 @@ class DashboardView(TemplateView):
     template_name = "dashboard.html"
     def get_context_data(self, **kwargs):
         context = super(DashboardView, self).get_context_data(**kwargs)
-        reading_speed = self.request.session['reading_speed'][-1]
-        context['reading_speed'] = reading_speed
-        context['reading_improvement'] = reading_speed - self.request.session['reading_speed'][0]
-        # import pdb; pdb.set_trace()
+        try:
+            speed = self.request.session['reading_speed'][-1]
+            improvement = speed - self.request.session['reading_speed'][0]
+            context['reading_speed'] = speed
+            context['reading_improvement'] = improvement
+        except KeyError:
+            pass
         return context
 
 

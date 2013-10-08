@@ -8,15 +8,31 @@
 <a href="{% url "random-sprint" %}">Sprint</a>
 </p>
 
-<p>
-You are currently reading at about <span class="reading_speed">{{ reading_speed }}</span> words per minute.
-</p>
-<p>
-This is {{ reading_improvement }} faster than you started at.
-</p>
+{% if reading_speed %}
+  <p>
+  You are currently reading at about <span class="reading_speed">{{ reading_speed }}</span> words per minute.
+  </p>
+{% else %}
+  <p>
+    You haven't done any tests yet. Do a test to see some sexy statistics!
+  </p>
+{% endif %}
 
-<p>
-You have read about {{ total_words }} words.
-</p>
+{% if reading_improvement %}
+  <p>
+  This is <span class="reading_improvement">{{ reading_improvement }}</span> words per minute faster than you started at.
+  </p>
+{% endif %}
+
+{% if total_words %}
+  <p>
+  You have read about {{ total_words }} words.
+  </p>
+{% else %}
+  <p>
+    You haven't read any words yet.
+  </p>
+{% endif %}
+
 
 {% endblock %}
