@@ -72,6 +72,11 @@ Regulator.prototype.setup = function() {
         last$e = $e;
     });
 
+    lines.push({
+        width: widthSum,
+        words: words
+    });
+
     this.lines = lines;
 };
 
@@ -95,8 +100,8 @@ Regulator.prototype.start = function() {
     var pixelRate = (wpm/60)*pixelsPerWord;
     var lineNo = 0;
 
-
     var guideLine = function () {
+        if(lineNo == lines.length) { self.stop(); return }
         if(!regulator.running) { return; }
 
         var line = lines[lineNo];
