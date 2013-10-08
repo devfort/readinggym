@@ -37,7 +37,10 @@ class DashboardView(TemplateView):
     template_name = "dashboard.html"
     def get_context_data(self, **kwargs):
         context = super(DashboardView, self).get_context_data(**kwargs)
-        context['reading_speed'] = self.request.session['reading_speed']
+        reading_speed = self.request.session['reading_speed'][-1]
+        context['reading_speed'] = reading_speed
+        context['reading_improvement'] = reading_speed - self.request.session['reading_speed'][0]
+        # import pdb; pdb.set_trace()
         return context
 
 
@@ -81,9 +84,12 @@ class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, RandomDetailView)
         return context
 
     def form_valid(self, form):
-        # XXX Stash in cookie via session
         reading_speed = int(form.cleaned_data['wordcount'] / (form.cleaned_data['seconds']/60))
-        self.request.session['reading_speed'] = reading_speed
+        try:
+            speeds = self.request.session['reading_speed'] + [reading_speed]
+        except KeyError:
+            speeds = [reading_speed]
+        self.request.session['reading_speed'] = speeds
         return super(SpeedTestView, self).form_valid(form)
 
 
