@@ -9,9 +9,9 @@ import readfast.models as models
 def spanify(text):
     words_to_read = []
     for line in text.splitlines():
-        words_to_read.append("\n")
         for word in line.split():
             words_to_read.append("<span>%s </span>" % word)
+        words_to_read.append("\n")
 
     return words_to_read
 
