@@ -8,13 +8,18 @@ html, body {
     height: 100%;
 }
 
+ul > li {
+    list-style: disc; 
+}
+
 a {
     color: blue;
 }
 
 #content {
     width: 100%;
-    line-height: 1.5em;
+    line-height: 2em;
+
 }
 
 #content header {
@@ -22,10 +27,12 @@ a {
     text-align: center;
     background-color: #5eaf9b;
     padding: 1em 0 1em 0;
+    margin-bottom: 1em;
 }
 
 h1 {
     font-size: 4em;
+    margin: 0.5em 0;
 }
 
 h2 {
@@ -49,14 +56,16 @@ section[role=main] h1 {
   margin: 0.5em 0;
   padding-top: 0.5em;
   font-size: 2.5em;
+  line-height: 1em;
 }
 section[role=main] h2 {
   font-size: 2em;
+  letter-spacing: 1px;
 }
 section[role=main] h3 {
-  font-size: 1.1em;
-  font-weight: bold;
+  font-size: 1.5em;
   margin: 0.5em 0 0.2em;
+  letter-spacing: 1px;
 }
 
 section[role=main] a.enticing {
@@ -74,7 +83,6 @@ section[role=main] a.enticing:hover {
 article {
     width: 30em;
     margin: 0 auto 0.5em auto;
-    line-height: 2em;
     position: relative;
     text-align: justify;
 }
@@ -84,7 +92,7 @@ article > p > span {
     white-space: pre;
 }
 
-article > p {
+p {
     margin-top: 1em;
 }
 
