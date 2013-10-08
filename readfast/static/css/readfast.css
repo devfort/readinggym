@@ -101,6 +101,11 @@ div.timer {
     top: 5px;
 }
 
+header > a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
 .reading_speed {
     font-size: 4em;
 }
