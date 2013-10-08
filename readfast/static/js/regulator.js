@@ -5,7 +5,7 @@ function Regulator(article) {
 }
 
 Regulator.prototype.setup = function() {
-    var spans = $(this.article).find("span");
+    var spans = this.article.find("span");
     var lines = [];
     var words = [];
     var lastOffset;
@@ -29,7 +29,6 @@ Regulator.prototype.setup = function() {
                 lines.push({
                     left: firstOffset.left,
                     width: widthSum,
-                    height: last$e.height(),
                     bottom: lastOffset.top + last$e.height(),
                     words: words
                 });
@@ -52,6 +51,7 @@ Regulator.prototype.setup = function() {
 
 Regulator.prototype.start = function() {
     this.running = true;
+    this.article.addClass('reading');
     var box = $("<div>").addClass("regulator");
     $("body").append(box);
 
@@ -93,6 +93,8 @@ Regulator.prototype.start = function() {
 };
 
 Regulator.prototype.stop = function() {
+    this.article.removeClass('reading');
+    this.article.find('span.highlight').removeClass('highlight');
     this.running = false;
     if(this.nextTick) {
         window.clearTimeout(this.nextTick);
@@ -104,7 +106,7 @@ Regulator.prototype.stop = function() {
 
 
 $(function() {
-  var regulator = new Regulator($("article").get(0));
+  var regulator = new Regulator($("article"));
 
   $('#practice').click(function() {
     if(regulator.running) {
@@ -115,5 +117,7 @@ $(function() {
       $(this).text('Stop');
     }
   });
+
+  $("#practice").focus();
 });
 
