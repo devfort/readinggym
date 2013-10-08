@@ -39,7 +39,7 @@ class DashboardView(TemplateView):
 
 class ReadViewMixin(object):
     def get_context_data(self, **kwargs):
-        data = open("corpora/makers_snippit.txt")
+        data = open("corpora/corpora_needing_questions/orange_fairy_book_the_mink_and_the_wolf.txt")
         words_to_read = spanify(data.read())
 
         context = super(ReadViewMixin, self).get_context_data(**kwargs)
