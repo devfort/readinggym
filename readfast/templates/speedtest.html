@@ -52,26 +52,24 @@
 </form>
 
 </div>
-<script>
 
-$( document ).ready(function() {
-  $('#timer-module .explanation').html('How the clever buttons work yo');
-  var $timing = $('<button type="button">Start</button>');
-  $('#timer-module #timer-control').html($timing);
+<script>
+var $timing = $('<button type="button">Start</button>');
+$timing.click(function() {
+  var t = Date.now();
+  $timing
+    .off()
+    .text('Finish');
   $timing.click(function() {
-    var t = Date.now();
-    $timing
-      .off()
-      .text('Stop');
-    $timing.click(function() {
-      $timing.remove();
-      t = Date.now() - t;
-      $('#timer-module input[name="seconds"]').val(t / 1000);
-      $('#timer-module form').submit();
-    });
+    $timing.remove();
+    t = Date.now() - t;
+    $('#timer-module input[name="seconds"]').val(t / 1000);
+    $('#timer-module form').submit();
   });
-  $('#timer-module').addClass('enhanced');
 });
+$('#timer-module #timer-control').html($timing);
+$('#timer-module .explanation').html('How the clever buttons work yo');
+$('#timer-module').addClass('enhanced');
 </script>
 
 </body>
