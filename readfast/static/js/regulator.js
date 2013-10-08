@@ -25,9 +25,10 @@ Pager.prototype.nextPage = function (callback) {
     }, 100, callback);
 };
 
-function Regulator(article, pager) {
+function Regulator(article, pager, wpm) {
     this.article = $(article);
     this.pager = pager;
+    this.wpm = wpm;
     this.setup();
     this.running = false;
 }
@@ -41,6 +42,9 @@ Regulator.prototype.setup = function() {
     var first$e;
     var firstOffset;
     var widthSum = 0;
+
+    this.box = $("<div>").addClass("regulator").hide();
+    $("article").append(this.box);
 
     spans.each(function (i, e) {
         var $e = $(e);
@@ -85,32 +89,28 @@ Regulator.prototype.start = function() {
 
     this.running = true;
     this.article.addClass('reading');
-    var box = $("<div>").addClass("regulator");
-    $("article").append(box);
 
+    var box = this.box;
     var lines = this.lines;
     var words = this.article.find("span");
-    var regulator = this;
 
     var wordsPerLine = words.length / lines.length;
     var pixelsPerWord = this.article.width() / wordsPerLine;
-    var wpm = 500;
     
     var guideWidth = 6;
-    var pixelRate = (wpm/60)*pixelsPerWord;
     var lineNo = 0;
 
     var guideLine = function () {
         if(lineNo == lines.length) { self.stop(); return }
-        if(!regulator.running) { return; }
+        if(!self.running) { return; }
 
         var line = lines[lineNo];
         var firstWordPos = line.words[0].position();
         var lineLeft = firstWordPos.left;
         var lineBottom = firstWordPos.top + line.words[0].height();
-
+        var pixelRate = (self.wpm/60)*pixelsPerWord;
         var guideTime = ((line.width - guideWidth) / pixelRate) * 1000;
-        
+       
         var animateGuide = function () {
             var firstWordPos = line.words[0].position();
             var lineBottom = firstWordPos.top + line.words[0].height();
@@ -129,16 +129,20 @@ Regulator.prototype.start = function() {
                 left: lineLeft,
                 top: lineBottom,
                 width: guideWidth
-            }).show();
+            }).show().position();
 
-            regulator.animation = box.transition({
+            console.log("start animate", lineNo);
+            self.animation = box.transition({
                 left: (lineLeft + line.width) - guideWidth,
             }, guideTime, 'linear', function () {
                 lineNo += 1;
                 box.hide();
-                regulator.nextTick = window.setTimeout(guideLine, 200);
-            });
-        }
+                this.delay(200).queue(function() {
+                    guideLine();
+                    $(this).dequeue();
+                });
+            }).position();
+        };
 
         if(lineBottom > self.article.height()) {
             self.pager.nextPage(animateGuide);
@@ -154,11 +158,11 @@ Regulator.prototype.stop = function() {
     this.article.removeClass('reading');
     this.article.find('span.highlight').removeClass('highlight');
     this.running = false;
+    this.box.hide();
+    this.box.stop();
     if(this.nextTick) {
+        console.log("clear timer");
         window.clearTimeout(this.nextTick);
-    }
-    if(this.animation) {
-        this.animation.finish();
     }
     this.pager.firstPage();
 }

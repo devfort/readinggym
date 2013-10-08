@@ -5,7 +5,7 @@
 <script>
 $(function() {
   var pager = new Pager($("article"));
-  var regulator = new Regulator($("article"), pager);
+  var regulator = new Regulator($("article"), pager, 300);
 
   $('#practice').click(function() {
     if(regulator.running) {

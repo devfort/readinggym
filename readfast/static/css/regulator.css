@@ -9,11 +9,9 @@
 
 article {
     color: #000;
-    -webkit-transition:color 0.05s linear;
 }
 article.reading {
     color: #aaa;
-    -webkit-transition:color 0.05s linear;
 }
 
 span {
