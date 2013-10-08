@@ -1,17 +1,7 @@
-{% load staticfiles %}
-<html>
-<head>
-    <script src="{% static "jquery-1.10.2.min.js" %}"></script>
-    <script src="{% static "jquery-requestAnimationFrame.min.js" %}"></script>
-    <script src="{% static "regulator.js" %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static "regulator.css" %}">
-</head>
-<body>
-
-    <h1>Read this!</h1>
+{% extends "base.html" %}
+{% block content %}
+<h1>Read this!</h1>
 <article>
 {{ words_to_read|safe|linebreaks }}
 </article>
-
-</body>
-</html>
+{% endblock %}

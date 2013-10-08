@@ -33,6 +33,7 @@ class DashboardView(TemplateView):
     """
     template_name = "dashboard.html"
 
+
 class ReadViewMixin(object):
     def get_context_data(self, **kwargs):
         data = open("corpae/makers_snippit.txt")
