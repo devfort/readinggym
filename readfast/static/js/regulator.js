@@ -14,13 +14,13 @@ Pager.prototype.setup = function () {
 };
 
 Pager.prototype.firstPage = function (cb) {
-    this.contentBox.animate({
+    this.contentBox.transition({
         "margin-top": "0",
     }, 100, cb);
 }
 
 Pager.prototype.nextPage = function (cb) {
-    this.contentBox.animate({
+    this.contentBox.transition({
         "margin-top": "-=" + this.article.height(),
     }, 100, cb);
 };
@@ -131,7 +131,7 @@ Regulator.prototype.start = function() {
                 width: guideWidth
             }).show();
 
-            regulator.animation = box.animate({
+            regulator.animation = box.transition({
                 left: (lineLeft + line.width) - guideWidth,
             }, guideTime, 'linear', function () {
                 lineNo += 1;
@@ -163,3 +163,5 @@ Regulator.prototype.stop = function() {
     this.pager.firstPage();
 }
 
+if (!$.support.transition)
+    $.fn.transition = $.fn.animate;
