@@ -55,11 +55,11 @@ section[role=main] {
 section[role=main] h1 {
   margin: 0.5em 0;
   padding-top: 0.5em;
-  font-size: 2.5em;
+  font-size: 2em;
   line-height: 1em;
 }
 section[role=main] h2 {
-  font-size: 2em;
+  font-size: 1.75em;
   letter-spacing: 1px;
 }
 section[role=main] h3 {
