@@ -14,6 +14,7 @@ a {
 
 #content {
     width: 100%;
+    line-height: 1.5em;
 }
 
 #content header {
@@ -28,14 +29,46 @@ h1 {
 }
 
 h2 {
+    margin: 1em 0 0.5em;
     font-size: 2em;
 }
 
-section.main {
+ul {
+    margin: 0.5em 0;
+    list-style: disc;
+}
+
+section[role=main] {
     width: 30em;
     padding: 0 10em 0 10em
     border: 1px dotted #ddd;
     margin: 0 auto 0 auto;
+}
+
+section[role=main] h1 {
+  margin: 0.5em 0;
+  padding-top: 0.5em;
+  font-size: 2.5em;
+}
+section[role=main] h2 {
+  font-size: 2em;
+}
+section[role=main] h3 {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 0.5em 0 0.2em;
+}
+
+section[role=main] a.enticing {
+  display: inline-block;
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid #000;
+  border-radius: 10px;
+  background: #eee;
+}
+section[role=main] a.enticing:hover {
+  background: #ddd;
 }
 
 article {

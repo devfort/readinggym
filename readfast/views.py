@@ -29,6 +29,15 @@ class IndexView(TemplateView):
     template_name = "index.html"
 
 
+class WhyView(TemplateView):
+    """
+    /why
+
+    The MOAR SCIENCE page
+    """
+    template_name = "why.html"
+
+
 class DashboardView(TemplateView):
     """
     /dashboard/

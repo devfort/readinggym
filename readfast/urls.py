@@ -4,6 +4,7 @@ import readfast.views
 
 urlpatterns = patterns('',
     url(r"^$",  readfast.views.IndexView.as_view(), name="index"),
+    url(r"^why/$",  readfast.views.WhyView.as_view(), name="why"),
     url(r"^dashboard/$",  readfast.views.DashboardView.as_view(),
         name="dashboard"),
     url(r"^reading/speed/$",  readfast.views.SpeedTestView.as_view(),
