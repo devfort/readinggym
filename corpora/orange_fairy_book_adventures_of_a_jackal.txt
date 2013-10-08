@@ -18,10 +18,45 @@ A: Cows
 
 Question: Which animals softened the shoes:
 A!: Patridges
-A: Larks
+A: Sparrows
 A: Pigs
 A: Horses
 
+Question: How did the Panther grab the Jackal?
+A!: By the tail
+A: By the ears
+A: By the leg
+A: By the neck
+
+Question: Who gave the Shepherd the money?
+A!: The Jackal
+A: The Hedgehog
+A: The Old Man
+A: The Panther
+
+Question: Who gives advice to the Panther?
+A!: The Old Man
+A: The Shepherd
+A: The Hedgehog
+A: The Partridge
+
+Question: Who killed the Jackal?
+A!: The Greyhound
+A: The Panther
+A: The Hedgehog
+A: The Shepherd
+
+Question: What/Who does the Panther kill?
+A!: A Cow
+A: A Sparrow
+A: The Hedgehog
+A: The Jackal
+
+Question: What are Jackals fond of:
+A!: Melons
+A: Hedgehogs
+A: Greyhounds
+A: Sheep
 
 
 Title: The Adventures of a Jackal
