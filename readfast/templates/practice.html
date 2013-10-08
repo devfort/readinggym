@@ -1,7 +1,25 @@
 {% extends "base.html" %}
 
 {% block extra_head %}
-    <script src="/static/js/regulator.js" type="text/javascript"></script>
+<script src="/static/js/regulator.js" type="text/javascript"></script>
+<script>
+$(function() {
+  var pager = new Pager($("article"));
+  var regulator = new Regulator($("article"), pager);
+
+  $('#practice').click(function() {
+    if(regulator.running) {
+      regulator.stop();
+      $(this).text('Start');
+    } else {
+      regulator.start();
+      $(this).text('Stop');
+    }
+  });
+
+  $("#practice").focus();
+});
+</script>
 {% endblock %}
 
 {% block content %}

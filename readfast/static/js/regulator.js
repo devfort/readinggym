@@ -163,21 +163,3 @@ Regulator.prototype.stop = function() {
     this.pager.firstPage();
 }
 
-
-$(function() {
-  var pager = new Pager($("article"));
-  var regulator = new Regulator($("article"), pager);
-
-  $('#practice').click(function() {
-    if(regulator.running) {
-      regulator.stop();
-      $(this).text('Start');
-    } else {
-      regulator.start();
-      $(this).text('Stop');
-    }
-  });
-
-  $("#practice").focus();
-});
-
