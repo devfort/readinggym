@@ -2,7 +2,7 @@ from StringIO import StringIO
 
 from django.test import TestCase
 
-from readfast.parser import PieceParser
+from readfast.parser import PieceParser, ParseError
 
 class ParserTest(TestCase):
 
@@ -45,3 +45,42 @@ Something something otters.
         self.assertEqual(len(p.questions[0].answers), 1)
         self.assertEqual(p.questions[0].answers[0].text, "Delicious")
         self.assertTrue(p.questions[0].answers[0].correct)
+
+    def test_extracts_multiple_questions(self):
+        source = StringIO("""
+Question: What are otters?
+A: Alright
+A!: Delicious
+
+Question: How do you feel?
+A!: I do not understand the question, mother
+A: Reasonable
+        """)
+
+        p = PieceParser(source)
+        self.assertEqual(len(p.questions), 2)
+        self.assertEqual([len(q.answers) for q in p.questions], [2, 2])
+        self.assertEqual([q.correct for q in p.questions[0].answers],
+                         [False, True])
+        self.assertEqual([q.correct for q in p.questions[1].answers],
+                         [True, False])
+
+    def test_fails_on_unexpected_line(self):
+        source = StringIO("""
+Question: What are otters?
+A: Alright
+A!: Delicious
+I was the turkey all along!
+        """)
+
+        self.assertRaises(ParseError, PieceParser, source)
+
+    def test_fails_on_unexpected_meta_line(self):
+        source = StringIO("""
+Question: What are otters?
+A: Alright
+A!: Delicious
+Title: Things!
+        """)
+
+        self.assertRaises(ParseError, PieceParser, source)

@@ -1,50 +1,87 @@
 import re
 
-class Question(object): pass
+class Question(object):
+
+    def __init__(self, text):
+        self.text = text
+        self.answers = []
 
 
-class Answer(object): pass
+class Answer(object):
+    def __init__(self, text, correct):
+        self.text = text
+        self.correct = correct
+
+
+class ParseError(ValueError):
+    pass
 
 
 class PieceParser(object):
+    """Parse a corpus file.
 
-    TITLE = re.compile('^Title: (.*)$')
-    QUESTION = re.compile('^Question: (.*)$')
-    ANSWER = re.compile('^A(?P<correct>!)?: (?P<text>.*)$')
+    A corpus file is comprised of a series of questions and answers,
+    followed by a block of text. For example:
 
-    TEXT = re.compile('^Text:')
+        Question: Why?
+        A!: Because
+        A: Dunno
+
+        Text:
+
+        I like stuff and things; they are interesting and fun and joyous.
+        Oh, and badgers too.
+
+    """
 
     def __init__(self, source):
+        """Parse the file. Source can be any file-like object."""
         self.questions = []
 
-        while True:
-            try:
-                line = source.next()
-            except StopIteration:
-                break
+        # Separate out the metadata lines from the body text
+        meta_lines = []
 
-            if self.TEXT.match(line):
-                # We're done here: anything else in the source is body text
+        for line in source:
+            if line.startswith("Text:"):
                 self.text = "".join(source)
                 break
+            else:
+                meta_lines.append(line)
 
-            title_match = self.TITLE.match(line)
-            if title_match:
-                self.title = title_match.group(1)
-                continue
+        classified_lines = [self._classify(line) for line in meta_lines]
 
-            question_match = self.QUESTION.match(line)
-            if question_match:
-                q = Question()
-                self.questions.append(q)
-                q.text = question_match.group(1)
-                q.answers = []
-                while True:
-                    answer_match = self.ANSWER.match(source.next())
-                    if answer_match:
-                        a = Answer()
-                        a.text = answer_match.group("text")
-                        a.correct = (answer_match.group("correct") is not None)
-                        q.answers.append(a)
-                    else:
-                        break
+        # Our current parse context: useful for when we've just had a question,
+        # so we're expecting either answers or a blank line to take us back to
+        # normal
+        context = []
+
+        for (line_type, match) in classified_lines:
+            if line_type == "blank":
+                context = []
+            elif (context, line_type) == ([], "title"):
+                self.title = match.group(1)
+            elif (context, line_type) == ([], "question"):
+                self.questions.append(Question(match.group(1)))
+                context.append("question")
+            elif (context, line_type) == (["question"], "answer"):
+                answer = Answer(match.group("text"),
+                                match.group("correct") is not None)
+                self.questions[-1].answers.append(answer)
+            else:
+                raise ParseError("Illegal %s line: %r" % (line_type, line))
+
+    CLASSIFICATIONS = {
+        "title": re.compile('^Title: (.*)$'),
+        "question": re.compile('^Question: (.*)$'),
+        "answer": re.compile('^A(?P<correct>!)?: (?P<text>.*)$'),
+        "blank": re.compile('^\s+$'),
+    }
+
+    def _classify(self, line):
+        for (key, matcher) in self.CLASSIFICATIONS.items():
+            match = matcher.match(line)
+            if match:
+                return (key, match)
+        else:
+            raise ParseError("Unrecognised line: %r")
+
