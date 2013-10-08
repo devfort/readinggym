@@ -46,9 +46,13 @@ article {
     text-align: justify;
 }
 
-span {
+article > p > span {
     display: inline-block;
     white-space: pre;
+}
+
+article > p {
+    margin-top: 1em;
 }
 
 .regulator {
@@ -67,7 +71,6 @@ div.timer {
 .reading_speed {
     font-size: 4em;
 }
-<<<<<<< Updated upstream
 
 .reading_improvement {
     font-size: 2em;
