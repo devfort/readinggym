@@ -1,5 +1,69 @@
-The Adventures of a Jackal
+Source: The Orange Fairy Book by Andrew Lang
+URL: http://www.gutenberg.org/ebooks/3027
+Title: The Adventures of a Jackal
 
+Question: Which animal is the Jackal's great friend?
+A: The Giraffe
+A!: The Hedgehog
+A: The Fox
+A: The Pig
+
+Question: For which animal did the Jackal make the shoes?
+A: The Pig
+A: The Hedgehog
+A!: The Panther
+A: The Horse
+
+Question: What was the barn full of?
+A!: Corn
+A: Hay
+A: Horses
+A: Cows
+
+Question: Which animals softened the shoes:
+A!: Patridges
+A: Sparrows
+A: Pigs
+A: Horses
+
+Question: How did the Panther grab the Jackal?
+A!: By the tail
+A: By the ears
+A: By the leg
+A: By the neck
+
+Question: Who gave the Shepherd the money?
+A!: The Jackal
+A: The Hedgehog
+A: The Old Man
+A: The Panther
+
+Question: Who gives advice to the Panther?
+A!: The Old Man
+A: The Shepherd
+A: The Hedgehog
+A: The Partridge
+
+Question: Who killed the Jackal?
+A!: The Greyhound
+A: The Panther
+A: The Hedgehog
+A: The Shepherd
+
+Question: What/Who does the Panther kill?
+A!: A Cow
+A: A Sparrow
+A: The Hedgehog
+A: The Jackal
+
+Question: What are Jackals fond of:
+A!: Melons
+A: Hedgehogs
+A: Greyhounds
+A: Sheep
+
+
+Text:
 [Thorpe's Yule-Tide Stories.]
 
 

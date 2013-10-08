@@ -2,7 +2,10 @@ import time
 
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import FormView, TemplateView, DetailView
+from django.views.generic import (
+    FormView, TemplateView, DetailView
+)
+from django.views.generic.edit import ProcessFormView, FormMixin
 
 import readfast.forms as forms
 import readfast.models as models
@@ -11,9 +14,10 @@ import readfast.models as models
 def spanify(text):
     words_to_read = []
     for line in text.splitlines():
-        words_to_read.append("\n")
         for word in line.split():
             words_to_read.append("<span>%s </span>" % word)
+        if not line.strip():
+            words_to_read.append("\n\n")
 
     return words_to_read
 
@@ -27,6 +31,15 @@ class IndexView(TemplateView):
     template_name = "index.html"
 
 
+class WhyView(TemplateView):
+    """
+    /why
+
+    The MOAR SCIENCE page
+    """
+    template_name = "why.html"
+
+
 class DashboardView(TemplateView):
     """
     /dashboard/
@@ -34,12 +47,21 @@ class DashboardView(TemplateView):
     Shows you some info about how well you read and what to do next.
     """
     template_name = "dashboard.html"
+    def get_context_data(self, **kwargs):
+        context = super(DashboardView, self).get_context_data(**kwargs)
+        try:
+            speed = self.request.session['reading_speed'][-1]
+            improvement = speed - self.request.session['reading_speed'][0]
+            context['reading_speed'] = speed
+            context['reading_improvement'] = improvement
+        except KeyError:
+            pass
+        return context
 
 
 class ReadViewMixin(object):
     def get_context_data(self, **kwargs):
-        data = open("corpae/makers_snippit.txt")
-        words_to_read = spanify(data.read())
+        words_to_read = spanify(self.object.text)
 
         context = super(ReadViewMixin, self).get_context_data(**kwargs)
         context['words_to_read'] = "".join(words_to_read)
@@ -47,10 +69,28 @@ class ReadViewMixin(object):
         return context
 
 
-class SpeedTestView(ReadViewMixin, FormView):
+class RandomDetailView(DetailView):
+    """
+    If the URL doesn't define a particular object to
+    use for the detail view. Find one via the magic of
+    entropy.
+    """
+    def get_object(self, **kwargs):
+        if not self.kwargs.get(self.pk_url_kwarg):
+            return self.model.objects.order_by('?')[0]
+        else:
+            return super(RandomDetailView, self).get_object(**kwargs)
+
+
+class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, RandomDetailView):
     template_name = "speedtest.html"
     form_class = forms.SpeedTestForm
     success_url = '/dashboard'
+    model = models.Piece
+
+    def dispatch(self, *args, **kwargs):
+        self.object = self.get_object(**kwargs)
+        return super(SpeedTestView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(SpeedTestView, self).get_context_data(**kwargs)
@@ -60,17 +100,16 @@ class SpeedTestView(ReadViewMixin, FormView):
         return context
 
     def form_valid(self, form):
-        # Stash in session as we cannot set a cookie at the same time as redirect
-        self.request.session['speedtest'] = {
-            'timestamp': time.now(),
-            'seconds': form.cleaned_data['seconds'],
-            'wordcount': form.cleaned_data['wordcount'],
-            'rate': form.cleaned_data['wordcount'] / form.cleaned_data['seconds'],
-        }
+        reading_speed = int(form.cleaned_data['wordcount'] / (form.cleaned_data['seconds']/60))
+        try:
+            speeds = self.request.session['reading_speed'] + [reading_speed]
+        except KeyError:
+            speeds = [reading_speed]
+        self.request.session['reading_speed'] = speeds
         return super(SpeedTestView, self).form_valid(form)
 
 
-class PracticeReadingView(ReadViewMixin, DetailView):
+class PracticeReadingView(ReadViewMixin, RandomDetailView):
     """
     /practice/<piece_id>/
 
@@ -117,10 +156,13 @@ class ComprehensionView(DetailView):
                 correct_answers += bool(correct)
                 num_questions += 1
 
+        kwargs['correct_answers'] = correct_answers
+        kwargs['num_questions'] = num_questions
+
         if correct_answers != num_questions:
             self.template_name = "comprehension_fail.html"
-            return self.render_to_response(self.get_context_data(**kwargs))
         else:
             self.template_name = "comprehension_pass.html"
-            return redirect("comprehension-pass")
+
+        return self.render_to_response(self.get_context_data(**kwargs))
 
