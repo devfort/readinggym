@@ -75,3 +75,27 @@ div.timer {
 .reading_improvement {
     font-size: 2em;
 }
+
+.dashboard_buttons {
+    margin: 20px auto; 
+}
+
+.dashboard_buttons a:nth-child(1) {
+    background-color: #b6d0d6;
+}
+.dashboard_buttons a:nth-child(2) {
+    background-color: #fde79c;
+}
+.dashboard_buttons a:nth-child(3) {
+    background-color: #cddb91;
+}
+.dashboard_button {
+    color: #87125d;
+    text-decoration: none;
+    width: 6em;
+    height: 6em;
+    border: dotted 0.1em;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}

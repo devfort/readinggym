@@ -2,12 +2,6 @@
 
 {% block content %}
 
-<p>
-<a href="{% url "speed-test" %}">Speed test</a>
-<a href="{% url "practice" %}">Practice</a>
-<a href="{% url "random-sprint" %}">Sprint</a>
-</p>
-
 {% if reading_speed %}
   <p>
   You are currently reading at about <em class="reading_speed">{{ reading_speed }}</em> words per minute.
@@ -34,5 +28,10 @@
   </p>
 {% endif %}
 
+<div class="dashboard_buttons">
+<a href="{% url "speed-test" %}" class="dashboard_button">Speed test</a>
+<a href="{% url "practice" %}" class="dashboard_button">Practice</a>
+<a href="{% url "random-sprint" %}" class="dashboard_button">Sprint</a>
+</div>
 
 {% endblock %}
