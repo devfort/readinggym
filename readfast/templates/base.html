@@ -15,7 +15,13 @@
 
 <body class="{% block body_class %}{% endblock %}">
     <script>
-        window.document.body.classList.add("js");
+        if (window.document.body) {
+            window.document.body.classList.add("js");
+        } else {
+            $(function () {
+                $("body").addClass("js");
+            });
+        }   
     </script>
 
     <h1>Read fast.</h1>

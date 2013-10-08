@@ -70,6 +70,7 @@ class PracticeReadingView(ReadViewMixin, DetailView):
     template_name = "practice.html"
     model = models.Piece
 
+
 class ComprehensionView(DetailView):
     """
     /comprehension/<piece_id>/
