@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.conf.urls import patterns, url
+from django.conf.urls.static import static
 
 import readfast.views
 
@@ -21,4 +23,4 @@ urlpatterns = patterns('',
 
     url(r"^reading/qs/(?P<pk>[0-9]+)/$",
         readfast.views.ComprehensionView.as_view(), name="comprehension"),
-)
+) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
