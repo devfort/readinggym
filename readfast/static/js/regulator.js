@@ -1,5 +1,5 @@
 function Pager(article) {
-    this.article = article;
+    this.article = $(article);
     this.setup();
 }
 
@@ -13,20 +13,20 @@ Pager.prototype.setup = function () {
     });
 };
 
-Pager.prototype.firstPage = function (cb) {
+Pager.prototype.firstPage = function (callback) {
     this.contentBox.transition({
-        "margin-top": "0",
-    }, 100, cb);
+        "margin-top": "0"
+    }, 100, callback);
 }
 
-Pager.prototype.nextPage = function (cb) {
+Pager.prototype.nextPage = function (callback) {
     this.contentBox.transition({
         "margin-top": "-=" + this.article.height(),
-    }, 100, cb);
+    }, 100, callback);
 };
 
 function Regulator(article, pager) {
-    this.article = article;
+    this.article = $(article);
     this.pager = pager;
     this.setup();
     this.running = false;
