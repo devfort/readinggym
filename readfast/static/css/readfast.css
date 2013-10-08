@@ -87,6 +87,10 @@ article {
     text-align: justify;
 }
 
+article p:first-child {
+    margin-top: 0;
+}
+
 article > p > span {
     display: inline-block;
     white-space: pre;
