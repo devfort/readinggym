@@ -1,5 +1,31 @@
-The Adventures of a Jackal
+Question: Which animal is the Jackal's great friend?
+A: The Giraffe
+A!: The Hedgehog
+A: The Fox
+A: The Pig
 
+Question: For which animal did the Jackal make the shoes?
+A: The Pig
+A: The Hedgehog
+A!: The Panther
+A: The Horse
+
+Question: What was the barn full of?
+A!: Corn
+A: Hay
+A: Horses
+A: Cows
+
+Question: Which animals softened the shoes:
+A!: Patridges
+A: Larks
+A: Pigs
+A: Horses
+
+
+
+Title: The Adventures of a Jackal
+Text:
 [Thorpe's Yule-Tide Stories.]
 
 
