@@ -1,6 +1,11 @@
-$(function () {
-    var spans = $("article span");
+function Regulator(article) {
+    this.article = article;
+    this.setup();
+    this.running = false;
+}
 
+Regulator.prototype.setup = function() {
+    var spans = $(this.article).find("span");
     var lines = [];
     var words = [];
     var lastOffset;
@@ -42,16 +47,23 @@ $(function () {
         last$e = $e;
     });
 
+    this.lines = lines;
+};
+
+Regulator.prototype.start = function() {
+    this.running = true;
     var box = $("<div>").addClass("regulator");
     $("body").append(box);
 
+    var lines = this.lines;
+    var regulator = this;
     var guideWidth = 6;
     var pixelRate = 200;
     var lineNo = 0;
     var guideLine = function () {
+        if(!regulator.running) { return; }
         var line = lines[lineNo];
         var guideTime = ((line.width - guideWidth) / pixelRate)* 1000;
-        console.log(line, lineNo, guideTime);
         
         $(line.words).each(function(i,s) {
           $(s).addClass('highlight');
@@ -68,15 +80,40 @@ $(function () {
         });
         box.show();
 
-        box.animate({
+        regulator.animation = box.animate({
             left: (line.left + line.width) - guideWidth,
         }, guideTime, 'linear', function () {
             lineNo += 1;
             box.hide();
-            window.setTimeout(guideLine, 100);
+            regulator.nextTick = window.setTimeout(guideLine, 100);
         });
     };
 
     guideLine();
+};
+
+Regulator.prototype.stop = function() {
+    this.running = false;
+    if(this.nextTick) {
+        window.clearTimeout(this.nextTick);
+    }
+    if(this.animation) {
+        this.animation.finish();
+    }
+}
+
+
+$(function() {
+  var regulator = new Regulator($("article").get(0));
+
+  $('#practice').click(function() {
+    if(regulator.running) {
+      regulator.stop();
+      $(this).text('Start');
+    } else {
+      regulator.start();
+      $(this).text('Stop');
+    }
+  });
 });
 

@@ -1,18 +1,29 @@
-article {
+.ui, article {
     width: 30em;
     margin: 0 auto 0 auto;
     line-height: 2em;
     position: relative;
     text-align: justify;
+}
+
+article p {
+    margin-top: 0;
+}
+
+article {
+    color: #000;
+}
+article.reading {
     color: #aaa;
 }
 
 span {
     display: inline-block;
     white-space: pre;
+    -webkit-transition:color 0.1s ease-in;
 }
 span.highlight {
-  color: black;
+    color: black;
 }
 
 .regulator {
