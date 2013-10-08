@@ -45,6 +45,19 @@ class ReadViewMixin(object):
         return context
 
 
+class RandomDetailView(DetailView):
+    """
+    If the URL doesn't define a particular object to
+    use for the detail view. Find one via the magic of
+    entropy.
+    """
+    def get_object(self, **kwargs):
+        if not self.kwargs.get(self.pk_url_kwarg):
+            return self.model.objects.order_by('?')[0]
+        else:
+            return super(PracticeReadingView, self).get_object(**kwargs)
+
+
 class SpeedTestView(ReadViewMixin, FormView):
     template_name = "speedtest.html"
     form_class = forms.SpeedTestForm
@@ -61,7 +74,7 @@ class SpeedTestView(ReadViewMixin, FormView):
         return super(SpeedTestView, self).form_valid(form)
 
 
-class PracticeReadingView(ReadViewMixin, DetailView):
+class PracticeReadingView(ReadViewMixin, RandomDetailView):
     """
     /practice/<piece_id>/
 

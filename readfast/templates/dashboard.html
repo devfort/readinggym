@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>
+<a href="{% url "speed-test" %}">Speed test</a>
+<a href="{% url "practice" %}">Practice</a>
+<a href="{% url "random-sprint" %}">Sprint</a>
+
+<p>
+You are currently reading at about {{ reading_speed }} words per minute.
+
+This is {{ reading_improvement }} faster than you started at.
+</p>
+
+<p>
+You have read about {{ total_words }} words.
+</p>
+
+{% endblock %}
