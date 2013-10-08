@@ -35,6 +35,10 @@ class DashboardView(TemplateView):
     Shows you some info about how well you read and what to do next.
     """
     template_name = "dashboard.html"
+    def get_context_data(self, **kwargs):
+        context = super(DashboardView, self).get_context_data(**kwargs)
+        context['reading_speed'] = self.request.session['reading_speed']
+        return context
 
 
 class ReadViewMixin(object):
@@ -78,7 +82,8 @@ class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, RandomDetailView)
 
     def form_valid(self, form):
         # XXX Stash in cookie via session
-        # print form.cleaned_data['seconds'] / form.cleaned_data['wordcount']
+        reading_speed = int(form.cleaned_data['wordcount'] / (form.cleaned_data['seconds']/60))
+        self.request.session['reading_speed'] = reading_speed
         return super(SpeedTestView, self).form_valid(form)
 
 

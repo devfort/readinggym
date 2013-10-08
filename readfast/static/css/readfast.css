@@ -52,3 +52,7 @@ div.timer {
     right: 5px;
     top: 5px;
 }
+
+.reading_speed {
+    font-size: 4em;
+}

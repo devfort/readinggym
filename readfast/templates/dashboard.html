@@ -6,10 +6,12 @@
 <a href="{% url "speed-test" %}">Speed test</a>
 <a href="{% url "practice" %}">Practice</a>
 <a href="{% url "random-sprint" %}">Sprint</a>
+</p>
 
 <p>
-You are currently reading at about {{ reading_speed }} words per minute.
-
+You are currently reading at about <span class="reading_speed">{{ reading_speed }}</span> words per minute.
+</p>
+<p>
 This is {{ reading_improvement }} faster than you started at.
 </p>
 
