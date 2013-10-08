@@ -1,3 +1,5 @@
+import time
+
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import FormView, TemplateView, DetailView
@@ -52,12 +54,19 @@ class SpeedTestView(ReadViewMixin, FormView):
 
     def get_context_data(self, **kwargs):
         context = super(SpeedTestView, self).get_context_data(**kwargs)
+        # Cannot do this while constructing form as nees the wordcount
+        # from ReadViewMixin.get_context_data
         context['form'].fields['wordcount'].initial = context['wordcount']
         return context
 
     def form_valid(self, form):
-        # XXX Stash in cookie via session
-        # print form.cleaned_data['seconds'] / form.cleaned_data['wordcount']
+        # Stash in session as we cannot set a cookie at the same time as redirect
+        self.request.session['speedtest'] = {
+            'timestamp': time.now(),
+            'seconds': form.cleaned_data['seconds'],
+            'wordcount': form.cleaned_data['wordcount'],
+            'rate': form.cleaned_data['wordcount'] / form.cleaned_data['seconds'],
+        }
         return super(SpeedTestView, self).form_valid(form)
 
 

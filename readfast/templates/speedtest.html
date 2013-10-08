@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block extra_head %}
+ <script src="/static/js/speed.js" type="text/javascript"></script>
 <style>
   #timer-module.enhanced form { display: none }
   #timer-control {
@@ -31,22 +32,7 @@
 </div>
 
 <script>
-var $timing = $('<button type="button">Start</button>');
-$timing.click(function() {
-  var t = Date.now();
-  $timing
-    .off()
-    .text('Finish');
-  $timing.click(function() {
-    $timing.remove();
-    t = Date.now() - t;
-    $('#timer-module input[name="seconds"]').val(t / 1000);
-    $('#timer-module form').submit();
-  });
-});
-$('#timer-module #timer-control').html($timing);
-$('#timer-module .explanation').html('How the clever buttons work yo');
-$('#timer-module').addClass('enhanced');
+enhanceTimerModule('How the clever buttons work yo');
 </script>
 {% endblock %}
 
