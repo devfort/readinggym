@@ -1,3 +1,7 @@
+Source: The Orange Fairy Book by Andrew Lang
+URL: http://www.gutenberg.org/ebooks/3027
+Title: The Adventures of a Jackal
+
 Question: Which animal is the Jackal's great friend?
 A: The Giraffe
 A!: The Hedgehog
@@ -59,7 +63,6 @@ A: Greyhounds
 A: Sheep
 
 
-Title: The Adventures of a Jackal
 Text:
 [Thorpe's Yule-Tide Stories.]
 
