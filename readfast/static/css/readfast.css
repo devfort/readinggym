@@ -76,6 +76,7 @@ section[role=main] a.enticing {
   border-radius: 10px;
   background: #eee;
 }
+
 section[role=main] a.enticing:hover {
   background: #ddd;
 }
@@ -151,4 +152,13 @@ header > a {
     display: inline-block;
     vertical-align: middle;
     text-align: center;
+}
+
+button#practice {
+    width: 100%;
+    height: 4em;
+}
+
+body.js #proceed {
+    display: none;
 }

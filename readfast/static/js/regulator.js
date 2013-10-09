@@ -101,7 +101,7 @@ Regulator.prototype.start = function() {
     var lineNo = 0;
 
     var guideLine = function () {
-        if(lineNo == lines.length) { self.stop(); return; }
+        if(lineNo == lines.length) { self.finish(); return; }
         if(!self.running) { return; }
 
         var line = lines[lineNo];
@@ -160,6 +160,12 @@ Regulator.prototype.stop = function() {
     this.box.hide();
     this.pager.firstPage();
 };
+
+Regulator.prototype.finish = function() {
+    $("#proceed").show();
+    this.stop();
+}
+
 
 if (!$.support.transition)
     $.fn.transition = $.fn.animate;
