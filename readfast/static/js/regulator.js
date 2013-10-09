@@ -101,14 +101,14 @@ Regulator.prototype.start = function() {
     var lineNo = 0;
 
     var guideLine = function () {
-        if(lineNo == lines.length) { self.stop(); return }
+        if(lineNo == lines.length) { self.stop(); return; }
         if(!self.running) { return; }
 
         var line = lines[lineNo];
         var firstWordPos = line.words[0].position();
         var lineLeft = firstWordPos.left;
         var lineBottom = firstWordPos.top + line.words[0].height();
-        var pixelRate = (self.wpm/60)*pixelsPerWord;
+        var pixelRate = (self.wpm / 60) * pixelsPerWord;
         var guideTime = ((line.width - guideWidth) / pixelRate) * 1000;
        
         var animateGuide = function () {
@@ -125,19 +125,18 @@ Regulator.prototype.start = function() {
                 });
             }
 
-            box.css({
+            box.transition({
                 left: lineLeft,
                 top: lineBottom,
                 width: guideWidth
-            }).show().position();
+            }, 0).show().position();
 
-            console.log("start animate", lineNo);
-            self.animation = box.transition({
+            box.transition({
                 left: (lineLeft + line.width) - guideWidth,
             }, guideTime, 'linear', function () {
                 lineNo += 1;
                 box.hide();
-                this.delay(200).queue(function() {
+                this.delay(100).queue(function() {
                     guideLine();
                     $(this).dequeue();
                 });
@@ -159,13 +158,8 @@ Regulator.prototype.stop = function() {
     this.article.find('span.highlight').removeClass('highlight');
     this.running = false;
     this.box.hide();
-    this.box.stop();
-    if(this.nextTick) {
-        console.log("clear timer");
-        window.clearTimeout(this.nextTick);
-    }
     this.pager.firstPage();
-}
+};
 
 if (!$.support.transition)
     $.fn.transition = $.fn.animate;
