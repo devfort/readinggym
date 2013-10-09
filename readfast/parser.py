@@ -60,6 +60,10 @@ class PieceParser(object):
                 context = []
             elif (context, line_type) == ([], "title"):
                 self.title = match.group(1)
+            elif (context, line_type) == ([], "source"):
+                self.source = match.group(1)
+            elif (context, line_type) == ([], "url"):
+                self.url = match.group(1)
             elif (context, line_type) == ([], "question"):
                 self.questions.append(Question(match.group(1)))
                 context.append("question")
@@ -72,6 +76,8 @@ class PieceParser(object):
 
     CLASSIFICATIONS = {
         "title": re.compile('^Title: (.*)$'),
+        "source": re.compile('^Source: (.*)$'),
+        "url": re.compile('^URL: (.*)$'),
         "question": re.compile('^Question: (.*)$'),
         "answer": re.compile('^A(?P<correct>!)?: (?P<text>.*)$'),
         "blank": re.compile('^\s+$'),
