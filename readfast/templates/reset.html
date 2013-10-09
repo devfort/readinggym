@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if has_reading_data %}
+  <p>
+    Are you sure you want to delete all of your data?
+  </p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="delete_button">Delete</button>
+  </form>
+{% else %}
+  <p>
+    You don't have any data.
+  </p>
+{% endif %}
+
+{% endblock %}

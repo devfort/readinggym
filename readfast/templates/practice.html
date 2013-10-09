@@ -12,7 +12,7 @@ $(function() {
   var pager = new Pager($("article"));
   var regulator = new Regulator($("article"), pager, wpm);
 
-  $('#practice').click(function() {
+  $('#control-article').click(function() {
     if(regulator.running) {
       regulator.stop();
       $(this).text('Start');
@@ -22,14 +22,14 @@ $(function() {
     }
   });
 
-  $("#practice").focus();
+  $("#control-article").focus();
 });
 </script>
 {% endblock %}
 
 {% block content %}
 <section class="ui">
-    <button id="practice" type="button">Start</button>
+    <button id="control-article" type="button">Start</button>
 </section>
 
 <article>

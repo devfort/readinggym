@@ -2,9 +2,9 @@
 
 {% block content %}
 
-{% if reading_speed %}
+{% if reading_speeds %}
   <p>
-  You are currently reading at about <em class="reading_speed">{{ reading_speed }}</em> words per minute.
+  You are currently reading at about <em class="reading_speed">{{ reading_speeds | last }}</em> words per minute.
   </p>
 {% else %}
   <p>
@@ -34,7 +34,16 @@
 <a href="{% url "random-sprint" %}" class="dashboard_button">Sprint</a>
 </div>
 
-{% if has_reading_data %}
+{% if reading_speeds %}
+
+  <h2>Speed history</h2>
+
+  <ol class="speed_graph">
+    {% for datapoint in speeds_and_percentages %}
+      <li>{{ datapoint.0 }} wpm<span style="height: {{datapoint.1}}px; top: {{datapoint.2}}px"></span></li>
+    {% endfor %}
+  </ol>
+
   <p class="reset_data">
     <form action="{% url "reset" %}" method="post">
         {% csrf_token %}

@@ -58,6 +58,7 @@ h1, h2, h3, h4, h4 {
 header img {
     float: right;
     margin-right: 1em;
+    margin-top: 0.5em;
 }
 
 h1 {
@@ -109,7 +110,7 @@ section[role=main] {
     width: 5em;
     text-align: left;
     line-height: 1.2em;
-    padding: 1em 1em 1.5em 0;
+    padding: 0.5em 1em 0.5em 1em;
 }
 
 section[role=main] > h1 {
@@ -123,7 +124,7 @@ section[role=main] > h1 {
 }
 
 section[role=main] > h2 {
-  font-size: 1.75em;
+  font-size: 1.6em;
   letter-spacing: 1px;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
@@ -133,7 +134,7 @@ section[role=main] > h2 {
 }
 
 section[role=main] > h3 {
-  font-size: 1.5em;
+  font-size: 1.4em;
   margin: 0.5em 0 ;
   letter-spacing: 1px;
   padding-top: 0.5em;
@@ -177,18 +178,20 @@ article > p > span {
 
 section[role="main"] article header {
     width: 100%;
-    text-align: center;
     letter-spacing: 0.05em;
 }
 
 section[role="main"] article header h1 {
     font-size: 1em;
+    text-align: center;
 }
 section[role="main"] article header h2 {
     font-size: 1em;
+    text-align: center;
 }
 section[role="main"] article header h3 {
     font-size: 1em;
+    text-align: center;
 }
 
 p {
@@ -255,6 +258,23 @@ header > a {
     text-align: center;
 }
 
+ol.speed_graph {
+  margin-top: 120px;  
+}
+
+ol.speed_graph li {
+  display: inline;
+  position: relative;
+  padding-top: 100px;
+}
+
+ol.speed_graph li span {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  background-color: #5eaf9b;
+}
+
 p.reset_data {
     margin: 3em 0;
     text-align: center;
@@ -276,7 +296,7 @@ button.delete_button:hover {
     background-color: #cc0000;
 }
 
-button#practice {
+button#control-article {
     width: 100%;
     height: 4em;
 }

@@ -55,13 +55,18 @@ class DashboardView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(DashboardView, self).get_context_data(**kwargs)
         try:
-            speed = self.request.session['reading_speed'][-1]
-            improvement = speed - self.request.session['reading_speed'][0]
-            context['reading_speed'] = speed
+            speeds = self.request.session['reading_speeds']
+            latest_speed = speeds[-1]
+            improvement = latest_speed - speeds[0]
+            context['reading_speeds'] = speeds
             context['reading_improvement'] = improvement
+
+            quickest_speed = float(max(speeds))
+            percentages = [speed/quickest_speed*100 for speed in speeds]
+            inverted_percentages = [100 - percentage for percentage in percentages]
+            context['speeds_and_percentages'] = zip(speeds, percentages, inverted_percentages)
         except KeyError:
             pass
-        context['has_reading_data'] = session_has_reading_data(self.request.session)
         return context
 
 class ResetView(View):
@@ -216,10 +221,10 @@ class ComprehensionView(DetailView):
 
             if reading_speed:
                 new_speeds = (
-                    self.request.session.get('reading_speed', []) +
+                    self.request.session.get('reading_speeds', []) +
                     [reading_speed]
                 )
-                self.request.session['reading_speed'] = new_speeds
+                self.request.session['reading_speeds'] = new_speeds
 
         response = self.render_to_response(self.get_context_data(**kwargs))
 
