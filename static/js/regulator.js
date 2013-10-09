@@ -24,7 +24,7 @@ Pager.prototype.currentPage = function () {
 };
 
 Pager.prototype.pages = function () {
-    return Math.round((this.contentBox.height() / this.article.height()) + 0.5);
+    return Math.round((this.contentBox.height() / this.article.height()));
 };
 
 Pager.prototype.firstPage = function (callback) {
@@ -35,7 +35,7 @@ Pager.prototype.firstPage = function (callback) {
 
 Pager.prototype.isLastPage = function (callback) {
     return (
-        -(parseInt(this.contentBox.css("margin-top")) - this.article.height()) >
+        -(parseInt(this.contentBox.css("margin-top")) - this.article.height()) >=
         this.contentBox.height()
     ) 
 };
