@@ -61,8 +61,8 @@ header img {
 
 h1 {
     font-size: 2em;
-    line-height: 1.2em;
-    padding: .5em;
+    line-height: 1.25em;
+    padding: .5em 0em;
 }
 
 #content > header h1 {
@@ -84,7 +84,7 @@ section[role=main] > h1 {
 h2 {
     font-size: 2em;
     letter-spacing: 1px;
-    line-height: 1.2em;
+    line-height: 1.25em;
 }
 
 section[role=main] > h2 {
@@ -177,7 +177,7 @@ section[role="main"] article header {
 section[role="main"] article header h1 {
     font-size: 1em;
     text-align: center;
-    margin: .5em;
+    margin-bottom: .5em;
 }
 section[role="main"] article header h2 {
     font-size: 1em;
@@ -322,7 +322,7 @@ label.wpm input {
 footer {
     background-color: #5eaf9b;
     margin: 2em 0 0;
-    padding: 3em 1em 0 5em;
+    padding: 1em 1em 1em 5em;
     color: #000;
 }
 footer a {
