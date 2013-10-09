@@ -1,4 +1,6 @@
+import random
 import time
+from itertools import chain
 
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -52,6 +54,7 @@ class DashboardView(TemplateView):
     Shows you some info about how well you read and what to do next.
     """
     template_name = "dashboard.html"
+
     def get_context_data(self, **kwargs):
         context = super(DashboardView, self).get_context_data(**kwargs)
         try:
@@ -65,9 +68,11 @@ class DashboardView(TemplateView):
             percentages = [speed/quickest_speed*100 for speed in speeds]
             inverted_percentages = [100 - percentage for percentage in percentages]
             context['speeds_and_percentages'] = zip(speeds, percentages, inverted_percentages)
+            context['words_read'] = self.request.session.get('words_read')
         except KeyError:
             pass
         return context
+
 
 class ResetView(View):
     """
@@ -139,6 +144,11 @@ class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, DetailView):
         return context
 
     def form_valid(self, form):
+        self.request.session['words_read'] = (
+            form.cleaned_data['wordcount'] +
+            self.request.session.get('words_read', 0)
+        )
+
         reading_speed = int(form.cleaned_data['wordcount'] / (form.cleaned_data['seconds']/60))
         self.request.session['unchecked_speed'] = reading_speed
         return super(SpeedTestView, self).form_valid(form)
@@ -182,11 +192,16 @@ class ComprehensionView(DetailView):
     model = models.Piece
 
     def get_context_data(self, **kwargs):
-        questions = self.object.questions.order_by('?')[:10]
-
         context = super(ComprehensionView, self).get_context_data(**kwargs)
-        context['questions'] = [(q, q.answers.order_by('?')[:3])
-                                for q in questions]
+        questions = []
+        for q in self.object.questions.order_by('?')[:10]:
+            answers = list(
+                chain(q.answers.filter(correct=False).order_by('?')[:2],
+                      q.answers.filter(correct=True)[:1])
+            )
+            random.shuffle(answers)
+            questions.append((q, answers))
+        context['questions'] = questions
         return context
 
     def post(self, request, *args, **kwargs):
@@ -213,6 +228,8 @@ class ComprehensionView(DetailView):
         kwargs['num_questions'] = num_questions
 
         reading_speed = self.request.session.get('unchecked_speed')
+        if reading_speed:
+            del self.request.session['unchecked_speed']
 
         if correct_answers != num_questions:
             self.template_name = "comprehension_fail.html"

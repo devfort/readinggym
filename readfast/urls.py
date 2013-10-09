@@ -10,8 +10,7 @@ urlpatterns = patterns('',
     url(r"^why/$",  readfast.views.WhyView.as_view(), name="why"),
 
 
-    url(r"^dashboard/$", RedirectView.as_view(url="/training/"),
-        name="dashboard"),
+    url(r"^dashboard/$", RedirectView.as_view(url="/training/")),
 
     url(r"^training/$",  readfast.views.DashboardView.as_view(),
         name="dashboard"),

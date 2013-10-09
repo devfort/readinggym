@@ -9,6 +9,10 @@ html, body {
     text-rendering: optimizeLegibility;
 }
 
+h1, h2, h3 {    
+    line-height: 1em;
+}
+
 ul > li {
     list-style: disc; 
 }
@@ -142,7 +146,7 @@ section[role=main] a.enticing:hover {
 
 article {
     width: 30em;
-    margin: 0 auto 0.5em auto;
+    margin: 1em auto 0.5em auto;
     position: relative;
     text-align: justify;
 }
@@ -156,6 +160,31 @@ article > p > span {
     white-space: pre;
 }
 
+article {
+    color: #000;
+}
+article.reading {
+    color: #aaa;
+}
+
+span {
+    display: inline-block;
+    white-space: pre;
+    -webkit-transition:color 0.05s linear;
+}
+
+span.highlight {
+    color: black;
+}
+
+.regulator {
+    position: absolute;
+    height: 6px;
+    width: 6px;
+    margin-top: -3px;
+    border-radius: 3px;
+    background-color: red;
+}
 
 section[role="main"] article header {
     width: 100%;
@@ -190,6 +219,10 @@ p {
    border-bottom: 3px solid rgb(94, 175, 155);
    margin-bottom: 1em;
    padding-bottom: 1em;
+}
+
+#timer-control {
+    line-height: 2em;
 }
 
 div.timer {
