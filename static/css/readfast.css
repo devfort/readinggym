@@ -148,7 +148,7 @@ article {
     width: 30em;
     margin: 1em auto 0.5em auto;
     position: relative;
-    text-align: justify;
+    line-height: 2em;
 }
 
 article p:first-child {
@@ -207,12 +207,6 @@ section[role="main"] article header h3 {
 p {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-}
-
-.regulator {
-    position: absolute;
-    height: 3px;
-    background-color: red;
 }
 
 #timer-module .explanation {
