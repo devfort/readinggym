@@ -13,6 +13,17 @@ Pager.prototype.setup = function () {
     });
 };
 
+Pager.prototype.currentPage = function () {
+    return -Math.round(
+        (parseInt(this.contentBox.css("margin-top")) / this.article.height())
+        - 0.5
+    ) + 1; 
+};
+
+Pager.prototype.pages = function () {
+    return Math.round((this.contentBox.height() / this.article.height()) + 0.5);
+};
+
 Pager.prototype.firstPage = function (callback) {
     this.contentBox.transition({
         "margin-top": "0"
@@ -40,6 +51,9 @@ function Regulator(article, pager, wpm) {
     this.wpm = wpm;
     this.setup();
     this.running = false;
+
+    $("#current-page").text(this.pager.currentPage());
+    $("#page-count").text(this.pager.pages());
 }
 
 Regulator.prototype.setup = function() {
@@ -123,6 +137,8 @@ Regulator.prototype.start = function() {
         var animateGuide = function () {
             var firstWordPos = line.words[0].position();
             var lineBottom = firstWordPos.top + line.words[0].height();
+
+            $("#current-page").text(self.pager.currentPage());
 
             $(line.words).each(function(i,s) {
                 $(s).addClass('highlight');

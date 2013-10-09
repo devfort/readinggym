@@ -32,7 +32,9 @@ $(function() {
     {{ words_to_read|safe|linebreaks }}
 </article>
 
+<span id="current-page"></span>/<span id="page-count"></span>
+
 <section id="proceed">
-<a href="{% url "comprehension" object.pk %}">Test my understanding.</a>
+    <a href="{% url "comprehension" object.pk %}">Test my understanding.</a>
 </section>
 {% endblock %}
