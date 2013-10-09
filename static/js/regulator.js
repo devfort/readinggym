@@ -11,6 +11,9 @@ Pager.prototype.setup = function () {
         "overflow": "hidden",
         "height": "30em"
     });
+
+    $("#current-page").text(this.currentPage());
+    $("#page-count").text(this.pages());
 };
 
 Pager.prototype.currentPage = function () {
@@ -41,8 +44,11 @@ Pager.prototype.nextPage = function (callback) {
     if(!this.isLastPage()) {
         this.contentBox.transition({
             "margin-top": "-=" + this.article.height(),
-        }, 100, callback);
-    };
+        }, 100, (function() {
+            $("#current-page").text(this.currentPage());
+            if(callback) callback();
+        }).bind(this));
+    }
 };
 
 function Regulator(article, pager, wpm) {
@@ -51,9 +57,6 @@ function Regulator(article, pager, wpm) {
     this.wpm = wpm;
     this.setup();
     this.running = false;
-
-    $("#current-page").text(this.pager.currentPage());
-    $("#page-count").text(this.pager.pages());
 }
 
 Regulator.prototype.setup = function() {
@@ -137,8 +140,6 @@ Regulator.prototype.start = function() {
         var animateGuide = function () {
             var firstWordPos = line.words[0].position();
             var lineBottom = firstWordPos.top + line.words[0].height();
-
-            $("#current-page").text(self.pager.currentPage());
 
             $(line.words).each(function(i,s) {
                 $(s).addClass('highlight');
