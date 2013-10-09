@@ -137,7 +137,7 @@ Regulator.prototype.start = function() {
     var wordsPerLine = words.length / lines.length;
     var pixelsPerWord = this.article.width() / wordsPerLine;
     
-    var guideWidth = 6;
+    var guideWidth = this.box.width();
     var lineNo = 0;
 
     var guideLine = function () {
