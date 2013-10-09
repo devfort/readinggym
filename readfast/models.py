@@ -8,7 +8,7 @@ class Piece(models.Model):
     source_url = models.URLField()
     source_title = models.CharField(max_length=200)
 
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
 
     text = models.TextField()
 
