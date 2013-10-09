@@ -7,7 +7,6 @@ html, body {
     width: 100%;
     height: 100%;
     text-rendering: optimizeLegibility;
-    margin-bottom: 1em;
 }
 
 ul > li {
@@ -19,7 +18,7 @@ a {
 }
 
 #content {
-    background-color: #fdffe5;
+    background-color: #fefff1;
     width: 40em;
     line-height: 1.5em;
     font-family: Georgia, Garamond, serif;
@@ -29,6 +28,7 @@ a {
     text-align: justify;
     margin-left: auto;
     margin-right: auto;
+
 
 }
 
@@ -56,19 +56,8 @@ h1 {
     font-size: 3em;
     width: 5em;
     text-align: left;
-    line-height: 1em;
+    line-height: 1.2em;
     padding-left: 1.5em;
-}
-
-
-header h1:after {
-    content:".";
-    position: relative;
-    left: -4.56em;
-    top: 0.2em;
-    color:red;
-    font-size: 1.5em;
-    line-height: 0;
 }
 
 h2 {
@@ -76,6 +65,8 @@ h2 {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-bottom: 3px solid #5eaf9b;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
 }
 
 p + h2 {
@@ -87,15 +78,13 @@ p + h2 {
 h3 {
     font-size: 1.5em;
     padding-top: 0.5em;
-   }
-
-p + h3 {
     border-top: 1px dashed #5eaf9b;
 }
 
 ul {
     margin: 0.5em 0;
     list-style: disc;
+    padding-left: 1em;
 }
 
 section[role=main] {
@@ -158,13 +147,6 @@ p {
     background-color: red;
 }
 
-#timer-module .explanation {
-    margin-bottom: 2em;
-    border-bottom: 1px solid black;
-    text-align: center;
-    padding-bottom: 2em;
-}
-
 div.timer {
     position: fixed;
     background: white;
@@ -219,16 +201,4 @@ button#practice {
 
 body.js #proceed {
     display: none;
-}
-
-ol.questions {
-    margin-top: 1em;
-}
-
-ol.questions > li.question {
-    list-style: decimal;
-}
-
-li.question li {
-    list-style: none;
 }
