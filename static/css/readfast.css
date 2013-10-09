@@ -40,7 +40,6 @@ em {
     text-align: justify;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 1em;
 }
 
 #content > header {
@@ -321,4 +320,21 @@ label.wpm {
 label.wpm input {
     display: inline-block;
     width: 6em;
+}
+
+footer {
+    background-color: #5eaf9b;
+    margin: 2em 0 0;
+    padding: 5em 1em 0 5em;
+    color: #000;
+}
+footer a {
+    color: #000;
+}
+footer h1, footer h1 > a {
+    color: #fefff1;
+    text-decoration: none;
+    font-weight: normal;
+    text-transform: none;
+    font-size: 1.2em;
 }
