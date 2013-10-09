@@ -5,8 +5,9 @@
 {% include_js 'app.js' %}
 <script>
 $(function() {
+  var wpm = Cookies.get("wpm") || 300;
   var pager = new Pager($("article"));
-  var regulator = new Regulator($("article"), pager, 300);
+  var regulator = new Regulator($("article"), pager, wpm);
 
   $('#practice').click(function() {
     if(regulator.running) {
