@@ -9,6 +9,10 @@ html, body {
     text-rendering: optimizeLegibility;
 }
 
+h1, h2, h3 {    
+    line-height: 1em;
+}
+
 ul > li {
     list-style: disc; 
 }
