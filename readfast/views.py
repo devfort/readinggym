@@ -25,24 +25,6 @@ def spanify(text):
     return words_to_read
 
 
-class IndexView(TemplateView):
-    """
-    /
-
-    The homepage.
-    """
-    template_name = "index.html"
-
-
-class WhyView(TemplateView):
-    """
-    /why
-
-    The MOAR SCIENCE page
-    """
-    template_name = "why.html"
-
-
 def session_has_reading_data(session):
     return "reading_speed" in session
 
@@ -61,14 +43,18 @@ class DashboardView(TemplateView):
             speeds = self.request.session['reading_speeds']
             latest_speed = speeds[-1]
             improvement = latest_speed - speeds[0]
-            context['reading_speeds'] = speeds
-            context['reading_improvement'] = improvement
 
             quickest_speed = float(max(speeds))
             percentages = [speed/quickest_speed*100 for speed in speeds]
-            inverted_percentages = [100 - percentage for percentage in percentages]
-            context['speeds_and_percentages'] = zip(speeds, percentages, inverted_percentages)
+            inverted_percentages = [100 - percentage
+                                    for percentage in percentages]
+
+            context['speeds_and_percentages'] = zip(
+                speeds, percentages, inverted_percentages
+            )
             context['words_read'] = self.request.session.get('words_read')
+            context['reading_speeds'] = speeds
+            context['reading_improvement'] = improvement
         except KeyError:
             pass
         return context
@@ -83,7 +69,9 @@ class ResetView(View):
 
     def get_context_data(self):
         context = super(ResetView, self).get_context_data()
-        context['has_reading_data'] = session_has_reading_data(self.request.session)
+        context['has_reading_data'] = session_has_reading_data(
+            self.request.session
+        )
         return context
 
     def post(self, request, **kwargs):

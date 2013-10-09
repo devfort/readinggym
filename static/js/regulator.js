@@ -57,7 +57,7 @@ Pager.prototype.nextPage = function (callback) {
 function Regulator(article, pager, wpm) {
     this.article = $(article);
     this.pager = pager;
-    this.wpm = wpm;
+    this.wpmField = $(wpm);
     this.setup();
     this.running = false;
 }
@@ -115,6 +115,15 @@ Regulator.prototype.setup = function() {
     this.lines = lines;
 };
 
+
+Regulator.prototype.wpm = function(wpm) {
+    if (wpm) {
+        this.wpmField.val(parseInt(wpm));
+    }
+
+    return parseInt(this.wpmField.val());
+};
+
 Regulator.prototype.start = function() {
     var self = this;
 
@@ -128,7 +137,7 @@ Regulator.prototype.start = function() {
     var wordsPerLine = words.length / lines.length;
     var pixelsPerWord = this.article.width() / wordsPerLine;
     
-    var guideWidth = 6;
+    var guideWidth = this.box.width();
     var lineNo = 0;
 
     var guideLine = function () {
@@ -139,7 +148,7 @@ Regulator.prototype.start = function() {
         var firstWordPos = line.words[0].position();
         var lineLeft = firstWordPos.left;
         var lineBottom = firstWordPos.top + line.words[0].height();
-        var pixelRate = (self.wpm / 60) * pixelsPerWord;
+        var pixelRate = (self.wpm() / 60) * pixelsPerWord;
         var guideTime = ((line.width - guideWidth) / pixelRate) * 1000;
        
         var animateGuide = function () {
@@ -156,7 +165,7 @@ Regulator.prototype.start = function() {
                 });
             }
 
-            if (self.wpm < 1000) {
+            if (self.wpm() < 1000) {
                 box.transition({
                     left: lineLeft,
                     top: lineBottom,

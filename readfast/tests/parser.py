@@ -30,6 +30,19 @@ Something something else.
             "Something something otters.\nSomething something else.\n"
         )
 
+    def test_extracts_source_info(self):
+        source = StringIO("""
+Source: Otters and stuff, by me
+URL: http://example.com
+
+Text:
+Something something otters.
+        """)
+
+        p = PieceParser(source)
+        self.assertEqual(p.source, "Otters and stuff, by me")
+        self.assertEqual(p.url, "http://example.com")
+
     def test_extracts_question_and_answer(self):
         source = StringIO("""
 Question: What are otters?
