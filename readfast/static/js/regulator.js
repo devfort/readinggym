@@ -17,12 +17,21 @@ Pager.prototype.firstPage = function (callback) {
     this.contentBox.transition({
         "margin-top": "0"
     }, 100, callback);
-}
+};
+
+Pager.prototype.isLastPage = function (callback) {
+    return (
+        -(parseInt(this.contentBox.css("margin-top")) - this.article.height()) >
+        this.contentBox.height()
+    ) 
+};
 
 Pager.prototype.nextPage = function (callback) {
-    this.contentBox.transition({
-        "margin-top": "-=" + this.article.height(),
-    }, 100, callback);
+    if(!this.isLastPage()) {
+        this.contentBox.transition({
+            "margin-top": "-=" + this.article.height(),
+        }, 100, callback);
+    };
 };
 
 function Regulator(article, pager, wpm) {
