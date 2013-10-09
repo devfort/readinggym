@@ -102,15 +102,12 @@ h3 {
     padding-top: 0.75em;
     margin-top: .5em;
     letter-spacing: 1px;
+    border-top: 1px dashed #5eaf9b;
 }
 
 h2 + h3 {
     border-top: 0px;
  }
- 
-section[role=main] > h3 {
-  border-top: 1px dashed #5eaf9b;
-}
 
 ul {
     margin: 0em 1em 0em 1em;
