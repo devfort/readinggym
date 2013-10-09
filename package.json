@@ -21,7 +21,7 @@
       "sourceDirectory": "static/css",
       "targetDirectory": "static/compiled",
       "targets": {
-        "app.css": ["reset", "readfast", "regulator"]
+        "app.css": ["reset", "readfast"]
       }
     },
     "binary": {
