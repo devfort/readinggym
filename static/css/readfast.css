@@ -315,3 +315,30 @@ footer h1, footer h1 > a {
     text-transform: none;
     font-size: 1.2em;
 }
+
+article {
+    color: #000;
+}
+article.reading {
+    color: #aaa;
+}
+
+span {
+    display: inline-block;
+    white-space: pre;
+    -webkit-transition:color 0.05s linear;
+}
+
+span.highlight {
+    color: black;
+}
+
+.regulator {
+    position: absolute;
+    height: 6px;
+    width: 6px;
+    margin-top: -3px;
+    border-radius: 3px;
+    background-color: red;
+}
+
