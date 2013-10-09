@@ -30,7 +30,7 @@ $(function() {
 {% block content %}
 <section class="ui">
     <label class="wpm">
-        Words per minute: <input type="text" name="wpm">
+        Set your desired speed in words per minute: <input type="text" name="wpm">
     </label>
     <button id="control-article" type="button">Start</button>
 </section>
@@ -44,6 +44,6 @@ $(function() {
 <span id="current-page"></span>/<span id="page-count"></span>
 
 <section id="proceed">
-    <a href="{% url "comprehension" object.pk %}">Test my understanding.</a>
+    <a href="{% url "comprehension" object.pk %}">Check my understanding.</a>
 </section>
 {% endblock %}
