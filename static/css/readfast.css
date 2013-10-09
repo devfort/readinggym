@@ -242,6 +242,23 @@ header > a {
     text-align: center;
 }
 
+ol.speed_graph {
+  margin-top: 120px;  
+}
+
+ol.speed_graph li {
+  display: inline;
+  position: relative;
+  padding-top: 100px;
+}
+
+ol.speed_graph li span {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  background-color: #5eaf9b;
+}
+
 p.reset_data {
     margin: 3em 0;
     text-align: center;
