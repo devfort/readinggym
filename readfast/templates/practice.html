@@ -5,8 +5,9 @@
 {% include_js 'app.js' %}
 <script>
 $(function() {
+  var wpm = Cookies.get("wpm") || 300;
   var pager = new Pager($("article"));
-  var regulator = new Regulator($("article"), pager, 300);
+  var regulator = new Regulator($("article"), pager, wpm);
 
   $('#practice').click(function() {
     if(regulator.running) {
@@ -32,7 +33,9 @@ $(function() {
     {{ words_to_read|safe|linebreaks }}
 </article>
 
+<span id="current-page"></span>/<span id="page-count"></span>
+
 <section id="proceed">
-<a href="{% url "comprehension" object.pk %}">Test my understanding.</a>
+    <a href="{% url "comprehension" object.pk %}">Test my understanding.</a>
 </section>
 {% endblock %}

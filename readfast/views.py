@@ -95,12 +95,14 @@ class RandomSpeedTestView(RandomRedirectView):
 class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, DetailView):
     template_name = "speedtest.html"
     form_class = forms.SpeedTestForm
-    success_url = '/dashboard'
     model = models.Piece
 
     def dispatch(self, *args, **kwargs):
         self.object = self.get_object()
         return super(SpeedTestView, self).dispatch(*args, **kwargs)
+
+    def get_success_url(self):
+        return reverse("comprehension", kwargs={"pk": self.object.pk})
 
     def get_context_data(self, **kwargs):
         context = super(SpeedTestView, self).get_context_data(**kwargs)
@@ -189,5 +191,6 @@ class ComprehensionView(DetailView):
                 )
                 self.request.session['reading_speed'] = new_speeds
 
-        return self.render_to_response(self.get_context_data(**kwargs))
-
+        response = self.render_to_response(self.get_context_data(**kwargs))
+        response.set_cookie("wpm", reading_speed)
+        return response

@@ -47,8 +47,8 @@ h1, h2, h3, h4, h4 {
 }
 
 header img {
-    position: absolute;
-    left: 1em;
+    float: right;
+    margin-right: 1em;
 }
 
 h1 {
@@ -111,7 +111,7 @@ section[role=main] h3 {
 section[role=main] a.enticing {
   font-size: 1.8em;
   display: inline-block;
-  margin-right: 1em;
+  margin: 1em 0.5em;
   padding: 0.5em;
   border: 1px solid #000;
   border-radius: 10px;
@@ -148,6 +148,12 @@ p {
     position: absolute;
     height: 3px;
     background-color: red;
+}
+
+#timer-module .explanation {
+   border-bottom: 3px solid rgb(94, 175, 155);
+   margin-bottom: 1em;
+   padding-bottom: 1em;
 }
 
 div.timer {

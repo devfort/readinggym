@@ -11,6 +11,20 @@ Pager.prototype.setup = function () {
         "overflow": "hidden",
         "height": "30em"
     });
+
+    $("#current-page").text(this.currentPage());
+    $("#page-count").text(this.pages());
+};
+
+Pager.prototype.currentPage = function () {
+    return -Math.round(
+        (parseInt(this.contentBox.css("margin-top")) / this.article.height())
+        - 0.5
+    ) + 1; 
+};
+
+Pager.prototype.pages = function () {
+    return Math.round((this.contentBox.height() / this.article.height()));
 };
 
 Pager.prototype.firstPage = function (callback) {
@@ -21,7 +35,7 @@ Pager.prototype.firstPage = function (callback) {
 
 Pager.prototype.isLastPage = function (callback) {
     return (
-        -(parseInt(this.contentBox.css("margin-top")) - this.article.height()) >
+        -(parseInt(this.contentBox.css("margin-top")) - this.article.height()) >=
         this.contentBox.height()
     ) 
 };
@@ -30,8 +44,11 @@ Pager.prototype.nextPage = function (callback) {
     if(!this.isLastPage()) {
         this.contentBox.transition({
             "margin-top": "-=" + this.article.height(),
-        }, 100, callback);
-    };
+        }, 100, (function() {
+            $("#current-page").text(this.currentPage());
+            if(callback) callback();
+        }).bind(this));
+    }
 };
 
 function Regulator(article, pager, wpm) {
