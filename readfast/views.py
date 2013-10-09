@@ -226,7 +226,10 @@ class ComprehensionView(DetailView):
                 )
                 self.request.session['reading_speeds'] = new_speeds
 
-            self.request.session['words_read'] += len(self.object.text.split())
+            self.request.session['words_read'] = (
+                len(self.object.text.split()) +
+                self.request.session.get("words_read", 0)
+            )
 
         response = self.render_to_response(self.get_context_data(**kwargs))
 
