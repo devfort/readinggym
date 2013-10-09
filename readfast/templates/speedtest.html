@@ -14,16 +14,16 @@
     Read as fast as you can while still understanding each line.]]
   </p> 
 
-  <article>
-    {{ words_to_read|safe }}
-  </article>
-
   <div id='timer-control'></div>
   <form method='post'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type='submit'>Record time</button>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type='submit'>Record time</button>
   </form>
+
+  <article>
+  {{ words_to_read|safe }}
+  </article>
 </div>
 
 <section id="proceed">
