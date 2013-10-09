@@ -44,10 +44,10 @@ Pager.prototype.nextPage = function (callback) {
     if(!this.isLastPage()) {
         this.contentBox.transition({
             "margin-top": "-=" + this.article.height(),
-        }, 100, (function() {
+        }, 100, $.proxy(function() {
             $("#current-page").text(this.currentPage());
             if(callback) callback();
-        }).bind(this));
+        }, this));
     }
 };
 

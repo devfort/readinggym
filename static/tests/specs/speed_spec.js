@@ -17,18 +17,19 @@ JS.Test.describe("Speed", function() { with(this) {
     $("#fixture").empty()
   })
 
-  it("injects a button", function() { with(this) {
-    assertEqual( 1, timer.find("button").length )
+  it("injects some buttons", function() { with(this) {
+    assertEqual( 1, timer.find("button.start").length )
+    assertEqual( 1, timer.find("button.next").length )
   }})
 
   describe("when the button is clicked", function() { with(this) {
     before(function() { with(this) {
-      this.button = timer.find("button")
+      this.button = timer.find("button.start")
       button.click()
     }})
 
     it("changes to a stop button", function() { with(this) {
-      assertEqual( "Done", timer.find("button").text() )
+      assertEqual( "Done", button.text() )
     }})
 
     describe("again", function() { with(this) {

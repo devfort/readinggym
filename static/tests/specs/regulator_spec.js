@@ -6,7 +6,8 @@ JS.Test.describe("Regulator", function() { with(this) {
         <span>It</span> <span>is</span> <span>kinda</span> <span>quiet</span>\
       </div>')
 
-    this.regulator = new Regulator(".article", {}, 200)
+    this.pager = {firstPage: function() {}}
+    this.regulator = new Regulator(".article", this.pager, 200)
   })
 
   after(function() {

@@ -2,7 +2,7 @@
 
 var makeNextPageButton = function(article) {
     var pager = new Pager(article);
-    var nextPageButton = $("<button>Next page</button>");
+    var nextPageButton = $('<button class="next">Next page</button>');
     nextPageButton.click(function () {
         pager.nextPage();
     });
@@ -11,7 +11,7 @@ var makeNextPageButton = function(article) {
 
 var enhanceTimerModule = function(timerModule, explanation) {
     timerModule = $(timerModule);
-    var $timing = $('<button>Start</button>');
+    var $timing = $('<button class="start">Start</button>');
     
     $timing.one("click", function() {
         var t = Date.now();
