@@ -52,9 +52,9 @@ class DashboardView(TemplateView):
             context['speeds_and_percentages'] = zip(
                 speeds, percentages, inverted_percentages
             )
-            context['words_read'] = self.request.session.get('words_read')
             context['reading_speeds'] = speeds
             context['reading_improvement'] = improvement
+            context['words_read'] = self.request.session['words_read']
         except KeyError:
             pass
         return context
@@ -132,11 +132,6 @@ class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, DetailView):
         return context
 
     def form_valid(self, form):
-        self.request.session['words_read'] = (
-            form.cleaned_data['wordcount'] +
-            self.request.session.get('words_read', 0)
-        )
-
         reading_speed = int(form.cleaned_data['wordcount'] / (form.cleaned_data['seconds']/60))
         self.request.session['unchecked_speed'] = reading_speed
         return super(SpeedTestView, self).form_valid(form)
@@ -230,6 +225,8 @@ class ComprehensionView(DetailView):
                     [reading_speed]
                 )
                 self.request.session['reading_speeds'] = new_speeds
+
+            self.request.session['words_read'] += len(self.object.text.split())
 
         response = self.render_to_response(self.get_context_data(**kwargs))
 
