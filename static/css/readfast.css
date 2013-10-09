@@ -150,6 +150,12 @@ p {
     background-color: red;
 }
 
+#timer-module .explanation {
+   border-bottom: 3px solid rgb(94, 175, 155);
+   margin-bottom: 1em;
+   padding-bottom: 1em;
+}
+
 div.timer {
     position: fixed;
     background: white;
