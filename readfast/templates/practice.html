@@ -9,8 +9,8 @@ var wpm = Cookies.get("wpm") || 300;
 {% endblock %}
 
 $(function() {
-  var pager = new Pager($("article"));
-  var regulator = new Regulator($("article"), pager, wpm);
+  var pager = new Pager("article");
+  var regulator = new Regulator("article", pager, "input[name='wpm']");
 
   $('#control-article').click(function() {
     if(regulator.running) {
@@ -29,6 +29,9 @@ $(function() {
 
 {% block content %}
 <section class="ui">
+    <label class="wpm">
+        Words per minute: <input type="text" name="wpm">
+    </label>
     <button id="control-article" type="button">Start</button>
 </section>
 

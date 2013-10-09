@@ -312,3 +312,13 @@ button#control-article {
 body.js #proceed {
     display: none;
 }
+
+label.wpm {
+    display: inline-block;
+    text-align: left;
+}
+
+label.wpm input {
+    display: inline-block;
+    width: 6em;
+}
