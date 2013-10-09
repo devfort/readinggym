@@ -3,7 +3,13 @@ from django.db import models
 
 class Piece(models.Model):
     name = models.CharField(max_length=200)
+    author = models.CharField(max_length=200)
+
+    source_url = models.URLField()
+    source_title = models.CharField(max_length=200)
+
     slug = models.SlugField()
+
     text = models.TextField()
 
     def __unicode__(self):
@@ -21,6 +27,7 @@ class ComprehensionQuestion(models.Model):
 
     def __unicode__(self):
         return self.text
+
 
 class ComprehensionAnswer(models.Model):
     """

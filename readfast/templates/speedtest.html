@@ -10,8 +10,8 @@
 {% block content %}
 <div id='timer-module'>
   <p class='explanation'>
-    [[You will need something (such as a stop watch) to time how long it takes you to read the following.
-    Read as fast as you can while still understanding each line.]]
+    You will need something (such as a stop watch) to time how long it takes you to read the following, then input your time and we will calculate your speed for you. 
+    Read at a speed that is comfortable for you.  
   </p> 
 
   <div id='timer-control'></div>
@@ -22,12 +22,24 @@
   </form>
 
   <article>
+    <header>
+        <h1>{{ object.name }}</h1>
+    
+    {% if object.author %}
+        <h2>by <em>{{ object.author }}</em></h2>
+    {% endif %}
+
+    {% if object.source_title %}
+        <h3>Source: <a href="{{ object.source_url }}">{{ object.source_title }}</a></h3>
+    {% endif %}
+    </header>
+
   {{ words_to_read|safe }}
   </article>
 </div>
 
 <section id="proceed">
-<a href="{% url "comprehension" pk=object.pk %}">Test my understanding.</a>
+<a href="{% url "comprehension" pk=object.pk %}">Check my understanding.</a>
 </section>
 
 <span id="current-page"></span>/<span id="page-count"></span>

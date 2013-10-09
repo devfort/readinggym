@@ -36,7 +36,10 @@
 
 {% if has_reading_data %}
   <p class="reset_data">
-    <a href="{% url "reset" %}">Delete my data</a>
+    <form action="{% url "reset" %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete my data</button>
+    </a>
   </p>
 {% endif %}
 

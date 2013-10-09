@@ -24,7 +24,7 @@ Pager.prototype.currentPage = function () {
 };
 
 Pager.prototype.pages = function () {
-    return Math.round((this.contentBox.height() / this.article.height()));
+    return Math.round((this.contentBox.height() / this.article.height()) + 0.5);
 };
 
 Pager.prototype.firstPage = function (callback) {

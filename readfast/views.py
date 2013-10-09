@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse
 from django.views.generic import (
-    FormView, TemplateView, DetailView, RedirectView
+    FormView, TemplateView, DetailView, RedirectView, View
 )
 from django.views.generic.edit import ProcessFormView, FormMixin
 
@@ -64,13 +64,12 @@ class DashboardView(TemplateView):
         context['has_reading_data'] = session_has_reading_data(self.request.session)
         return context
 
-class ResetView(TemplateView):
+class ResetView(View):
     """
     /reset/
 
     Allows you to delete all of your data.
     """
-    template_name = "reset.html"
 
     def get_context_data(self):
         context = super(ResetView, self).get_context_data()
@@ -79,7 +78,7 @@ class ResetView(TemplateView):
 
     def post(self, request, **kwargs):
         self.request.session.flush()
-        return self.render_to_response(self.get_context_data(**kwargs))
+        return redirect("dashboard")
 
 
 class ReadViewMixin(object):
@@ -208,13 +207,14 @@ class ComprehensionView(DetailView):
         kwargs['correct_answers'] = correct_answers
         kwargs['num_questions'] = num_questions
 
+        reading_speed = self.request.session.get('unchecked_speed')
+
         if correct_answers != num_questions:
             self.template_name = "comprehension_fail.html"
         else:
             self.template_name = "comprehension_pass.html"
 
-            if self.request.session.get('unchecked_speed'):
-                reading_speed = self.request.session['unchecked_speed']
+            if reading_speed:
                 new_speeds = (
                     self.request.session.get('reading_speed', []) +
                     [reading_speed]
@@ -222,5 +222,8 @@ class ComprehensionView(DetailView):
                 self.request.session['reading_speed'] = new_speeds
 
         response = self.render_to_response(self.get_context_data(**kwargs))
-        response.set_cookie("wpm", reading_speed)
+
+        if reading_speed:
+            response.set_cookie("wpm", reading_speed)
+
         return response
