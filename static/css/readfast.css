@@ -62,21 +62,35 @@ header img {
 }
 
 h1 {
+    font-size: 2em;
+    line-height: 1.2em;
+}
+
+#content > header h1 {
     font-size: 3em;
     width: 5em;
     text-align: left;
-    line-height: 1.2em;
-    padding: 0 2em;
+    padding: 0 1.75em;
+}
+
+section[role=main] > h1 {
+  border-bottom: 3px solid #5eaf9b;
+    padding: 0.5em 0;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
 }
 
 h2 {
     font-size: 2em;
     letter-spacing: 1px;
-    padding: 0.5em 0;
+}
+
+section[role=main] > h2 {
     border-bottom: 3px solid #5eaf9b;
+    padding: 0.5em 0;
     margin-bottom: 0.5em;
     margin-top: 0.5em;
-}
+    }
 
 p + h2 {
     border-top: 3px solid #5eaf9b;
@@ -88,8 +102,11 @@ h3 {
     font-size: 1.5em;
     padding-top: 0.75em;
     margin-top: .5em;
-    border-top: 1px dashed #5eaf9b;
     letter-spacing: 1px;
+}
+
+section[role=main] > h3 {
+  border-top: 1px dashed #5eaf9b;
 }
 
 ul {
@@ -105,42 +122,6 @@ section[role=main] {
     padding: 0 5em 0 5em;
     margin: 0 auto 0 auto;
 }
-/*
-#content > header h1 {
-    width: 5em;
-    text-align: left;
-    line-height: 1.2em;
-    padding: 0.5em 1em 0.5em 1em;
-}
-
-section[role=main] > h1 {
-  margin: 0.5em 0;
-  padding-top: 0.5em;
-  font-size: 2em;
-  width: 5em;
-  text-align: left;
-  line-height: 1.2em;
-  padding: 0 1.5em;
-}
-
-section[role=main] > h2 {
-  font-size: 1.6em;
-  letter-spacing: 1px;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  border-bottom: 3px solid #5eaf9b;
-  margin-bottom: 0.5em;
-  margin-top: 0.5em;
-}
-
-section[role=main] > h3 {
-  font-size: 1.4em;
-  margin: 0.5em 0 ;
-  letter-spacing: 1px;
-  padding-top: 0.5em;
-  border-top: 1px dashed #5eaf9b;
-}
- */
  
 section[role=main] a.enticing {
   font-size: 1.8em;
