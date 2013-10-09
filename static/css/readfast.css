@@ -224,17 +224,6 @@ header > a {
     text-align: center;
 }
 
-.dashboard_buttons a {
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 0.5em;
-    border: 3px solid #000;
-    border-radius: 15px;
-    color: #000;
-    text-decoration: none;
-    font-family: inherit;
-}
-
 .dashboard_buttons a:nth-child(1) {
     background-color: #b6d0d6;
 }
@@ -245,16 +234,21 @@ header > a {
     background-color: #cddb91;
 }
 .dashboard_button {
-    color: #87125d;
-    text-decoration: none;
     width: 6em;
     height: 6em;
-    line-height: 6em;
     border: dotted 1px;
     margin: 0 1em 0 1em;
     display: inline-block;
     vertical-align: middle;
     text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 0.5em;
+    border: 3px solid #000;
+    border-radius: 15px;
+    color: #000;
+    text-decoration: none;
+    font-family: inherit;
 }
 
 ol.speed_graph {
