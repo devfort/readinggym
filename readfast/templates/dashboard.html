@@ -34,4 +34,10 @@
 <a href="{% url "random-sprint" %}" class="dashboard_button">Sprint</a>
 </div>
 
+{% if has_reading_data %}
+  <p class="reset_data">
+    <a href="{% url "reset" %}">Delete my data</a>
+  </p>
+{% endif %}
+
 {% endblock %}

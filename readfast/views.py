@@ -41,6 +41,10 @@ class WhyView(TemplateView):
     template_name = "why.html"
 
 
+def session_has_reading_data(session):
+    return "reading_speed" in session
+
+
 class DashboardView(TemplateView):
     """
     /dashboard/
@@ -57,7 +61,25 @@ class DashboardView(TemplateView):
             context['reading_improvement'] = improvement
         except KeyError:
             pass
+        context['has_reading_data'] = session_has_reading_data(self.request.session)
         return context
+
+class ResetView(TemplateView):
+    """
+    /reset/
+
+    Allows you to delete all of your data.
+    """
+    template_name = "reset.html"
+
+    def get_context_data(self):
+        context = super(ResetView, self).get_context_data()
+        context['has_reading_data'] = session_has_reading_data(self.request.session)
+        return context
+
+    def post(self, request, **kwargs):
+        self.request.session.flush()
+        return self.render_to_response(self.get_context_data(**kwargs))
 
 
 class ReadViewMixin(object):

@@ -9,6 +9,8 @@ urlpatterns = patterns('',
     url(r"^why/$",  readfast.views.WhyView.as_view(), name="why"),
     url(r"^dashboard/$",  readfast.views.DashboardView.as_view(),
         name="dashboard"),
+    url(r"^reset/$",  readfast.views.ResetView.as_view(),
+        name="reset"),
 
     url(r"^reading/speed/$",  readfast.views.RandomSpeedTestView.as_view(),
         name="speed-test"),
