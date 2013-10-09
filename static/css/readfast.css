@@ -222,6 +222,14 @@ header > a {
 .dashboard_buttons {
     margin-top: 1em;
     text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 0.5em;
+    border: 3px solid #000;
+    border-radius: 15px;
+    color: #000;
+    text-decoration: none;
+    font-family: inherit;
 }
 
 .dashboard_buttons a:nth-child(1) {
