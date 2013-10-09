@@ -17,8 +17,16 @@ a {
 }
 
 #content {
-    width: 100%;
-    line-height: 2em;
+    background-color: #fdffe5;
+    width: 40em;
+    line-height: 1.5em;
+    font-family: Georgia, Garamond, serif;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 4px;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 
@@ -28,16 +36,44 @@ a {
     background-color: #5eaf9b;
     padding: 1em 0 1em 0;
     margin-bottom: 1em;
+    border-bottom: 2px solid #5eaf9b;
 }
 
-h1 {
-    font-size: 4em;
+h1, h2, h3, h4, h4 {
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block;
     margin: 0.5em 0;
 }
 
+h1 {
+    font-size: 3em;
+    width: 5em;
+    text-align: left;
+    line-height: 1em;
+    padding-left: 1.5em;
+     }
+
 h2 {
-    margin: 1em 0 0.5em;
     font-size: 2em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-bottom: 3px solid #5eaf9b;
+}
+
+p + h2 {
+    border-top: 3px solid #5eaf9b;
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+    
+h3 {
+    font-size: 1.5em;
+    padding-top: 0.5em;
+   }
+
+p + h3 {
+    border-top: 1px dashed #5eaf9b;
 }
 
 ul {
@@ -47,8 +83,7 @@ ul {
 
 section[role=main] {
     width: 30em;
-    padding: 0 10em 0 10em
-    border: 1px dotted #ddd;
+    padding: 0 5em 0 5em;
     margin: 0 auto 0 auto;
 }
 
@@ -64,7 +99,7 @@ section[role=main] h2 {
 }
 section[role=main] h3 {
   font-size: 1.5em;
-  margin: 0.5em 0 0.2em;
+  margin: 0.5em 0 ;
   letter-spacing: 1px;
 }
 
@@ -97,8 +132,7 @@ article > p > span {
 }
 
 p {
-    margin-top: 1em;
-}
+   }
 
 .regulator {
     position: absolute;
@@ -114,7 +148,7 @@ div.timer {
 }
 
 header > a {
-    color: #ffffff;
+    color: #000;
     text-decoration: none;
 }
 
