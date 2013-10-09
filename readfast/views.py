@@ -207,13 +207,14 @@ class ComprehensionView(DetailView):
         kwargs['correct_answers'] = correct_answers
         kwargs['num_questions'] = num_questions
 
+        reading_speed = self.request.session.get('unchecked_speed')
+
         if correct_answers != num_questions:
             self.template_name = "comprehension_fail.html"
         else:
             self.template_name = "comprehension_pass.html"
 
-            if self.request.session.get('unchecked_speed'):
-                reading_speed = self.request.session['unchecked_speed']
+            if reading_speed:
                 new_speeds = (
                     self.request.session.get('reading_speed', []) +
                     [reading_speed]
@@ -221,5 +222,8 @@ class ComprehensionView(DetailView):
                 self.request.session['reading_speed'] = new_speeds
 
         response = self.render_to_response(self.get_context_data(**kwargs))
-        response.set_cookie("wpm", reading_speed)
+
+        if reading_speed:
+            response.set_cookie("wpm", reading_speed)
+
         return response
