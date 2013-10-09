@@ -149,7 +149,7 @@ section[role=main] a.enticing {
 
 section[role=main] a.enticing:hover {
   background: #ddd;
-  color: #5eaf9b;
+  color: #000;
 }
 
 article {
