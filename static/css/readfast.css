@@ -104,6 +104,10 @@ h3 {
     letter-spacing: 1px;
 }
 
+h2 + h3 {
+    border-top: none;
+ }
+ 
 section[role=main] > h3 {
   border-top: 1px dashed #5eaf9b;
 }
