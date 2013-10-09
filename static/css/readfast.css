@@ -57,13 +57,13 @@ h1 {
     width: 5em;
     text-align: left;
     line-height: 1.2em;
-    padding: 0 1.5em;
+    padding: 0 2em;
 }
 
 h2 {
     font-size: 2em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    letter-spacing: 1px;
+    padding: 0.5em 0;
     border-bottom: 3px solid #5eaf9b;
     margin-bottom: 0.5em;
     margin-top: 0.5em;
@@ -77,12 +77,14 @@ p + h2 {
     
 h3 {
     font-size: 1.5em;
-    padding-top: 0.5em;
+    padding-top: 0.75em;
+    margin-top: .5em;
     border-top: 1px dashed #5eaf9b;
+    letter-spacing: 1px;
 }
 
 ul {
-    margin: 0.5em 0;
+    margin: 0em 1em 0em 1em;
 }
 
 ul li {    
@@ -95,26 +97,10 @@ section[role=main] {
     margin: 0 auto 0 auto;
 }
 
-section[role=main] h1 {
-  margin: 0.5em 0;
-  padding-top: 0.5em;
-  font-size: 2em;
-  line-height: 1em;
-}
-section[role=main] h2 {
-  font-size: 1.75em;
-  letter-spacing: 1px;
-}
-section[role=main] h3 {
-  font-size: 1.5em;
-  margin: 0.5em 0 ;
-  letter-spacing: 1px;
-}
-
 section[role=main] a.enticing {
   font-size: 1.8em;
   display: inline-block;
-  margin: 1em 0.5em;
+  margin: 0.5em;
   padding: 0.5em;
   border: 1px solid #000;
   border-radius: 10px;
@@ -145,7 +131,9 @@ article > p > span {
 }
 
 p {
-   }
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
 
 .regulator {
     position: absolute;
