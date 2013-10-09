@@ -100,7 +100,7 @@ p + h2 {
 h3 {
     font-size: 1.5em;
     padding-top: 0.75em;
-    margin-top: .5em;
+    margin: .25em 0;
     letter-spacing: 1px;
     border-top: 1px dashed #5eaf9b;
 }
