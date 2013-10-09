@@ -22,6 +22,18 @@
   </form>
 
   <article>
+    <header>
+        <h1>{{ object.name }}</h1>
+    
+    {% if object.author %}
+        <h2>by <em>{{ object.author }}</em></h2>
+    {% endif %}
+
+    {% if object.source_title %}
+        <h3>Source: <a href="{{ object.source_url }}">{{ object.source_title }}</a></h3>
+    {% endif %}
+    </header>
+
   {{ words_to_read|safe }}
   </article>
 </div>

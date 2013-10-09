@@ -6,7 +6,7 @@ class Piece(models.Model):
     author = models.CharField(max_length=200)
 
     source_url = models.URLField()
-    source_title = models.CharField()
+    source_title = models.CharField(max_length=200)
 
     slug = models.SlugField()
 

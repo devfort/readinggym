@@ -17,6 +17,10 @@ a {
     color: blue;
 }
 
+em {
+    font-style: italic;
+}
+
 #content {
     background-color: #fefff1;
     width: 40em;
@@ -31,7 +35,7 @@ a {
     padding-bottom: 1em;
 }
 
-#content header {
+#content > header {
     width: 100%;
     text-align: center;
     background-color: #5eaf9b;
@@ -54,19 +58,10 @@ header img {
 
 h1 {
     font-size: 3em;
-    width: 5em;
-    text-align: left;
-    line-height: 1.2em;
-    padding: 0 1.5em;
 }
 
 h2 {
     font-size: 2em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    border-bottom: 3px solid #5eaf9b;
-    margin-bottom: 0.5em;
-    margin-top: 0.5em;
 }
 
 p + h2 {
@@ -77,8 +72,6 @@ p + h2 {
     
 h3 {
     font-size: 1.5em;
-    padding-top: 0.5em;
-    border-top: 1px dashed #5eaf9b;
 }
 
 ul {
@@ -89,26 +82,45 @@ ul li {
     list-style: disc;
 }
 
+#content > header h1 {
+    width: 5em;
+    text-align: left;
+    line-height: 1.2em;
+    padding: 1em 1em 1.5em 0;
+}
+
 section[role=main] {
     width: 30em;
     padding: 0 5em 0 5em;
     margin: 0 auto 0 auto;
 }
 
-section[role=main] h1 {
+section[role=main] > h1 {
   margin: 0.5em 0;
   padding-top: 0.5em;
   font-size: 2em;
-  line-height: 1em;
+  width: 5em;
+  text-align: left;
+  line-height: 1.2em;
+  padding: 0 1.5em;
 }
-section[role=main] h2 {
+
+section[role=main] > h2 {
   font-size: 1.75em;
   letter-spacing: 1px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-bottom: 3px solid #5eaf9b;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
 }
-section[role=main] h3 {
+
+section[role=main] > h3 {
   font-size: 1.5em;
   margin: 0.5em 0 ;
   letter-spacing: 1px;
+  padding-top: 0.5em;
+  border-top: 1px dashed #5eaf9b;
 }
 
 section[role=main] a.enticing {
@@ -144,8 +156,27 @@ article > p > span {
     white-space: pre;
 }
 
+
+section[role="main"] article header {
+    width: 100%;
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+section[role="main"] article header h1 {
+    font-size: 1em;
+}
+section[role="main"] article header h2 {
+    font-size: 1em;
+}
+section[role="main"] article header h3 {
+    font-size: 1em;
+}
+
+
+
 p {
-   }
+}
 
 .regulator {
     position: absolute;
