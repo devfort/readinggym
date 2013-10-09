@@ -3,11 +3,12 @@
 {% block content %}
 <h2>How well did you read?</h2>
 <h3>{{ piece }}</h3>
+
 <form method="post">
     {% csrf_token %}
-    <ul>
+    <ol class="questions">
         {% for question, answers in questions %}
-        <li>
+        <li class="question">
         <h4>{{ question }}</h4>
         <ul>
             {% for answer in answers %}
@@ -20,9 +21,7 @@
         </ul>
         </li>
         {% endfor %}
-
-        <li>
-        <input type="submit">
-    </ul>
+    </ol>
+    <button type="submit">Done</button>
 </form>
 {% endblock %}

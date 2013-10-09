@@ -7,6 +7,7 @@ html, body {
     width: 100%;
     height: 100%;
     text-rendering: optimizeLegibility;
+    margin-bottom: 1em;
 }
 
 ul > li {
@@ -57,6 +58,17 @@ h1 {
     text-align: left;
     line-height: 1em;
     padding-left: 1.5em;
+}
+
+
+header h1:after {
+    content:".";
+    position: relative;
+    left: -4.56em;
+    top: 0.2em;
+    color:red;
+    font-size: 1.5em;
+    line-height: 0;
 }
 
 h2 {
@@ -146,6 +158,13 @@ p {
     background-color: red;
 }
 
+#timer-module .explanation {
+    margin-bottom: 2em;
+    border-bottom: 1px solid black;
+    text-align: center;
+    padding-bottom: 2em;
+}
+
 div.timer {
     position: fixed;
     background: white;
@@ -200,4 +219,16 @@ button#practice {
 
 body.js #proceed {
     display: none;
+}
+
+ol.questions {
+    margin-top: 1em;
+}
+
+ol.questions > li.question {
+    list-style: decimal;
+}
+
+li.question li {
+    list-style: none;
 }
