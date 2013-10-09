@@ -69,6 +69,8 @@ Regulator.prototype.setup = function() {
     var firstOffset;
     var widthSum = 0;
 
+    this.pager.firstPage();
+
     this.box = $("<div>").addClass("regulator").hide();
     $("article").append(this.box);
 
@@ -151,22 +153,29 @@ Regulator.prototype.start = function() {
                 });
             }
 
-            box.transition({
-                left: lineLeft,
-                top: lineBottom,
-                width: guideWidth
-            }, 0).show().position();
+            if (self.wpm < 1000) {
+                box.transition({
+                    left: lineLeft,
+                    top: lineBottom,
+                    width: guideWidth
+                }, 0).show().position();
 
-            box.transition({
-                left: (lineLeft + line.width) - guideWidth,
-            }, guideTime, 'linear', function () {
-                lineNo += 1;
-                box.hide();
-                box.delay(100).queue(function() {
+                box.transition({
+                    left: (lineLeft + line.width) - guideWidth,
+                }, guideTime, 'linear', function () {
+                    lineNo += 1;
+                    box.hide();
+                    box.delay(100).queue(function() {
+                        guideLine();
+                        $(this).dequeue();
+                    });
+                }).position();
+            } else {
+                setTimeout(function () {
+                    lineNo += 1;
                     guideLine();
-                    $(this).dequeue();
-                });
-            }).position();
+                }, guideTime + 100);
+            }
         };
 
         if(lineBottom > self.article.height()) {
@@ -184,7 +193,6 @@ Regulator.prototype.stop = function() {
     this.article.find('span.highlight').removeClass('highlight');
     this.running = false;
     this.box.hide();
-    this.pager.firstPage();
 };
 
 Regulator.prototype.finish = function() {
