@@ -9,10 +9,6 @@ html, body {
     text-rendering: optimizeLegibility;
 }
 
-h1, h2, h3 {    
-    line-height: 1em;
-}
-
 ul > li {
     list-style: disc; 
 }
@@ -126,27 +122,36 @@ section[role=main] {
     padding: 0 5em 0 5em;
     margin: 0 auto 0 auto;
 }
- 
+
+section[role=main] p.nextSteps{
+  text-align: right;
+}
 section[role=main] a.enticing {
-  font-size: 1.8em;
+  font-size: 1.25em;
   display: inline-block;
-  margin: 0.5em;
+  text-align: center;
+  width: 10em;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0.25em 0;
+  margin-left: 50%;
   padding: 0.5em;
-  border: 1px solid #000;
-  border-radius: 10px;
-  background: #5eaf9b;
-  color: #fff;
+  border: 3px solid #000;
+  border-radius: 15px;
+  background: #fdffe5;
+  color: #000;
   text-decoration: none;
 }
 
+
 section[role=main] a.enticing:hover {
   background: #ddd;
-  color: #666;
+  color: #5eaf9b;
 }
 
 article {
     width: 30em;
-    margin: 1em auto 0.5em auto;
+    margin: 0 auto 0.5em auto;
     position: relative;
     text-align: justify;
 }
@@ -160,31 +165,6 @@ article > p > span {
     white-space: pre;
 }
 
-article {
-    color: #000;
-}
-article.reading {
-    color: #aaa;
-}
-
-span {
-    display: inline-block;
-    white-space: pre;
-    -webkit-transition:color 0.05s linear;
-}
-
-span.highlight {
-    color: black;
-}
-
-.regulator {
-    position: absolute;
-    height: 6px;
-    width: 6px;
-    margin-top: -3px;
-    border-radius: 3px;
-    background-color: red;
-}
 
 section[role="main"] article header {
     width: 100%;
@@ -219,10 +199,6 @@ p {
    border-bottom: 3px solid rgb(94, 175, 155);
    margin-bottom: 1em;
    padding-bottom: 1em;
-}
-
-#timer-control {
-    line-height: 2em;
 }
 
 div.timer {
