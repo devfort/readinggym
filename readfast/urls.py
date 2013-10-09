@@ -8,6 +8,7 @@ import readfast.views
 urlpatterns = patterns('',
     url(r"^$",  TemplateView.as_view(template_name="index.html"), name="index"),
     url(r"^why/$",  TemplateView.as_view(template_name="why.html"), name="why"),
+    url(r"^why/more/$", TemplateView.as_view(template_name="furtherquestions.html"), name="faq"),
 
 
     url(r"^dashboard/$", RedirectView.as_view(url="/training/")),
