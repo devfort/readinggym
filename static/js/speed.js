@@ -3,7 +3,7 @@
 
 var enhanceTimerModule = function(timerModule, explanation, pager) {
     var $timerModule        = $(timerModule),
-        $timerButton        = $('<button>Start</button>'),
+        $timerButton        = $('<button>Start</button>').attr("id", "control-article"),
         startInMillis       = 0,
         finshInMillis       = 0,
         elapsedTimeInMillis = 0,
