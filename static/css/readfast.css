@@ -121,16 +121,20 @@ section[role=main] h3 {
 }
 
 section[role=main] a.enticing {
+  font-size: 1.8em;
   display: inline-block;
-  margin: 1em;
-  padding: 1em;
+  margin-right: 1em;
+  padding: 0.5em;
   border: 1px solid #000;
   border-radius: 10px;
-  background: #eee;
+  background: #5eaf9b;
+  color: #fff;
+  text-decoration: none;
 }
 
 section[role=main] a.enticing:hover {
   background: #ddd;
+  color: #666;
 }
 
 article {
