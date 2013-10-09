@@ -112,11 +112,7 @@ class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, DetailView):
 
     def form_valid(self, form):
         reading_speed = int(form.cleaned_data['wordcount'] / (form.cleaned_data['seconds']/60))
-        try:
-            speeds = self.request.session['reading_speed'] + [reading_speed]
-        except KeyError:
-            speeds = [reading_speed]
-        self.request.session['reading_speed'] = speeds
+        self.request.session['unchecked_speed'] = reading_speed
         return super(SpeedTestView, self).form_valid(form)
 
 
@@ -184,6 +180,14 @@ class ComprehensionView(DetailView):
             self.template_name = "comprehension_fail.html"
         else:
             self.template_name = "comprehension_pass.html"
+
+            if self.request.session.get('unchecked_speed'):
+                reading_speed = self.request.session['unchecked_speed']
+                new_speeds = (
+                    self.request.session.get('reading_speed', []) +
+                    [reading_speed]
+                )
+                self.request.session['reading_speed'] = new_speeds
 
         return self.render_to_response(self.get_context_data(**kwargs))
 
