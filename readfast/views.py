@@ -1,4 +1,6 @@
+import random
 import time
+from itertools import chain
 
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -190,11 +192,16 @@ class ComprehensionView(DetailView):
     model = models.Piece
 
     def get_context_data(self, **kwargs):
-        questions = self.object.questions.order_by('?')[:10]
-
         context = super(ComprehensionView, self).get_context_data(**kwargs)
-        context['questions'] = [(q, q.answers.order_by('?')[:3])
-                                for q in questions]
+        questions = []
+        for q in self.object.questions.order_by('?')[:10]:
+            answers = list(
+                chain(q.answers.filter(correct=False).order_by('?')[:2],
+                      q.answers.filter(correct=True)[:1])
+            )
+            random.shuffle(answers)
+            questions.append((q, answers))
+        context['questions'] = questions
         return context
 
     def post(self, request, *args, **kwargs):
