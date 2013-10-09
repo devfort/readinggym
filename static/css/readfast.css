@@ -31,6 +31,11 @@ a {
     margin-bottom: 1em;
 }
 
+header img {
+    position: absolute;
+    left: 1em;
+}
+
 h1 {
     font-size: 4em;
     margin: 0.5em 0;
