@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-:( Too fast? Try again! {{ correct_answers }} / {{ num_questions }}
+Sorry, you only scored {{ correct_answers }} / {{ num_questions }}
+
+Perhaps you should reduce your speed slightly and continue training? 
 {% endblock %}
