@@ -62,6 +62,7 @@ header img {
 h1 {
     font-size: 2em;
     line-height: 1.2em;
+    padding: .5em;
 }
 
 #content > header h1 {
@@ -176,6 +177,7 @@ section[role="main"] article header {
 section[role="main"] article header h1 {
     font-size: 1em;
     text-align: center;
+    margin: .5em;
 }
 section[role="main"] article header h2 {
     font-size: 1em;
