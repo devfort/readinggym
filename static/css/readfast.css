@@ -21,6 +21,10 @@ em {
     font-style: italic;
 }
 
+.center {
+    text-align: center;
+}
+
 #content {
     background-color: #fefff1;
     width: 40em;
