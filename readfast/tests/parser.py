@@ -1,8 +1,11 @@
+from glob import glob
+from os.path import dirname, join
 from StringIO import StringIO
 
 from django.test import TestCase
 
 from readfast.parser import PieceParser, ParseError
+from speedreader.settings import SITE_ROOT
 
 class ParserTest(TestCase):
 
@@ -97,3 +100,16 @@ Title: Things!
         """)
 
         self.assertRaises(ParseError, PieceParser, source)
+
+    def test_parses_current_corpora_correctly(self):
+        """Test the current corpora parse correctly.
+        
+        Yeah, this isn't really a nice self-contained test, but something
+        something pragmatism.
+        """
+        glob_pattern = join(SITE_ROOT,
+                            "corpora",
+                            "corpora_with_questions",
+                            "*.txt")
+        for source_filename in glob(glob_pattern):
+            PieceParser(open(source_filename))
