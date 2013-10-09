@@ -8,6 +8,7 @@ DEPLOY_PATH = "/data/projects/readfast"
 def deploy():
     with cd(DEPLOY_PATH):
         run("git pull -q");
-        run("venv/bin/python manage.py collectstatic --noinput")
+        #run("venv/bin/python manage.py collectstatic --noinput")
+        run("node_modules/.bin/wake")
         sudo("service readfast restart")
 
