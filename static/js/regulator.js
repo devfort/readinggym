@@ -30,7 +30,10 @@ Pager.prototype.pages = function () {
 Pager.prototype.firstPage = function (callback) {
     this.contentBox.transition({
         "margin-top": "0"
-    }, 100, callback);
+    }, 100, $.proxy(function () {
+        $("#current-page").text(this.currentPage());
+        if(callback) callback();
+    }, this));
 };
 
 Pager.prototype.isLastPage = function (callback) {

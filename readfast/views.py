@@ -52,6 +52,7 @@ class DashboardView(TemplateView):
     Shows you some info about how well you read and what to do next.
     """
     template_name = "dashboard.html"
+
     def get_context_data(self, **kwargs):
         context = super(DashboardView, self).get_context_data(**kwargs)
         try:
@@ -65,9 +66,11 @@ class DashboardView(TemplateView):
             percentages = [speed/quickest_speed*100 for speed in speeds]
             inverted_percentages = [100 - percentage for percentage in percentages]
             context['speeds_and_percentages'] = zip(speeds, percentages, inverted_percentages)
+            context['words_read'] = self.request.session.get('words_read')
         except KeyError:
             pass
         return context
+
 
 class ResetView(View):
     """
@@ -139,6 +142,11 @@ class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, DetailView):
         return context
 
     def form_valid(self, form):
+        self.request.session['words_read'] = (
+            form.cleaned_data['wordcount'] +
+            self.request.session.get('words_read', 0)
+        )
+
         reading_speed = int(form.cleaned_data['wordcount'] / (form.cleaned_data['seconds']/60))
         self.request.session['unchecked_speed'] = reading_speed
         return super(SpeedTestView, self).form_valid(form)
