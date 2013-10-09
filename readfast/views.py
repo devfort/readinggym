@@ -25,24 +25,6 @@ def spanify(text):
     return words_to_read
 
 
-class IndexView(TemplateView):
-    """
-    /
-
-    The homepage.
-    """
-    template_name = "index.html"
-
-
-class WhyView(TemplateView):
-    """
-    /why
-
-    The MOAR SCIENCE page
-    """
-    template_name = "why.html"
-
-
 def session_has_reading_data(session):
     return "reading_speed" in session
 
