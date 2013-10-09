@@ -107,6 +107,7 @@ class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, DetailView):
         # Cannot do this while constructing form as nees the wordcount
         # from ReadViewMixin.get_context_data
         context['form'].fields['wordcount'].initial = context['wordcount']
+        context.setdefault('object', self.object)
         return context
 
     def form_valid(self, form):
