@@ -25,11 +25,11 @@
       }
     },
     "binary": {
-        "sourceDirectory": "static/images",
-        "targetDirectory": "static/compiled",
-        "targets": {
-            "**/*.*": ""
-        }
+      "sourceDirectory": "static/images",
+      "targetDirectory": "static/compiled",
+      "targets": {
+        "**/*.*": ""
+      }
     }
   }
 }

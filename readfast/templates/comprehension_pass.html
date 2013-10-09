@@ -2,4 +2,7 @@
 
 {% block content %}
 Yay you can read! {{ correct_answers }} / {{ num_questions }}
+<p>
+  <a href="{% url "dashboard" %}">Take me to the training room!</a>
+</p>
 {% endblock %}
