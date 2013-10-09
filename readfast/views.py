@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse
 from django.views.generic import (
-    FormView, TemplateView, DetailView, RedirectView
+    FormView, TemplateView, DetailView, RedirectView, View
 )
 from django.views.generic.edit import ProcessFormView, FormMixin
 
@@ -64,13 +64,12 @@ class DashboardView(TemplateView):
         context['has_reading_data'] = session_has_reading_data(self.request.session)
         return context
 
-class ResetView(TemplateView):
+class ResetView(View):
     """
     /reset/
 
     Allows you to delete all of your data.
     """
-    template_name = "reset.html"
 
     def get_context_data(self):
         context = super(ResetView, self).get_context_data()
@@ -79,7 +78,7 @@ class ResetView(TemplateView):
 
     def post(self, request, **kwargs):
         self.request.session.flush()
-        return self.render_to_response(self.get_context_data(**kwargs))
+        return redirect("dashboard")
 
 
 class ReadViewMixin(object):
