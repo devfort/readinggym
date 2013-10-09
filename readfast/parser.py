@@ -83,5 +83,5 @@ class PieceParser(object):
             if match:
                 return (key, match)
         else:
-            raise ParseError("Unrecognised line: %r")
+            raise ParseError("Unrecognised line: %r" % line)
 
