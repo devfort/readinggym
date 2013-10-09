@@ -4,8 +4,11 @@
 {% block extra_head %}
 {% include_js 'app.js' %}
 <script>
+{% block wpm_script %}
+var wpm = Cookies.get("wpm") || 300;
+{% endblock %}
+
 $(function() {
-  var wpm = Cookies.get("wpm") || 300;
   var pager = new Pager($("article"));
   var regulator = new Regulator($("article"), pager, wpm);
 

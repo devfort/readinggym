@@ -155,6 +155,14 @@ class PracticeReadingView(ReadViewMixin, DetailView):
     model = models.Piece
 
 
+class RandomSprintView(RandomPracticeReadingView):
+    template_name = "sprint.html"
+
+
+class SprintView(PracticeReadingView):
+    template_name = "sprint.html"
+
+
 class RandomComprehensionView(RandomRedirectView):
     model = models.Piece
     viewname = "comprehension"
