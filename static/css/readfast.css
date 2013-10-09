@@ -47,8 +47,8 @@ h1, h2, h3, h4, h4 {
 }
 
 header img {
-    position: absolute;
-    left: 1em;
+    float: right;
+    margin-right: 1em;
 }
 
 h1 {
