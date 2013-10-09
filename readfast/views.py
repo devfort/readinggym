@@ -228,6 +228,8 @@ class ComprehensionView(DetailView):
         kwargs['num_questions'] = num_questions
 
         reading_speed = self.request.session.get('unchecked_speed')
+        if reading_speed:
+            del self.request.session['unchecked_speed']
 
         if correct_answers != num_questions:
             self.template_name = "comprehension_fail.html"
