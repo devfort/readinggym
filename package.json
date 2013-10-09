@@ -12,7 +12,7 @@
       "sourceDirectory": "static/js",
       "targetDirectory": "static/compiled",
       "targets": {
-        "lib.js": ["jquery-1.10.2.min",
+        "lib.js": ["jquery-1.10.2.min", "jquery.transit.min.js",
             "jquery-requestAnimationFrame.min", "cookies.js"],
         "app.js": ["speed", "regulator"]
       }
