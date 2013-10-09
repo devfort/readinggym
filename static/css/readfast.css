@@ -222,6 +222,9 @@ header > a {
 .dashboard_buttons {
     margin-top: 1em;
     text-align: center;
+}
+
+.dashboard_buttons a {
     text-transform: uppercase;
     font-weight: bold;
     padding: 0.5em;
