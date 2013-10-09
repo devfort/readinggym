@@ -3,6 +3,32 @@
   "version": "0.0.0",
 
   "devDependencies": {
-    "jstest": "~1.0.0"
+    "jstest": "~1.0.0",
+    "wake": "~0.2.0"
+  },
+
+  "wake": {
+    "javascript": {
+      "sourceDirectory": "static/js",
+      "targetDirectory": "static/compiled",
+      "targets": {
+        "lib.js": ["jquery-1.10.2.min", "jquery-requestAnimationFrame.min"],
+        "app.js": ["speed", "regulator"]
+      }
+    },
+    "css": {
+      "sourceDirectory": "static/css",
+      "targetDirectory": "static/compiled",
+      "targets": {
+        "app.css": ["reset", "readfast", "regulator"]
+      }
+    },
+    "binary": {
+        "sourceDirectory": "static/images",
+        "targetDirectory": "static/compiled",
+        "targets": {
+            "**/*.*": ""
+        }
+    }
   }
 }

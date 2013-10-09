@@ -1,5 +1,7 @@
 *.un~
 *.pyc
+.wake.json
 ENV/
 speedreader.db
 speedreader.sublime*
+static/compiled

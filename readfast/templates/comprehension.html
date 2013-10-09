@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>How well did you read?</h1>
-<h2>{{ piece }}</h2>
+<h2>How well did you read?</h2>
+<h3>{{ piece }}</h3>
 <form method="post">
     {% csrf_token %}
     <ul>
         {% for question, answers in questions %}
         <li>
-        <h3>{{ question }}</h3>
+        <h4>{{ question }}</h4>
         <ul>
             {% for answer in answers %}
             <li><label>

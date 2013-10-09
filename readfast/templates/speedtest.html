@@ -26,9 +26,14 @@
   </form>
 </div>
 
+<section id="proceed">
+<a href="{% url "comprehension" pk=object.pk %}">Test my understanding.</a>
+</section>
+
 <script>
-enhanceTimerModule('#timer-module', '[[Explain how the Start/Done buttons work]]');
+    enhanceTimerModule('#timer-module', '[[Explain how the Start/Done buttons work]]');
 </script>
+
 <script>
 <!-- TODO: Merge Start/Done and next page -->
 $(function() {

@@ -1,32 +1,22 @@
-{% load staticfiles %}
+{% load asset_tags %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>{% block title %}readfast{% endblock %}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/static/css/reset.css" type="text/css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="{% static "css/readfast.css" %}">
-        <link rel="stylesheet" type="text/css" href="{% static "css/regulator.css" %}">
-        <script src="/static/js/jquery-1.10.2.min.js" type="text/javascript"></script>
-        <script src="/static/js/jquery.transit.min.js" type="text/javascript"></script>
-        <script src="/static/js/jquery-requestAnimationFrame.min.js" type="text/javascript"></script>
+        {% include_css 'app.css' %}
+        {% include_js 'lib.js' %}
         {% block extra_head %}{% endblock %}
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
-    <script>
-        if (window.document.body) {
-            window.document.body.classList.add("js");
-        } else {
-            $(function () {
-                $("body").addClass("js");
-            });
-        }   
-    </script>
+    <script type="text/javascript">$("body").addClass("js");</script>
+
     <div id="content">
         <header>
             <a href="{% url "index" %}">
+                {% include_image 'otter-logo.png' %}
                 <h1>The Reading Gym</h1>
             </a>
         </header>
@@ -35,5 +25,6 @@
             {% endblock %}
         </section>
     </div>
+
 </body>
 </html>
