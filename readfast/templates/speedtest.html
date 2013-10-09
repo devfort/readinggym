@@ -31,20 +31,8 @@
 </section>
 
 <script>
-    enhanceTimerModule('#timer-module', '[[Explain how the Start/Done buttons work]]');
+    enhanceTimerModule('#timer-module', 'Press [Start] to start timing, [Page Down] to move down, and [Stop] when you\'re done.');
 </script>
 
-<script>
-<!-- TODO: Merge Start/Done and next page -->
-$(function() {
-  var article = $("article");  
-  var pager = new Pager(article);
-  var nextPage = $("<button>Next page</button>");
-  nextPage.click(function () {
-    pager.nextPage();
-  });
-  article.after(nextPage);
-});
-</script>
 {% endblock %}
 
