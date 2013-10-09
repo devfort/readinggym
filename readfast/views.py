@@ -2,8 +2,9 @@ import time
 
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.urlresolvers import reverse
 from django.views.generic import (
-    FormView, TemplateView, DetailView
+    FormView, TemplateView, DetailView, RedirectView
 )
 from django.views.generic.edit import ProcessFormView, FormMixin
 
@@ -69,31 +70,36 @@ class ReadViewMixin(object):
         return context
 
 
-class RandomDetailView(DetailView):
+class RandomRedirectView(RedirectView):
     """
     If the URL doesn't define a particular object to
     use for the detail view. Find one via the magic of
     entropy.
     """
-    def get_object(self, **kwargs):
-        if not self.kwargs.get(self.pk_url_kwarg):
-            random_collection = self.model.objects.order_by('?')
-            if random_collection:
-                return random_collection[0]
-            else:
-                raise self.model.DoesNotExist
+
+    def get_redirect_url(self, **kwargs):
+        random_collection = self.model.objects.order_by('?')
+        if random_collection:
+            object = random_collection[0]
         else:
-            return super(RandomDetailView, self).get_object(**kwargs)
+            raise self.model.DoesNotExist
+
+        return reverse(self.viewname, kwargs={"pk": object.pk})
 
 
-class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, RandomDetailView):
+class RandomSpeedTestView(RandomRedirectView):
+    model = models.Piece
+    viewname = "speed-test"
+
+
+class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, DetailView):
     template_name = "speedtest.html"
     form_class = forms.SpeedTestForm
     success_url = '/dashboard'
     model = models.Piece
 
     def dispatch(self, *args, **kwargs):
-        self.object = self.get_object(**kwargs)
+        self.object = self.get_object()
         return super(SpeedTestView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -113,7 +119,12 @@ class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, RandomDetailView)
         return super(SpeedTestView, self).form_valid(form)
 
 
-class PracticeReadingView(ReadViewMixin, RandomDetailView):
+class RandomPracticeReadingView(RandomRedirectView):
+    model = models.Piece
+    viewname = "practice"
+
+
+class PracticeReadingView(ReadViewMixin, DetailView):
     """
     /practice/<piece_id>/
 
@@ -121,6 +132,11 @@ class PracticeReadingView(ReadViewMixin, RandomDetailView):
     """
     template_name = "practice.html"
     model = models.Piece
+
+
+class RandomComprehensionView(RandomRedirectView):
+    model = models.Piece
+    viewname = "comprehension"
 
 
 class ComprehensionView(DetailView):
