@@ -145,7 +145,7 @@ Regulator.prototype.start = function() {
             }, guideTime, 'linear', function () {
                 lineNo += 1;
                 box.hide();
-                this.delay(100).queue(function() {
+                box.delay(100).queue(function() {
                     guideLine();
                     $(this).dequeue();
                 });
