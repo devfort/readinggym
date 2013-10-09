@@ -82,6 +82,7 @@ section[role=main] > h1 {
 h2 {
     font-size: 2em;
     letter-spacing: 1px;
+    line-height: 1.2em;
 }
 
 section[role=main] > h2 {
