@@ -264,7 +264,6 @@ dashboard_button {
     font-family: inherit;
 }
 
-
 ol.speed_graph {
   margin-top: 140px;
 }
@@ -282,6 +281,10 @@ width: 65%;
 background-color: #C8EEE5;
 border-top: 3px solid #5eaf9b;
 bottom: 10px;
+}
+
+ul.answers li {
+   list-style-type: disc;
 }
 
 p.reset_data {
