@@ -265,20 +265,22 @@ header > a {
 }
 
 ol.speed_graph {
-  margin-top: 120px;  
+  margin-top: 140px;
 }
 
 ol.speed_graph li {
   display: inline;
   position: relative;
-  padding-top: 100px;
+  padding-top: 110px;
 }
 
 ol.speed_graph li span {
-  position: absolute;
-  left: 0px;
-  width: 100%;
-  background-color: #5eaf9b;
+position: absolute;
+left: 0;
+width: 65%;
+background-color: #C8EEE5;
+border-top: 3px solid #5eaf9b;
+bottom: 10px;
 }
 
 p.reset_data {
