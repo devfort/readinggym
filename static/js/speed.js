@@ -11,7 +11,7 @@ var enhanceTimerModule = function(timerModule, explanation, pager) {
     var buttonText = $timerButton.text();
 
     if (/start/i.test(buttonText)) {
-      startInMillis = Date.now();
+      startInMillis = new Date().getTime();
       $timerButton.text("Page Down");
     }
 
@@ -22,7 +22,7 @@ var enhanceTimerModule = function(timerModule, explanation, pager) {
     }
 
     if (/done/i.test(buttonText)) {
-      finshInMillis = Date.now();
+      finshInMillis = new Date().getTime();
       elapsedTimeInMillis = finshInMillis - startInMillis;
       $timerModule.find('input[name="seconds"]').val(elapsedTimeInMillis / 1000);
       $timerModule.find('form').submit();
