@@ -5,6 +5,9 @@
     <title>{% block title %}readfast{% endblock %}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--[if lt IE 9]>
+        <script src="/static/js/ie7/IE9.js"></script>
+        <![endif]-->
         {% include_css 'app.css' %}
         {% include_js 'lib.js' %}
         {% block extra_head %}{% endblock %}
