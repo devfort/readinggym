@@ -28,6 +28,7 @@ em {
 #content {
     background-color: #fefff1;
     width: 40em;
+    _width: 646px; /* ie6 */
     line-height: 1.5em;
     font-family: Georgia, Garamond, serif;
     border-style: solid;
@@ -245,8 +246,9 @@ header > a {
 }
 .dashboard_buttons a:nth-child(3) {
     background-color: #80c890;
+}
 
-dashboard_button {
+.dashboard_button {
     width: 6em;
     height: 4.5em;
     margin: 0px 1em;

@@ -74,7 +74,7 @@ WAKE_ASSETS = Assets(
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
 SITE_ROOT = os.path.join(os.path.dirname(__file__), '..')
-STATIC_ROOT = ''
+STATIC_ROOT = 'collected_static/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -91,6 +91,7 @@ STATICFILES_DIRS = (
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
+    'speedreader.wakefinder.WakeAssetsFinder',
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
@@ -149,11 +150,15 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'assets',
     'south',
-    'readfast'
+    'readfast',
+    'accounts'
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+
+AUTH_USER_MODEL = 'accounts.User'
+LOGIN_REDIRECT_URL = '/training/'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
