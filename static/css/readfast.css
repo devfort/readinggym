@@ -112,12 +112,17 @@ h2 + h3 {
     border-top: 0px;
  }
 
-ul {
-    margin: 0em 1em 0em 1em;
+ul, ol {
+    list-style-position: inside;
+    padding-bottom: 0.5em;
 }
 
 ul li {    
-    list-style: disc;
+    list-style-type: disc;
+}
+
+ol li {
+    list-style-type: decimal;
 }
 
 section[role=main] {
