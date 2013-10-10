@@ -9,7 +9,13 @@
 {% block content %}
 <form method="post" id="loginform">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.non_field_errors }}
+    {{ form.username.label_tag }}
+    {{ form.username.errors }}
+    {{ form.username }}
+    {{ form.password.label_tag }}
+    {{ form.password.errors }}
+    {{ form.password }}
     <button type="submit">Log me in and stuff</button>
 </form>
 {% endblock %}

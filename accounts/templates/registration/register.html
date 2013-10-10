@@ -9,7 +9,16 @@
 {% block content %}
 <form method="post" id="registerform">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log me in and stuff</button>
+    {{ form.non_field_errors }}
+    {{ form.email.label_tag }}
+    {{ form.email.errors }}
+    {{ form.email }}
+    {{ form.password.label_tag }}
+    {{ form.password.errors }}
+    {{ form.password }}
+    {{ form.password2.label_tag }}
+    {{ form.password2.errors }}
+    {{ form.password2 }}
+    <button type="submit">Register</button>
 </form>
 {% endblock %}
