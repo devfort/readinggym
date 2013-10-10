@@ -123,7 +123,7 @@ class PieceRedirectView(RandomRedirectView):
                 order__gt=last_piece.order).order_by('-order', '?')
             return reverse(self.viewname, kwargs={"pk": next_piece.pk})
         else:
-            return super(RandomRedirectView,
+            return super(PieceRedirectView,
                          self).get_redirect_url(**kwargs)
 
 
