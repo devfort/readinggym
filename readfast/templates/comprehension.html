@@ -10,9 +10,7 @@
         {% for question, answers in questions %}
         <li class="question">
         <h4>{{ question }}</h4>
-        <ul>
-            {% for answer in answers %}
-            <li><label>
+        <ul class="answers">
                 <input type="radio" name="q-{{ question.id }}"
                 value="{{ answer.id }}">
                 {{ answer.text }}
