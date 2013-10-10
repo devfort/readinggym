@@ -25,10 +25,6 @@ def spanify(text):
     return words_to_read
 
 
-def session_has_reading_data(session):
-    return "reading_speed" in session
-
-
 class DashboardView(TemplateView):
     """
     /dashboard/
@@ -66,13 +62,6 @@ class ResetView(View):
 
     Allows you to delete all of your data.
     """
-
-    def get_context_data(self):
-        context = super(ResetView, self).get_context_data()
-        context['has_reading_data'] = session_has_reading_data(
-            self.request.session
-        )
-        return context
 
     def post(self, request, **kwargs):
         self.request.session.flush()
