@@ -2,9 +2,6 @@ Source: The Orange Fairy Book by Andrew Lang
 URL: http://www.gutenberg.org/ebooks/3027
 Title: The Princess Bella-Flor
 
-Text:
-[Taken from a Celtic Story. Translated by Doctor Macleod Clarke.]
-
 Question: What did Jose start to do with the chest?
 A: Fill it with straw.
 A!: Chop it up for firewood.
@@ -65,6 +62,7 @@ A: Jose's brother.
 A! Jose.
 A: The Horse.
 
+Text:
 
 Once upon a time there lived a man who had two sons. When they grew up
 the elder went to seek his fortune in a far country, and for many years
