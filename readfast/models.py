@@ -12,7 +12,8 @@ class Piece(models.Model):
 
     text = models.TextField()
 
-    order = models.IntegerField()
+    # Default to a nice big number so new ones go on the end
+    order = models.IntegerField(default=1000)
 
     def __unicode__(self):
         return self.name
