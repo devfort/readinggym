@@ -238,13 +238,13 @@ header > a {
 }
 
 .dashboard_buttons a:nth-child(1) {
-    background-color: #b6d0d6;
+    background-color: #7fabc7;
 }
 .dashboard_buttons a:nth-child(2) {
-    background-color: #fde79c;
+    background-color: #5eaf9b;
 }
 .dashboard_buttons a:nth-child(3) {
-    background-color: #cddb91;
+    background-color: #80c890;
 }
 .dashboard_button {
     width: 6em;
