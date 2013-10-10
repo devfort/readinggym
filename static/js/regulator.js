@@ -46,10 +46,10 @@ Pager.prototype.isLastPage = function (callback) {
 Pager.prototype.nextPage = function (callback) {
     if(!this.isLastPage()) {
         this.contentBox.transition({
-            "margin-top": "-=" + this.article.height(),
+            "margin-top": "-=" + this.article.height()
         }, 100, $.proxy(function() {
             $("#current-page").text(this.currentPage());
-            if(callback) callback();
+            if(callback) { callback(); }
         }, this));
     }
 };
@@ -173,7 +173,7 @@ Regulator.prototype.start = function() {
                 }, 0).show().position();
 
                 box.transition({
-                    left: (lineLeft + line.width) - guideWidth,
+                    left: (lineLeft + line.width) - guideWidth
                 }, guideTime, 'linear', function () {
                     lineNo += 1;
                     box.hide();
@@ -213,6 +213,6 @@ Regulator.prototype.finish = function() {
 }
 
 
-if (!$.support.transition)
+if (!$.support.transition) {
     $.fn.transition = $.fn.animate;
-
+}
