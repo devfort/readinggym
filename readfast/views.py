@@ -86,7 +86,7 @@ class NextRedirectView(RedirectView):
     use for the detail view. Find one via the magic of
     entropy.
     """
-    
+
     permanent = False
 
     def get_redirect_url(self, **kwargs):
