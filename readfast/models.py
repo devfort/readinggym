@@ -3,10 +3,10 @@ from django.db import models
 
 class Piece(models.Model):
     name = models.CharField(max_length=200)
-    author = models.CharField(max_length=200)
+    author = models.CharField(max_length=200, blank=True)
 
-    source_url = models.URLField()
-    source_title = models.CharField(max_length=200)
+    source_url = models.URLField(blank=True)
+    source_title = models.CharField(max_length=200, blank=True)
 
     slug = models.SlugField(unique=True)
 
