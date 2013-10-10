@@ -75,6 +75,13 @@ h1 {
     background-position: center right;
 }
 
+body.test #content > header h1 {
+    font-size: 2em;
+    width: 11em;
+    padding-top: .75em;
+    padding-bottom: .75em;
+    }
+
 section[role=main] > h1 {
   border-bottom: 1px solid #5eaf9b;
     padding: 1em 0;
