@@ -6,6 +6,7 @@ Sorry, you only scored {{ correct_answers }} / {{ num_questions }}
 Perhaps you should reduce your speed slightly and continue training? 
 
 <p class="nextSteps">
-    <a class="enticing" href="{% url "dashboard" %}">Take me to the training room!</a>
+	<a class="enticing" href="{% url "dashboard" %}">Try this story again</a> <!-- how do we do a link back to the article they just read please? -->
+    <a class="enticing" href="{% url "dashboard" %}">Back to The Training Room</a>
 </p>
 {% endblock %}
