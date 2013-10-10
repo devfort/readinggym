@@ -72,9 +72,12 @@ class GraphsView(TemplateView):
     template_name = "graphs.html"
 
     def get_context_data(self, **kwargs):
-        context = super(GraphsView, self).get_context_data(**kwargs)
-        speeds = self.request.session['reading_speeds']
-        context['speeds_and_percentages'] = speeds_and_percentages_from_speeds(speeds)
+        try:
+            context = super(GraphsView, self).get_context_data(**kwargs)
+            speeds = self.request.session['reading_speeds']
+            context['speeds_and_percentages'] = speeds_and_percentages_from_speeds(speeds)
+        except KeyError:
+            pass
         return context
 
 
