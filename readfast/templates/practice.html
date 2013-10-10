@@ -25,7 +25,7 @@ $(function() {
     }
   );
 
-  $('#control-article').on('click', function() {
+  $('#control-article').one('click', function() {
     if(regulator.running) {
       regulator.stop();
     } else {
