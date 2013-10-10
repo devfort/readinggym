@@ -25,9 +25,6 @@ def spanify(text):
     return words_to_read
 
 
-def session_has_reading_data(session):
-    return "reading_speed" in session
-
 def speeds_and_percentages_from_speeds(speeds):
     quickest_speed = float(max(speeds))
     percentages = [speed/quickest_speed*100 for speed in speeds]
@@ -88,13 +85,6 @@ class ResetView(View):
     Allows you to delete all of your data.
     """
 
-    def get_context_data(self):
-        context = super(ResetView, self).get_context_data()
-        context['has_reading_data'] = session_has_reading_data(
-            self.request.session
-        )
-        return context
-
     def post(self, request, **kwargs):
         self.request.session.flush()
         return redirect("dashboard")
@@ -132,6 +122,8 @@ class NextRedirectView(RedirectView):
 
 
 class PieceRedirectView(NextRedirectView):
+    model = models.Piece
+
     def get_redirect_url(self, **kwargs):
         """
         Find a piece with a higher order than the last completed piece.
@@ -187,7 +179,6 @@ class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, DetailView):
 
 
 class NextPracticeReadingView(PieceRedirectView):
-    model = models.Piece
     viewname = "practice"
 
 
@@ -202,15 +193,16 @@ class PracticeReadingView(ReadViewMixin, DetailView):
 
 
 class NextSprintView(PieceRedirectView):
+    viewname = "sprint"
     template_name = "sprint.html"
 
 
 class SprintView(PracticeReadingView):
+    viewname = "sprint"
     template_name = "sprint.html"
 
 
 class RandomComprehensionView(PieceRedirectView):
-    model = models.Piece
     viewname = "comprehension"
 
 

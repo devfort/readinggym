@@ -407,13 +407,14 @@ span.highlight {
 }
 
 form#loginform input, form#registerform#input {
-    background-color: #fdffe5;
-    padding: 0.25em;
-    width: 25em;
+    background-color: #white;
+    padding: 0.5em;
+    margin: 0.25em 0em 1.25em 0px;
+    width: 100%;
     border-width: 1px 1px 2px;
-    border-style: dashed dashed solid;
-    border-color: rgb(204, 204, 204) rgb(204, 204, 204) black;
-    float: right;
+    border-style: solid;
+    border-color: #ccc #ccc black;
+    display: block;
 }
 
 div#login {
@@ -435,3 +436,7 @@ div#login a {
   text-decoration: none;
   font-family: inherit;
 }
+
+div#login a:hover {
+    background: #ddd;
+  }
