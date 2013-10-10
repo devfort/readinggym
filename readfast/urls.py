@@ -38,6 +38,6 @@ urlpatterns = patterns('',
     url(r"^reading/sprint/(?P<pk>[0-9]+)/$",  readfast.views.SprintView.as_view(),
         name="sprint"),
 
-    url(r"^reading/qs/(?P<pk>[0-9]+)/$",
+    url(r"^reading/comprehension/(?P<pk>[0-9]+)/$",
         readfast.views.ComprehensionView.as_view(), name="comprehension"),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
