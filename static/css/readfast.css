@@ -254,12 +254,12 @@ dashboard_button {
     vertical-align: middle;
     text-align: center;
     text-transform: uppercase;
-    font-weight: 700;
-    padding-top: 2em;
+    font-weight: bold;
     padding: 0.5em;
-    border: 3px solid rgb(0, 0, 0);
+    padding-top: 2em;
+    border: 3px solid #000;
     border-radius: 30px 30px 30px 30px;
-    color: rgb(0, 0, 0);
+    color: #000;
     text-decoration: none;
     font-family: inherit;
 }
