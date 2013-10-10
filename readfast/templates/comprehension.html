@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "test.html" %}
 
 {% block content %}
 <h2>Check Your Understanding</h2>
@@ -10,7 +10,10 @@
         {% for question, answers in questions %}
         <li class="question">
         <h4>{{ question }}</h4>
+        <input type="hidden" name="q-{{ question.id }}" value="-1">
         <ul class="answers">
+            {% for answer in answers %}
+            <li><label>
                 <input type="radio" name="q-{{ question.id }}"
                 value="{{ answer.id }}">
                 {{ answer.text }}
