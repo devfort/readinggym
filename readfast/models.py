@@ -12,6 +12,8 @@ class Piece(models.Model):
 
     text = models.TextField()
 
+    order = models.IntegerField()
+
     def __unicode__(self):
         return self.name
 
