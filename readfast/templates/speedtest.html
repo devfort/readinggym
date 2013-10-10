@@ -1,7 +1,8 @@
 {% extends "test.html" %}
+{% load asset_tags %}
+
 {% block extra_head %}
-<script src="/static/js/regulator.js" type="text/javascript"></script>
-<script src="/static/js/speed.js" type="text/javascript"></script>
+{% include_js 'app.js' %}
 <style>
   #timer-module.enhanced form { display: none }
 </style>
