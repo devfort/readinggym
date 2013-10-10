@@ -1,10 +1,12 @@
 {% load asset_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>{% block title %}The Reading Gym{% endblock %}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=640" />
+        <link rel="shortcut icon" href="{% static "images/favotter.png" %}">
         <!--[if lt IE 9]>
         <script src="/static/js/ie7/IE9.js"></script>
         <![endif]-->
