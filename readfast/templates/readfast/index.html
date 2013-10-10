@@ -1,9 +1,0 @@
-{% if test_list %}
-    <ul>
-    {% for test in test_list %}
-        <li><a href="{% url 'detail' test.id %}">{{ test.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No tests are available.</p>
-{% endif %}
