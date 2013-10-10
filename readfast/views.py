@@ -91,7 +91,7 @@ class ReadViewMixin(object):
         return context
 
 
-class RandomRedirectView(RedirectView):
+class NextRedirectView(RedirectView):
     """
     If the URL doesn't define a particular object to
     use for the detail view. Find one via the magic of
@@ -110,7 +110,7 @@ class RandomRedirectView(RedirectView):
         return reverse(self.viewname, kwargs={"pk": object.pk})
 
 
-class PieceRedirectView(RandomRedirectView):
+class PieceRedirectView(NextRedirectView):
     def get_redirect_url(self, **kwargs):
         """
         Find a piece with a higher order than the last completed piece.
