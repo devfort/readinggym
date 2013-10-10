@@ -132,7 +132,7 @@ class PieceRedirectView(RandomRedirectView):
                          self).get_redirect_url(**kwargs)
 
 
-class RandomSpeedTestView(PieceRedirectView):
+class NextSpeedTestView(PieceRedirectView):
     model = models.Piece
     viewname = "speed-test"
 
@@ -163,7 +163,7 @@ class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, DetailView):
         return super(SpeedTestView, self).form_valid(form)
 
 
-class RandomPracticeReadingView(PieceRedirectView):
+class NextPracticeReadingView(PieceRedirectView):
     model = models.Piece
     viewname = "practice"
 
@@ -178,7 +178,7 @@ class PracticeReadingView(ReadViewMixin, DetailView):
     model = models.Piece
 
 
-class RandomSprintView(PieceRedirectView):
+class NextSprintView(PieceRedirectView):
     template_name = "sprint.html"
 
 
