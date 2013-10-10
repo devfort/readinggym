@@ -149,11 +149,14 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'assets',
     'south',
-    'readfast'
+    'readfast',
+    'accounts'
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+
+AUTH_USER_MODEL = 'accounts.User'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
