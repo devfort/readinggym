@@ -8,8 +8,7 @@ DEPLOY_PATH = "/data/projects/readfast"
 def deploy():
     with cd(DEPLOY_PATH):
         run("git pull -q");
-        run("venv/bin/python manage.py syncdb --migrate")
-        #run("venv/bin/python manage.py collectstatic --noinput")
-        run("node_modules/.bin/wake")
+        run("venv/bin/python manage.py syncdb --migrate -v 0")
+        run("venv/bin/python manage.py collectstatic --noinput")
         sudo("service readfast restart")
 
