@@ -103,7 +103,7 @@ Title: Things!
 
     def test_parses_current_corpora_correctly(self):
         """Test the current corpora parse correctly.
-        
+
         Yeah, this isn't really a nice self-contained test, but something
         something pragmatism.
         """
