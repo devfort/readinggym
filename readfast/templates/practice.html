@@ -30,14 +30,14 @@ $(function() {
 {% block content %}
 <section class="ui">
     <label class="wpm">
-        Set your desired speed in words per minute: <input type="text" name="wpm">
+        Set your desired speed in words per minute:
+        <input type="text" name="wpm" value="{{ wpm }}">
     </label>
     <button id="control-article" type="button">Start</button>
 </section>
 
 <article>
     {% include "article_header.html" %}
-
     {{ words_to_read|safe|linebreaks }}
 </article>
 

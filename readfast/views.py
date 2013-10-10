@@ -86,6 +86,8 @@ class ReadViewMixin(object):
         context = super(ReadViewMixin, self).get_context_data(**kwargs)
         context['words_to_read'] = "".join(words_to_read)
         context['wordcount'] = len(words_to_read)
+        context['wpm'] = self.request.session.get('reading_speeds', [200])[0]
+
         return context
 
 
