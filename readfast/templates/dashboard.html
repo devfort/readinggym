@@ -59,7 +59,13 @@
     <a href="{% url "graphs" %}">Show all results.</a>
   </p>
   {% endif %}
-  
+
+  {% if not user.is_authenticated %}
+  <p>Want to keep this for later?
+      <a href="{% url "register" %}">Register an account</a>.
+  </p>
+  {% endif %}
+
   <p class="reset_data">
     <form action="{% url "reset" %}" method="post">
         {% csrf_token %}
