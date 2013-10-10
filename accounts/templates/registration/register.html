@@ -4,8 +4,10 @@
 
 {% block body_class %}account{% endblock %}
 
+{% block login %}{% endblock %}
+
 {% block content %}
-<form method="post">
+<form method="post" id="registerform">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Log me in and stuff</button>

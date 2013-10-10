@@ -1,6 +1,8 @@
-Source: The Orange Fairy Book by Andrew Lang
+Source: The Orange Fairy Book
+Author: Andrew Lang
 URL: http://www.gutenberg.org/ebooks/3027
 Title: How Isuro the Rabbit Tricked Gudu
+Order: 4
 
 Question: What kind of animal is Gudu?
 A!: Baboon

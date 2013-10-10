@@ -1,6 +1,8 @@
-Source: The Orange Fairy Book by Andrew Lang
+Source: The Orange Fairy Book
+Author: Andrew Lang
 URL: http://www.gutenberg.org/ebooks/3027
 Title: Story of the King Who Would See Paradise
+Order: 2
 
 Question: What was the Fakeer reading?
 A: The Bible
