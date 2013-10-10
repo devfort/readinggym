@@ -245,8 +245,9 @@ header > a {
 }
 .dashboard_buttons a:nth-child(3) {
     background-color: #80c890;
+}
 
-dashboard_button {
+.dashboard_button {
     width: 6em;
     height: 4.5em;
     margin: 0px 1em;
