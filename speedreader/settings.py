@@ -67,14 +67,12 @@ from wake_assets import Assets
 
 if 'CACHE_WAKE_ASSETS' in os.environ:
     WAKE_ASSETS = Assets(
-        wake  = os.path.join(os.getcwd(), 'node_modules', '.bin', 'wake'),
         root  = os.path.join(os.getcwd(), 'static'),
         mode  = 'targets',
         cache = True,
     )
 else:
     WAKE_ASSETS = Assets(
-        wake  = os.path.join(os.getcwd(), 'node_modules', '.bin', 'wake'),
         root  = os.getcwd(),
         mode  = 'sources',
         cache = False,
