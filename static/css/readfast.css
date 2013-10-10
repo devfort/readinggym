@@ -402,3 +402,9 @@ form#loginform input, form#registerform#input {
     border-color: rgb(204, 204, 204) rgb(204, 204, 204) black;
     float: right;
 }
+
+div#login {
+float: right;
+text-align: right;
+padding-right: 5em;
+}}
