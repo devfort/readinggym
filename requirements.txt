@@ -9,3 +9,4 @@ wsgiref==0.1.2
 django-storages==1.1.8
 boto==2.9.2
 wake_assets==0.3.0
+ua-parser==0.3.4
