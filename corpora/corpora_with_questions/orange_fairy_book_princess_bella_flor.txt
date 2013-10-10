@@ -21,7 +21,7 @@ A!: Crying at the side of the road.
 A: Paying a debt.
 
 Question: What was Jose's position in the castle?
-A! Gentleman of the bedchamber.
+A!: Gentleman of the bedchamber.
 A: Stablemaster.
 A: Messenger.
 A: Cook.
@@ -52,14 +52,14 @@ A: He bought new grain.
 
 Question: What did Princess Bella-Flor ask the King to do to Jose?
 A: Reward him.
-A! Boil him in oil.
+A!: Boil him in oil.
 A: Give him a horse.
 A: Behead him.
 
 Question: Who promised to marry Princess Bella-Flor?
 A: The King.
 A: Jose's brother.
-A! Jose.
+A!: Jose.
 A: The Horse.
 
 Text:
