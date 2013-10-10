@@ -93,7 +93,7 @@ if 'AWS_ACCESS_KEY_ID' in os.environ:
 else:
     AWS_AVAILABLE = False
 
-BASE_DIR = os.path.join(os.path.dirname(__file__), '..')
+SITE_ROOT = os.path.join(os.path.dirname(__file__), '..')
 
 if AWS_AVAILABLE and 'AWS_STORAGE_BUCKET_NAME' in os.environ:
     ASSET_HOSTS = ['http://otterbook.s3-website-us-west-2.amazonaws.com']
@@ -110,11 +110,11 @@ if AWS_AVAILABLE and 'AWS_STORAGE_BUCKET_NAME' in os.environ:
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     # The next two aren't really used, but staticfiles will complain without them
     STATIC_URL = "https://%s.s3.amazonaws.com/" % os.environ['AWS_STORAGE_BUCKET_NAME']
-    STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
+    STATIC_ROOT = os.path.join(SITE_ROOT, 'collected_static')
 else:
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
     MEDIA_URL = '/media/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
+    STATIC_ROOT = os.path.join(SITE_ROOT, 'collected_static')
     STATIC_URL = '/static/'
 
 # List of finder classes that know how to find static files in
@@ -127,7 +127,7 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(SITE_ROOT, 'static'),
 )
 
 # Make this unique, and don't share it with anybody.
