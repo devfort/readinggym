@@ -54,12 +54,14 @@ Pager.prototype.nextPage = function (callback) {
     }
 };
 
-function Regulator(article, pager, wpm) {
+function Regulator(article, pager, wpm, onStart, onFinish) {
     this.article = $(article);
     this.pager = pager;
     this.wpmField = $(wpm);
-    this.setup();
+    this.onStart = onStart;
+    this.onFinish = onFinish;
     this.running = false;
+    this.setup();
 }
 
 Regulator.prototype.setup = function() {
@@ -197,7 +199,10 @@ Regulator.prototype.start = function() {
         }
     };
 
-    this.pager.firstPage(guideLine);
+    this.pager.firstPage(function () {
+        self.onStart();
+        guideLine();
+    });
 };
 
 Regulator.prototype.stop = function() {
@@ -210,8 +215,8 @@ Regulator.prototype.stop = function() {
 Regulator.prototype.finish = function() {
     $("#proceed").show();
     this.stop();
+    this.onFinish();
 }
-
 
 if (!$.support.transition)
     $.fn.transition = $.fn.animate;

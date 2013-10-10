@@ -9,16 +9,26 @@ var wpm = Cookies.get("wpm") || 300;
 {% endblock %}
 
 $(function() {
+  var controls = $('#control-article');
   var pager = new Pager("article");
-  var regulator = new Regulator("article", pager, "input[name='wpm']");
+  var regulator = new Regulator(
+    "article", pager, "input[name='wpm']",
+    function () { // onStart
+        controls.text("Stop"); 
+    },
 
-  $('#control-article').click(function() {
+    function () { // onFinish
+        controls.text("Done").wrap(
+            $("#proceed a").detach().text("")
+        );
+    }
+  );
+
+  $('#control-article').one('click', function() {
     if(regulator.running) {
       regulator.stop();
-      $(this).text('Start');
     } else {
       regulator.start();
-      $(this).text('Stop');
     }
   });
 
