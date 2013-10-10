@@ -28,6 +28,7 @@ em {
 #content {
     background-color: #fefff1;
     width: 40em;
+    _width: 646px; /* ie6 */
     line-height: 1.5em;
     font-family: Georgia, Garamond, serif;
     border-style: solid;
