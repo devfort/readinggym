@@ -1,6 +1,8 @@
-Source: The Orange Fairy Book by Andrew Lang
+Source: The Orange Fairy Book
+Author: Andrew Lang
 URL: http://www.gutenberg.org/ebooks/3027
 Title: The Foolish Weaver
+Order: 1
 
 Question: What animal appeared to theaten the sheep?
 A: A Wolf

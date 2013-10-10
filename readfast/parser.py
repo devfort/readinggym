@@ -71,6 +71,10 @@ class PieceParser(object):
                 answer = Answer(match.group("text"),
                                 match.group("correct") is not None)
                 self.questions[-1].answers.append(answer)
+            elif (context, line_type) == ([], "order"):
+                self.order = int(match.group(1))
+            elif (context, line_type) == ([], "author"):
+                self.author = match.group(1)
             else:
                 raise ParseError("Illegal %s line: %r" % (line_type, line))
 
@@ -80,6 +84,8 @@ class PieceParser(object):
         "url": re.compile('^URL: (.*)$'),
         "question": re.compile('^Question: (.*)$'),
         "answer": re.compile('^A(?P<correct>!)?: (?P<text>.*)$'),
+        "order": re.compile('^Order: (.*)$'),
+        "author": re.compile('^Author: (.*)$'),
         "blank": re.compile('^\s+$'),
     }
 

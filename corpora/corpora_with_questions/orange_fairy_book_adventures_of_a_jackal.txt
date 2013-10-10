@@ -1,6 +1,8 @@
-Source: The Orange Fairy Book by Andrew Lang
+Source: The Orange Fairy Book
+Author: Andrew Lang
 URL: http://www.gutenberg.org/ebooks/3027
 Title: The Adventures of a Jackal
+Order: 3
 
 Question: Which animal is the Jackal's great friend?
 A: The Giraffe

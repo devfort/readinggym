@@ -11,6 +11,15 @@ from readfast.models import Piece
 from readfast.parser import PieceParser
 
 
+def get_or_else(dact, name, default):
+    return getattr(dact, name, default)
+
+def get_or_space(dact, name):
+    return get_or_else(dact, name, ' ')
+
+def get_or_thousand(dact, name):
+    return get_or_else(dact, name, 1000)
+
 class Command(BaseCommand):
     args = "<dir_or_file ...>"
     help = "Import corpora from files or directories."
@@ -44,9 +53,13 @@ class Command(BaseCommand):
                     print "Not saving"
                 else:
                     with transaction.commit_on_success():
-                        piece = Piece(name=parser.title,
-                                       slug=slugify(parser.title),
-                                       text=parser.text)
+                        piece = Piece(name=get_or_space(parser,'title'),
+                                       slug=slugify(get_or_space(parser,'title')),
+                                       text=get_or_space(parser,'text'),
+                                       order=get_or_thousand(parser, 'order'),
+                                       source_url=get_or_space(parser,'url'),
+                                       source_title=get_or_space(parser,'source'),
+                                       author=get_or_space(parser,'author'))
                         piece.save()
                         for parsed_question in parser.questions:
                             question_model = piece.questions.create(
