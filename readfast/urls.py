@@ -20,6 +20,9 @@ urlpatterns = patterns('',
     url(r"^reset/$",  readfast.views.ResetView.as_view(),
         name="reset"),
 
+    url(r"^graphs/$",  readfast.views.GraphsView.as_view(),
+        name="graphs"),
+    
     url(r"^reading/speed/$",  readfast.views.NextSpeedTestView.as_view(),
         name="speed-test"),
     url(r"^reading/speed/(?P<pk>[0-9]+)/$",  readfast.views.SpeedTestView.as_view(),

@@ -16,7 +16,7 @@
   </p>
 {% endif %}
 
-{% if reading_improvement %}
+{% if reading_improvement > 0 %}
   <p>
   This is <em class="reading_improvement">{{ reading_improvement }}</em> words per minute faster than you started at.
   </p>
@@ -53,6 +53,13 @@
     {% endfor %}
   </ol>
 
+  {% if total_number_of_speeds %}
+  <p>
+    Showing {{ reading_speeds | length }} of {{ total_number_of_speeds }} test results.
+    <a href="{% url "graphs" %}">Show all results.</a>
+  </p>
+  {% endif %}
+  
   <p class="reset_data">
     <form action="{% url "reset" %}" method="post">
         {% csrf_token %}

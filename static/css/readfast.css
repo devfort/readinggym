@@ -284,12 +284,25 @@ ol.speed_graph li {
 }
 
 ol.speed_graph li span {
-position: absolute;
-left: 0;
-width: 65%;
-background-color: #C8EEE5;
-border-top: 3px solid #5eaf9b;
-bottom: 10px;
+  position: absolute;
+  left: 0;
+  width: 65%;
+  background-color: #C8EEE5;
+  border-top: 3px solid #5eaf9b;
+  bottom: 10px;
+}
+
+ol.vertical_speed_graph {
+  width: 100%;
+}
+
+ol.vertical_speed_graph li {
+  list-style-type: none;
+  margin: 0.7em 0.7em 0.7em 0;
+  background-color: #C8EEE5;
+  border-right: 3px solid #5eaf9b;
+  text-overflow: hidden;
+  white-space: nowrap;
 }
 
 ul.answers li {
