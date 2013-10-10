@@ -5,3 +5,4 @@ ENV/
 speedreader.db
 speedreader.sublime*
 static/compiled
+collected_static

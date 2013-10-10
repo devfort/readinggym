@@ -1,9 +1,8 @@
+import os
 import os.path
 # Django settings for speedreader project.
 
-import os.path
-
-DEBUG = True
+DEBUG = 'true' == os.environ.get('DJANGO_DEBUG', 'true')
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -12,17 +11,21 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'speedreader.db',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': 'alexs',
-        'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+if 'DATABASE_URL' in os.environ:
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config()}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': 'speedreader.db',                      # Or path to database file if using sqlite3.
+            # The following settings are not used with sqlite3:
+            'USER': 'alexs',
+            'PASSWORD': '',
+            'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+            'PORT': '',                      # Set to empty string for default.
+        }
     }
-}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -32,7 +35,7 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'Europe/London'
+TIME_ZONE = 'UTC'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -62,31 +65,58 @@ MEDIA_URL = ''
 
 from wake_assets import Assets
 
-WAKE_ASSETS = Assets(
-    wake  = os.path.join(os.getcwd(), 'node_modules', '.bin', 'wake'),
-    root  = os.getcwd(),
-    mode  = 'sources',
-    cache = False,
-)
+if 'CACHE_WAKE_ASSETS' in os.environ:
+    WAKE_ASSETS = Assets(
+        wake  = os.path.join(os.getcwd(), 'node_modules', '.bin', 'wake'),
+        root  = os.path.join(os.getcwd(), 'static'),
+        mode  = 'targets',
+        cache = True,
+    )
+else:
+    WAKE_ASSETS = Assets(
+        wake  = os.path.join(os.getcwd(), 'node_modules', '.bin', 'wake'),
+        root  = os.getcwd(),
+        mode  = 'sources',
+        cache = False,
+    )
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-SITE_ROOT = os.path.join(os.path.dirname(__file__), '..')
-STATIC_ROOT = 'collected_static/'
 
-# URL prefix for static files.
-# Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = '/static/'
+if 'AWS_ACCESS_KEY_ID' in os.environ:
+    # AWS is available, so use this for media storage *and* as a target for
+    # static assets in the staticfiles pipeline.
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    AWS_AVAILABLE = True
+else:
+    AWS_AVAILABLE = False
 
-# Additional locations of static files
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(SITE_ROOT, 'static'),
-)
+BASE_DIR = os.path.join(os.path.dirname(__file__), '..')
+
+if AWS_AVAILABLE and 'AWS_STORAGE_BUCKET_NAME' in os.environ:
+    ASSET_HOSTS = ['http://otterbook.s3-website-us-west-2.amazonaws.com']
+    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+    AWS_QUERYSTRING_AUTH = False
+    AWS_HEADERS = {
+        'Cache-Control': 'max-age=86400',
+    }
+
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    MEDIA_URL = "https://%s.s3.amazonaws.com/" % os.environ['AWS_STORAGE_BUCKET_NAME']
+    MEDIA_ROOT = ''
+
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    # The next two aren't really used, but staticfiles will complain without them
+    STATIC_URL = "https://%s.s3.amazonaws.com/" % os.environ['AWS_STORAGE_BUCKET_NAME']
+    STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_URL = '/media/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
+    STATIC_URL = '/static/'
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -95,6 +125,10 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
 )
 
 # Make this unique, and don't share it with anybody.
