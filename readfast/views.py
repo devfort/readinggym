@@ -111,6 +111,8 @@ class NextRedirectView(RedirectView):
 
 
 class PieceRedirectView(NextRedirectView):
+    model = models.Piece
+
     def get_redirect_url(self, **kwargs):
         """
         Find a piece with a higher order than the last completed piece.
@@ -166,7 +168,6 @@ class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, DetailView):
 
 
 class NextPracticeReadingView(PieceRedirectView):
-    model = models.Piece
     viewname = "practice"
 
 
@@ -181,15 +182,16 @@ class PracticeReadingView(ReadViewMixin, DetailView):
 
 
 class NextSprintView(PieceRedirectView):
+    viewname = "sprint"
     template_name = "sprint.html"
 
 
 class SprintView(PracticeReadingView):
+    viewname = "sprint"
     template_name = "sprint.html"
 
 
 class RandomComprehensionView(PieceRedirectView):
-    model = models.Piece
     viewname = "comprehension"
 
 
