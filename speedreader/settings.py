@@ -104,7 +104,7 @@ if AWS_AVAILABLE and 'AWS_STORAGE_BUCKET_NAME' in os.environ:
     }
 
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    MEDIA_URL = "https://%s.s3.amazonaws.com/media" % os.environ['AWS_STORAGE_BUCKET_NAME']
+    MEDIA_URL = "https://%s.s3.amazonaws.com/media/" % os.environ['AWS_STORAGE_BUCKET_NAME']
     MEDIA_ROOT = ''
 
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
