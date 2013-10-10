@@ -394,13 +394,14 @@ span.highlight {
 }
 
 form#loginform input, form#registerform#input {
-    background-color: #fdffe5;
+    background-color: #white;
     padding: 0.25em;
-    width: 25em;
+    margin: 0.5em 0em;
+    width: 100%;
     border-width: 1px 1px 2px;
-    border-style: dashed dashed solid;
-    border-color: rgb(204, 204, 204) rgb(204, 204, 204) black;
-    float: right;
+    border-style: solid;
+    border-color: #ccc #ccc black;
+    display: block;
 }
 
 div#login {
