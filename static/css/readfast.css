@@ -90,14 +90,14 @@ h2 {
 
 section[role=main] > h2 {
     border-bottom: 3px solid #5eaf9b;
-    padding: 0.5em 0;
+    padding-bottom: 0.5em;
     margin-bottom: 0.5em;
     margin-top: 0.5em;
     }
 
 p + h2 {
     border-top: 3px solid #5eaf9b;
-    padding-bottom: 0;
+    padding-top: 0.5em;
     border-bottom: 0;
 }
     
