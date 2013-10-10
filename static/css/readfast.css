@@ -245,24 +245,25 @@ header > a {
 }
 .dashboard_buttons a:nth-child(3) {
     background-color: #80c890;
-}
-.dashboard_button {
+
+dashboard_button {
     width: 6em;
-    height: 6em;
-    border: dotted 1px;
-    margin: 0 1em 0 1em;
+    height: 4.5em;
+    margin: 0px 1em;
     display: inline-block;
     vertical-align: middle;
     text-align: center;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 700;
+    padding-top: 2em;
     padding: 0.5em;
-    border: 3px solid #000;
-    border-radius: 30px;
-    color: #000;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 30px 30px 30px 30px;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     font-family: inherit;
 }
+
 
 ol.speed_graph {
   margin-top: 140px;
