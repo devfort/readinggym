@@ -9,16 +9,27 @@ var wpm = Cookies.get("wpm") || 300;
 {% endblock %}
 
 $(function() {
+  var controls = $('#control-article');
   var pager = new Pager("article");
-  var regulator = new Regulator("article", pager, "input[name='wpm']");
+  var regulator = new Regulator(
+    "article", pager, "input[name='wpm']",
+    function () { // onStart
+        controls.text("Stop"); 
+    },
 
-  $('#control-article').click(function() {
+    function () { // onFinish
+        var proceed = $("#proceed a");
+        controls.text("Done")
+            .attr("title", proceed.text())
+            .wrap(proceed.detach().text(""));
+    }
+  );
+
+  $('#control-article').one('click', function() {
     if(regulator.running) {
       regulator.stop();
-      $(this).text('Start');
     } else {
       regulator.start();
-      $(this).text('Stop');
     }
   });
 
@@ -30,20 +41,22 @@ $(function() {
 {% block content %}
 <section class="ui">
     <label class="wpm">
-        Set your desired speed in words per minute: <input type="text" name="wpm">
+        Set your desired speed in words per minute:
+        <input type="text" name="wpm" value="{{ wpm }}">
     </label>
     <button id="control-article" type="button">Start</button>
 </section>
 
 <article>
     {% include "article_header.html" %}
-
-    {{ words_to_read|safe|linebreaks }}
+    {{ words_to_read|safe }}
 </article>
 
 <span id="current-page"></span>/<span id="page-count"></span>
 
 <section id="proceed">
+{% block proceed %}
     <a href="{% url "comprehension" object.pk %}">Check my understanding.</a>
+{% endblock %}
 </section>
 {% endblock %}

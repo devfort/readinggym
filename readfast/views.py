@@ -15,13 +15,13 @@ import readfast.models as models
 
 
 def spanify(text):
-    words_to_read = []
+    words_to_read = ["<p>"]
     for line in text.splitlines(True):
         for word in line.split():
             words_to_read.append("<span>%s </span>" % word)
         if not line.strip():
-            words_to_read.append("<br/>")
-
+            words_to_read.append("</p><p>")
+    words_to_read.append("</p>")
     return words_to_read
 
 
@@ -86,6 +86,8 @@ class ReadViewMixin(object):
         context = super(ReadViewMixin, self).get_context_data(**kwargs)
         context['words_to_read'] = "".join(words_to_read)
         context['wordcount'] = len(words_to_read)
+        context['wpm'] = self.request.session.get('reading_speeds', [200])[0]
+
         return context
 
 

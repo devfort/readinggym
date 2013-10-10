@@ -1,5 +1,9 @@
 {% extends "practice.html" %}
 
+{% block proceed %}
+    <a href="{% url "dashboard" %}">Return to the training room</a>
+{% endblock %}
+
 {% block wpm_script %}
 var wpm = (Cookies.get("wpm") || 300) * 1.5;
 {% endblock %}

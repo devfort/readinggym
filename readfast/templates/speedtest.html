@@ -8,17 +8,17 @@
 {% endblock %}
 
 {% block content %}
-<div id='timer-module'>
-  <p class='explanation'>
+<div id="timer-module">
+  <p class="explanation">
     You will need something (such as a stop watch) to time how long it takes you to read the following, then input your time and we will calculate your speed for you. 
     Read at a speed that is comfortable for you.  
   </p> 
 
-  <div id='timer-control'></div>
-  <form method='post'>
+  <div id="timer-control"></div>
+  <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type='submit'>Record time</button>
+      <button type="submit">Record time</button>
   </form>
 
   <article>
@@ -34,10 +34,11 @@
 <span id="current-page"></span>/<span id="page-count"></span>
 
 <script>
-    enhanceTimerModule('#timer-module', 
-                       'Press [Start] to start timing, [Page Down] to move down, and [Stop] when you\'re done.',
+    enhanceTimerModule("#timer-module", 
+                       "Press [Start] to start timing, [Page Down] to move down, and [Stop] when you're done.",
                        new Pager($("article")));
 </script>
 
 {% endblock %}
+
 

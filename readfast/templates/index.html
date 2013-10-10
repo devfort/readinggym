@@ -3,10 +3,10 @@
 {% block content %}
 <h2>Welcome!</h2>
 <p>
-  We'd like to help you to read better and faster. Most folks haven't really worked on their reading skill since learning to read as children
+  We&rsquo;d like to help you to read better and faster. Most folks haven&rsquo;t really worked on their reading skill since learning to read as children.
 </p>
 <p>
-  By learning a couple of simple techniques to practise, you can read faster AND understand more. 
+By learning a couple of simple techniques to practise, you can read faster <em>and</em> understand more. 
 </p>
 <p>
   We want to help you level up your reading ability, whatever your starting point. 
@@ -14,6 +14,7 @@
 
 <p class="nextSteps">
     <a class="enticing" href="{% url "speed-test" %}">Test my speed</a>
+    <a class="enticing" href="{% url "dashboard" %}">Training Room</a>
 </p>
 
 <h2>How Can I Read Faster?</h2>
@@ -26,10 +27,10 @@
 </ol>
 <h3>Focused Practice</h3>
 <p>
-  Offline you do this by running your finger or a pen/stylus (a "regulator") along the line that you are reading. It helps to keep you focused and prevents you going back over words you have already read. It's important to not try to push your speed; <s></s> this is mostly about reading at a comfortable speed and focusing on good habits. 
+  Offline you do this by running your finger or a pen/stylus (a &ldquo;regulator&rdquo;) along the line that you are reading. It helps to keep you focused and prevents you going back over words you have already read. It&rsquo;s important to not try to push your speed; <s></s> this is mostly about reading at a comfortable speed and focusing on good habits. 
 </p>
 <p>
-  We have a prepared a bunch of articles you can read in this way here, with short comprehension tests afterwards so you check you're not losing any understanding. An indicator on the screen moves at your preferred speed, and we fade out the lines above and below so your eyes aren't distracted by what has been or what is coming. 
+  We have a prepared a bunch of articles you can read in this way here, with short comprehension tests afterwards so you check you&rsquo;re not losing any understanding. An indicator on the screen moves at your preferred speed, and we fade out the lines above and below so your eyes aren&rsquo;t distracted by what has been or what is coming. 
 </p>
 <h3>Sprint Training</h3>
 <p>
@@ -40,13 +41,14 @@
 </p>
 <h3>Speed Tests</h3>
 <p>
-  It's also useful to get a snapshot of your progress by reading "normally" (without a regulator and not deliberately sprinting). We will give you an article to read and you can either time yourself offline or use the Start &amp; Stop buttons to have the system calculate this for you. 
+  It&rsquo;s also useful to get a snapshot of your progress by reading &ldquo;normally&rdquo; (without a regulator and not deliberately sprinting). We will give you an article to read and you can either time yourself offline or use the Start &amp; Stop buttons to have the system calculate this for you. 
 </p>
 
 <h3>What Next?</h3>
 <p class="nextSteps">
     <a class="enticing" href="{% url "speed-test" %}">Test my speed</a>
     <a class="enticing" href="{% url "why" %}">Learn more</a>
+    <a class="enticing" href="{% url "dashboard" %}">Training Room</a>
 </p>
 
 {% endblock %}
