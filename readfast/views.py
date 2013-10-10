@@ -108,7 +108,26 @@ class RandomRedirectView(RedirectView):
         return reverse(self.viewname, kwargs={"pk": object.pk})
 
 
-class RandomSpeedTestView(RandomRedirectView):
+class PieceRedirectView(RandomRedirectView):
+    def get_redirect_url(self, **kwargs):
+        """
+        Find a piece with a higher order than the last completed piece.
+
+        Pieces with lower orders will still be preffered and any ties
+        will be broken by random choice.
+        """
+        last_piece_pk = self.request.session.get('last_piece')
+        if last_piece_pk:
+            last_piece = self.model.objects.get(last_piece_pk)
+            next_piece = self.model.objects.get(
+                order__gt=last_piece.order).order_by('-order', '?')
+            return reverse(self.viewname, kwargs={"pk": next_piece.pk})
+        else:
+            return super(RandomRedirectView,
+                         self).get_redirect_url(**kwargs)
+
+
+class RandomSpeedTestView(PieceRedirectView):
     model = models.Piece
     viewname = "speed-test"
 
@@ -139,7 +158,7 @@ class SpeedTestView(ProcessFormView, FormMixin, ReadViewMixin, DetailView):
         return super(SpeedTestView, self).form_valid(form)
 
 
-class RandomPracticeReadingView(RandomRedirectView):
+class RandomPracticeReadingView(PieceRedirectView):
     model = models.Piece
     viewname = "practice"
 
@@ -154,7 +173,7 @@ class PracticeReadingView(ReadViewMixin, DetailView):
     model = models.Piece
 
 
-class RandomSprintView(RandomPracticeReadingView):
+class RandomSprintView(PieceRedirectView):
     template_name = "sprint.html"
 
 
@@ -162,7 +181,7 @@ class SprintView(PracticeReadingView):
     template_name = "sprint.html"
 
 
-class RandomComprehensionView(RandomRedirectView):
+class RandomComprehensionView(PieceRedirectView):
     model = models.Piece
     viewname = "comprehension"
 
@@ -232,6 +251,8 @@ class ComprehensionView(DetailView):
                 len(self.object.text.split()) +
                 self.request.session.get("words_read", 0)
             )
+
+            self.request.session['last_piece'] = self.object.pk
 
         response = self.render_to_response(self.get_context_data(**kwargs))
 

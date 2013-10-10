@@ -15,6 +15,9 @@ class Piece(models.Model):
     # Default to a nice big number so new ones go on the end
     order = models.IntegerField(default=1000)
 
+    class Meta:
+        ordering = ('order', '?')
+
     def __unicode__(self):
         return self.name
 
@@ -27,6 +30,7 @@ class ComprehensionQuestion(models.Model):
     piece = models.ForeignKey('Piece',
                               related_name="questions")
     text = models.CharField(max_length=200)
+
 
     def __unicode__(self):
         return self.text
