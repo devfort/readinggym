@@ -393,3 +393,11 @@ span.highlight {
     background-color: red;
 }
 
+form#loginform input, form#registerform#input {
+    background-color: #fdffe5;
+    padding: 0.25em;
+    width: 25em;
+    border-width: 1px 1px 2px;
+    border-style: dashed dashed solid;
+    border-color: rgb(204, 204, 204) rgb(204, 204, 204) black;
+    float: right;
