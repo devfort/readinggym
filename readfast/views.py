@@ -123,8 +123,8 @@ class PieceRedirectView(RandomRedirectView):
                 next_piece = self.model.objects.order_by('-order', '?').get(
                     order__gt=last_piece.order)
             except self.model.DoesNotExist:
-                next_piece = self.model.objects.order_by('-order', '?').get(
-                    order=last_piece.order)
+                next_piece = self.model.objects.order_by('-order', '?').filter(
+                    order=last_piece.order)[0]
 
             return reverse(self.viewname, kwargs={"pk": next_piece.pk})
         else:
