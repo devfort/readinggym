@@ -7,6 +7,7 @@ from accounts.forms import RegistrationForm
 
 class RegisterView(CreateView):
 
+    form_class = RegistrationForm
     template_name = "registration/register.html"
     model = User
 
@@ -15,5 +16,3 @@ class RegisterView(CreateView):
         # this from speedreader/urls.py, at which point there are no URLs
         return reverse("dashboard")
 
-    def get_form_class(self):
-        return RegistrationForm
