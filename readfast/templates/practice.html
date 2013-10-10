@@ -18,9 +18,10 @@ $(function() {
     },
 
     function () { // onFinish
-        controls.text("Done").wrap(
-            $("#proceed a").detach().text("")
-        );
+        var proceed = $("#proceed a");
+        controls.text("Done")
+            .attr("title", proceed.text())
+            .wrap(proceed.detach().text(""));
     }
   );
 
@@ -54,6 +55,8 @@ $(function() {
 <span id="current-page"></span>/<span id="page-count"></span>
 
 <section id="proceed">
+{% block proceed %}
     <a href="{% url "comprehension" object.pk %}">Check my understanding.</a>
+{% endblock %}
 </section>
 {% endblock %}
