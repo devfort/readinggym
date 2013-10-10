@@ -15,13 +15,13 @@ import readfast.models as models
 
 
 def spanify(text):
-    words_to_read = []
+    words_to_read = ["<p>"]
     for line in text.splitlines(True):
         for word in line.split():
             words_to_read.append("<span>%s </span>" % word)
         if not line.strip():
-            words_to_read.append("<br/>")
-
+            words_to_read.append("</p><p>")
+    words_to_read.append("</p>")
     return words_to_read
 
 
