@@ -447,8 +447,8 @@ div#login a {
 div#login a:hover {
     background: #ddd;
   }
-  
-.action a {
+
+a.action {
   display: block;
   text-align: center;
   text-transform: uppercase;
@@ -462,6 +462,6 @@ div#login a:hover {
   font-family: inherit;
 }
 
-.action a:hover {
+a.action:hover {
     background: #ddd;
 }
