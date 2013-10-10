@@ -4,7 +4,7 @@
 
   "devDependencies": {
     "jstest": "~1.0.0",
-    "wake": "~0.2.0"
+    "wake": "~0.3.0"
   },
 
   "wake": {
