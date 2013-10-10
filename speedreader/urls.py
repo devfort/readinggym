@@ -11,6 +11,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'', include('readfast.urls')),
     url(r"^accounts/register/$", accounts.views.RegisterView.as_view(), name="register"),
+    url(r"^accounts/logout/$", 'django.contrib.auth.views.logout',
+        {'next_page': '/'}, name="logout"),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
