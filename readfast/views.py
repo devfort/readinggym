@@ -25,6 +25,17 @@ def spanify(text):
     return words_to_read
 
 
+def speeds_and_percentages_from_speeds(speeds):
+    quickest_speed = float(max(speeds))
+    percentages = [speed/quickest_speed*100 for speed in speeds]
+    inverted_percentages = [100 - percentage
+                            for percentage in percentages]
+
+    return zip(
+        speeds, percentages, inverted_percentages
+    )
+
+
 class DashboardView(TemplateView):
     """
     /dashboard/
@@ -37,20 +48,34 @@ class DashboardView(TemplateView):
         context = super(DashboardView, self).get_context_data(**kwargs)
         try:
             speeds = self.request.session['reading_speeds']
-            latest_speed = speeds[-1]
-            improvement = latest_speed - speeds[0]
+            improvement = speeds[-1] - speeds[0]
 
-            quickest_speed = float(max(speeds))
-            percentages = [speed/quickest_speed*100 for speed in speeds]
-            inverted_percentages = [100 - percentage
-                                    for percentage in percentages]
-
-            context['speeds_and_percentages'] = zip(
-                speeds, percentages, inverted_percentages
-            )
+            speeds = speeds[-6:]
+            context['speeds_and_percentages'] = speeds_and_percentages_from_speeds(speeds)
             context['reading_speeds'] = speeds
             context['reading_improvement'] = improvement
+
+            total_number_of_speeds = len(self.request.session['reading_speeds'])
+            if total_number_of_speeds > len(speeds):
+                context['total_number_of_speeds'] = total_number_of_speeds
             context['words_read'] = self.request.session['words_read']
+        except KeyError:
+            pass
+        return context
+
+class GraphsView(TemplateView):
+    """
+    /graphs/
+
+    Shows you all of the graphs
+    """
+    template_name = "graphs.html"
+
+    def get_context_data(self, **kwargs):
+        try:
+            context = super(GraphsView, self).get_context_data(**kwargs)
+            speeds = self.request.session['reading_speeds']
+            context['speeds_and_percentages'] = speeds_and_percentages_from_speeds(speeds)
         except KeyError:
             pass
         return context

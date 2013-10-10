@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Speed history</h2>
+{% if speeds_and_percentages %}
+  <p>Earliest</p>
+  <ol class="vertical_speed_graph">
+    {% for datapoint in speeds_and_percentages %}
+      <li style="width: {{datapoint.1}}%">{{ datapoint.0 }} wpm</li>
+    {% endfor %}
+  </ol>
+  <p>Latest</p>
+{% else %}
+<p>
+  You haven't done any speed tests.
+</p>
+{% endif %}
+
+{% endblock %}
+
