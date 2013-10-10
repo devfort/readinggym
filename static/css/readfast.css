@@ -423,3 +423,7 @@ div#login a {
   text-decoration: none;
   font-family: inherit;
 }
+
+div#login a:hover {
+    background: #ddd;
+  }
