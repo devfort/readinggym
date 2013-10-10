@@ -286,7 +286,12 @@ bottom: 10px;
 }
 
 ul.answers li {
-   list-style-type: disc;
+   list-style-type: lower-latin;
+   margin-left: 3em;
+}
+
+li.question h4 {
+   display: inline;
 }
 
 p.reset_data {
