@@ -43,7 +43,7 @@ em {
     width: 100%;
     text-align: center;
     background-color: #5eaf9b;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
     border-bottom: 4px solid #5eaf9b;
 }
 
@@ -407,4 +407,18 @@ div#login {
 float: right;
 text-align: right;
 padding-right: 5em;
+}
+
+div#login a {
+  display: inline;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.25em 1em;
+  border: 3px solid #000;
+  border-radius: 15px;
+  background: #fdffe5;
+  color: #000;
+  text-decoration: none;
+  font-family: inherit;
 }
