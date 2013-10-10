@@ -2,6 +2,24 @@
 
 A Django app for helping you read faster.
 
+## Deploying
+
+#apt
+
+    apt-get install --yes python-virtualenv python-pip python-dev libpq-dev postgresql-9.1 nodejs npm
+
+#Noooooooode setup
+
+    npm install
+
+#django setup
+
+    python manage.py syncdb --migrate
+    node_modules/.bin/wake
+
+#server setup
+
+    echo "Who can say?"
 
 ## Contributing
 
