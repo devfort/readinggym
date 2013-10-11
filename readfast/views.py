@@ -221,7 +221,7 @@ class ComprehensionView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ComprehensionView, self).get_context_data(**kwargs)
         questions = []
-        for q in self.object.questions.order_by('?')[:10]:
+        for q in self.object.questions.order_by('?')[:3]:
             answers = list(
                 chain(q.answers.filter(correct=False).order_by('?')[:2],
                       q.answers.filter(correct=True)[:1])
