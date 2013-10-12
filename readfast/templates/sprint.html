@@ -1,5 +1,7 @@
 {% extends "practice.html" %}
 
+<p>We recommend that you sprint at a rate at least 1.5 times your regular reading speed, ideally 2 times faster.</p>
+
 {% block proceed %}
     <a href="{% url "dashboard" %}">Return to the training room</a>
 {% endblock %}
@@ -7,6 +9,3 @@
 {% block wpm_script %}
 var wpm = (Cookies.get("wpm") || 300) * 1.5;
 {% endblock %}
-
-
-
