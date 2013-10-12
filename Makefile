@@ -4,4 +4,4 @@ jstest:
 	phantomjs static/tests/phantom.js
 
 pytest:
-	python manage.py test readfast
+	python manage.py test readfast assets
