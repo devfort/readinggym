@@ -1,4 +1,5 @@
-# speedreader
+# The Reading Gym
+[![Build Status](https://travis-ci.org/devfort/readinggym.png?branch=master)](https://travis-ci.org/devfort/readinggym)
 
 A Django app for helping you read faster.
 
