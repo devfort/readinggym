@@ -41,6 +41,7 @@ $(function() {
 
 {% block content %}
 <section class="ui">
+    {% block explanation %}{% endblock %}
     <label class="wpm">
         Set your desired speed in words per minute:
         <input type="text" name="wpm" value="{{ wpm }}">
