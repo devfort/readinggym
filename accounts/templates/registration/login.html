@@ -16,6 +16,11 @@
     {{ form.password.label_tag }}
     {{ form.password.errors }}
     {{ form.password }}
-    <button type="submit">Log me in and stuff</button>
+    <button type="submit">Log me in</button>
 </form>
+
+<h3>Alternatively</h3>
+<p>
+<a class="action" href="{% url "register" %}">Register an account</a>
+</p>
 {% endblock %}
