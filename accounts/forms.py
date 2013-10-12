@@ -27,3 +27,10 @@ class RegistrationForm(forms.ModelForm):
             mismatch_error = self.error_messages['password_mismatch']
             raise forms.ValidationError(mismatch_error)
         return password2
+
+    def save(self, commit=True):
+        user = super(RegistrationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data['password'])
+        if commit:
+            user.save()
+        return user
