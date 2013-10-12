@@ -18,7 +18,7 @@ class UserManager(user_models.BaseUserManager):
         email = UserManager.normalize_email(email)
         fields = {
             'is_staff': False,
-            'is_active': False,
+            'is_active': True,
             'is_superuser': False,
             'email': email,
             'last_login': now,
