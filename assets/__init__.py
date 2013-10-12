@@ -6,7 +6,7 @@ from ua_parser import user_agent_parser
 MOBILES = ['iPhone', 'iPad', 'Kindle']
 
 def is_mobile(request):
-    user_agent = user_agent_parser.Parse(request.META['HTTP_USER_AGENT'])
+    user_agent = user_agent_parser.Parse(request.META.get('HTTP_USER_AGENT', ''))
     return user_agent['device']['family'] in MOBILES
 
 class AssetsMiddleware:
