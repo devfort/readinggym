@@ -160,6 +160,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
     "assets.assets_context",
+    "readfast.context_processors.analytics"
 )
 
 ROOT_URLCONF = 'speedreader.urls'
@@ -236,6 +237,9 @@ LOGGING = {
         },
     }
 }
+
+GA_ACCOUNT_ID = os.environ.get('GA_ACCOUNT_ID')
+GA_HOSTNAME = 'www.readinggym.org'
 
 try:
     from local_settings import *
