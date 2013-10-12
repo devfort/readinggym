@@ -1,5 +1,12 @@
 language: python
 python:
-  - "2.7"
-install: "pip install -r requirements.txt --use-mirrors"
+- '2.7'
+install: pip install -r requirements.txt --use-mirrors
 script: make pytest
+deploy:
+  provider: heroku
+  api_key:
+    secure: SIo7bedPZdMdOgheH19KfYKj0iVc5JhvBSnoc+SVokDuAA++lYMqTx5T7OSNmVlkHckA/3RT26Urv03N92Oz8qE7P6hc8nVerxfY7PmHDj2E40sHnTldscUMJTU31peakDS+lTgXnkgTt2oVFUclAz2uwYA8rUXlyTR2/2T6GI4=
+  app: otterbook
+  on:
+    repo: devfort/readinggym
