@@ -148,6 +148,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'djexceptional.ExceptionalMiddleware',
     'assets.AssetsMiddleware',
 )
 
@@ -240,6 +241,7 @@ LOGGING = {
 
 GA_ACCOUNT_ID = os.environ.get('GA_ACCOUNT_ID')
 GA_HOSTNAME = 'www.readinggym.org'
+EXCEPTIONAL_API_KEY = os.environ.get('EXCEPTIONAL_API_KEY')
 
 try:
     from local_settings import *
