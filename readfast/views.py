@@ -140,7 +140,7 @@ class PieceRedirectView(NextRedirectView):
             try:
                 next_piece = self.model.objects.order_by('-order', '?').filter(
                     order__gt=last_piece.order)[0]
-            except self.model.DoesNotExist:
+            except IndexError:
                 next_piece = self.model.objects.order_by('-order', '?').filter(
                     order=last_piece.order)[0]
 
