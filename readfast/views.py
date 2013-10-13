@@ -138,8 +138,8 @@ class PieceRedirectView(NextRedirectView):
         if last_piece_pk:
             last_piece = self.model.objects.get(pk=last_piece_pk)
             try:
-                next_piece = self.model.objects.order_by('-order', '?').get(
-                    order__gt=last_piece.order)
+                next_piece = self.model.objects.order_by('-order', '?').filter(
+                    order__gt=last_piece.order)[0]
             except self.model.DoesNotExist:
                 next_piece = self.model.objects.order_by('-order', '?').filter(
                     order=last_piece.order)[0]
