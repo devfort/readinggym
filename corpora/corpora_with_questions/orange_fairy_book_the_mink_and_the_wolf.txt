@@ -2,6 +2,67 @@ Source: The Orange Fairy Book
 Author: Andrew Lang
 URL: http://www.gutenberg.org/ebooks/3027
 Title: The Mink and the Wolf
+Order: 6
+
+Question: When did the young wolf promise he would be home?
+A: Friday
+A!: Bedtime
+A: Sunset
+A: Tomorrow
+
+Question: What was the mink doing when the young wolf found him?
+A!: Fishing in a canoe
+A: Sitting in a tree
+A: Eating sea urchin eggs
+A: Taking a nap
+
+Question: What was the mink doing when the young wolf found him?
+A!: Fishing in a canoe
+A: Sitting in a tree
+A: Eating sea urchin eggs
+A: Taking a nap
+
+Question: Where did the mink put the wolf skin?
+A: Up a tree
+A: In his canoe
+A!: In front of the fire
+A: On the floor
+
+Question: Who did the mink ask for help?
+A!: A mouse
+A: A white hare
+A!: A sea urchin
+A: A jackal
+
+Question: When was the full moon?
+A: Friday
+A: Last week
+A: The same day
+A!: Tomorrow night
+
+Question: How did the mink escape the wolves' house?
+A: Up the chimney
+A: Through a crack in the wall
+A: Through the door
+A!: Through a knot hole
+
+Question: Where were the spare paddles?
+A: The forest
+A: The beach
+A!: A small cave
+A: A hut
+
+Question: What did the mink suggest the wolves should tie him up with?
+A!: Kelp
+A: Cedar
+A: String
+A: Maize
+
+Question: What did the mink do at the end of the dance?
+A: Take a bow
+A!: Dive in the lake
+A: Eat a sea urchin
+A: Escape through a knot hole
 
 Text:
 [From Cuentos, Oraciones y Adivinas, por Fernan Caballero.]
