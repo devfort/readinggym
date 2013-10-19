@@ -2,6 +2,67 @@ Source: The Orange Fairy Book
 Author: Andrew Lang
 URL: http://www.gutenberg.org/ebooks/3027
 Title: The Story of the Hero Makoma
+Order: 7
+
+Question: Where did the mother call the men to?
+A!: The river bank
+A: Her home
+A: The tree house
+A: The fields
+
+Question: What lived in the pool in the river?
+A: Fish
+A: Snakes
+A!: Crocodiles
+A: A Hippopotamus
+
+Question: What was the first giant doing?
+A: Sleeping
+A!: Making mountains
+A: Catching fish
+A: Painting the sky
+
+Question: What was the second giant doing?
+A: Eating a goat
+A: Making mountains
+A!: Making river beds
+A: Painting the sky
+
+Question: What was the third giant doing?
+A!: Planting baobab trees
+A: Making mountains
+A: Making river beds
+A: Painting the sky
+
+Question: Who did Makoma meet in the desolate plain?
+A: Rihanna
+A: His mother
+A: The river god
+A!: The fire spirit
+
+Question: What were the giants tied up with?
+A!: Moustache hair
+A: Rope
+A: Palm leaves
+A: Magic string
+
+Question: What did Makoma and his friends eat to celebrate?
+A: Crocodile
+A: Goat
+A: Chicken
+A!: Venison
+
+Question: Why couldn't Makoma see Sakatirina?
+A: He was invisible
+A!: He was hidden by cloud
+A: He was in the river
+A: He was hiding in a tree
+
+Question: Why couldn't Makoma see Sakatirina?
+A: He was invisible
+A!: He was hidden by cloud
+A: He was in the river
+A: He was hiding in a tree
 
 Text:
 From the Senna (Oral Tradition)
@@ -216,7 +277,7 @@ hammer, struck him again; this time the blow alighted upon the dry sack
 and Chin-debou Mau-giri fell dead.
 
 When the four giants returned at sunset with the poles, they rejoiced to
-find that Makoma had overcome the fever-spirit, and they feasted on the
+find that Makoma had overcome the river-spirit, and they feasted on the
 roast venison till far into the night; but in the morning, when they
 awoke, Makoma was already warming his hands to the fire, and his face
 was gloomy.
