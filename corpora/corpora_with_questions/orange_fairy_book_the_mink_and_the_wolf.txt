@@ -16,11 +16,11 @@ A: Sitting in a tree
 A: Eating sea urchin eggs
 A: Taking a nap
 
-Question: What was the mink doing when the young wolf found him?
-A!: Fishing in a canoe
-A: Sitting in a tree
-A: Eating sea urchin eggs
-A: Taking a nap
+Question: What did the mink offer the wolf to eat?
+A: Fish
+A!: Sea urchin eggs
+A: Crabs
+A: Mice
 
 Question: Where did the mink put the wolf skin?
 A: Up a tree
